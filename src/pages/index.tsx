@@ -32,29 +32,18 @@ export default function Home() {
 						<h1 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl">
 							Prime Touch Cleaning Services
 						</h1>
-						{/* <div className="mt-4 flex items-center gap-4 text-sm">
-							<span className="flex items-center gap-2">🛡️ Police Checked</span>
-							<span className="flex items-center gap-2">⭐ 4+ Years</span>
-							<span className="flex items-center gap-2">✅ Fully Insured</span>
-						</div> */}
+
 						<p className="mt-6 max-w-xl text-base leading-7 text-zinc-700 sm:text-lg">
 							Reliable, high-quality cleaning for homes and offices. Our trained pros make your
 							spaces sparkle—on time, every time.
 						</p>
 						<div className="mt-8 flex flex-col gap-3 sm:flex-row">
-							<Button size="lg">Book Online</Button>
-							<Button component={Link} href="/contact" size="lg" variant="outline">
+							<Button component={Link} href="/book" size="lg">
+								Book Online
+							</Button>
+							<Button size="lg" variant="outline">
 								Contact Us
 							</Button>
-							{/* <Button
-								component={Link}
-								href="tel:1300886119"
-								variant="outline"
-								size="lg"
-								color="brand"
-							>
-								Call 1300 886 119 →
-							</Button> */}
 						</div>
 					</div>
 				</div>
@@ -118,24 +107,6 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-
-			{/* Green Promise inspired section */}
-			<Box style={{ backgroundColor: "#6b7e64" }} className="py-12">
-				<Container size="lg">
-					<Title order={2} ta="center" c="white">
-						Alexa's Green Promise
-					</Title>
-					<Text ta="center" mt="md" c="white">
-						Our products are non-toxic, eco-friendly, and safe for pets and children. Customize your
-						plan and enjoy a clean, fresh, healthy space.
-					</Text>
-					<div className="mt-6 flex justify-center">
-						<Button component={Link} href="/contact" size="md" variant="white" color="brand">
-							Request a Quote
-						</Button>
-					</div>
-				</Container>
-			</Box>
 		</>
 	);
 }

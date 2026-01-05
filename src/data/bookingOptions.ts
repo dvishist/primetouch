@@ -82,13 +82,27 @@ export const bookingOptions: BookingOption[] = [
 		],
 		pricing: [
 			{
-				period: "once-off",
-				pricePerHour: 75,
-				additionalHourPrice: 70,
-				minHours: 4
+				period: "One Bed",
+				pricePerHour: 190,
+				minHours: 0
+			},
+			{
+				period: "Two Bed",
+				pricePerHour: 290,
+				minHours: 0
+			},
+			{
+				period: "Three Bed",
+				pricePerHour: 405,
+				minHours: 0
+			},
+			{
+				period: "Four+ Bed",
+				pricePerHour: 550,
+				minHours: 0
 			}
 		],
-		bookingPeriods: ["weekly", "fortnightly", "monthly"]
+		bookingPeriods: ["One Bed", "Two Bed", "Three Bed", "Four+ Bed"]
 	},
 	{
 		id: "commercial",
@@ -143,7 +157,7 @@ export const bookingOptions: BookingOption[] = [
 				minHours: 2
 			}
 		],
-		bookingPeriods: ["weekly", "fortnightly", "monthly"]
+		bookingPeriods: ["once-off"]
 	},
 	{
 		id: "airbnb",

@@ -71,6 +71,7 @@ export default function CustomerDetailsStep({ details, onUpdate }: CustomerDetai
 				<Grid.Col span={{ base: 12, sm: 6 }}>
 					<TextInput
 						label="City"
+						required
 						placeholder="New York"
 						value={details.city}
 						onChange={handleChange("city")}
@@ -79,6 +80,7 @@ export default function CustomerDetailsStep({ details, onUpdate }: CustomerDetai
 				<Grid.Col span={{ base: 12, sm: 6 }}>
 					<TextInput
 						label="Postal Code"
+						required
 						placeholder="10001"
 						value={details.postalCode}
 						onChange={handleChange("postalCode")}

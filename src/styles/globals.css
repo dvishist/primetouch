@@ -40,8 +40,14 @@ html {
 
 .hero-section {
 	position: relative;
-	min-height: 600px;
+	min-height: 500px;
 	overflow: hidden;
+}
+
+@media (min-width: 640px) {
+	.hero-section {
+		min-height: 600px;
+	}
 }
 
 .hero-background {
@@ -61,19 +67,36 @@ html {
 	right: 0;
 	bottom: 0;
 	background: linear-gradient(
-		to right,
-		rgba(255, 255, 255, 1) 0%,
-		rgba(255, 255, 255, 0.98) 25%,
-		rgba(255, 255, 255, 0.85) 45%,
-		rgba(255, 255, 255, 0.3) 60%,
-		rgba(255, 255, 255, 0) 90%
+		to bottom,
+		rgba(255, 255, 255, 0.95) 0%,
+		rgba(255, 255, 255, 0.9) 50%,
+		rgba(255, 255, 255, 0.3) 100%
 	);
 	z-index: 1;
 }
 
+@media (min-width: 768px) {
+	.hero-background::after {
+		background: linear-gradient(
+			to right,
+			rgba(255, 255, 255, 1) 0%,
+			rgba(255, 255, 255, 0.98) 25%,
+			rgba(255, 255, 255, 0.85) 45%,
+			rgba(255, 255, 255, 0.3) 60%,
+			rgba(255, 255, 255, 0) 90%
+		);
+	}
+}
+
 .hero-image {
 	object-fit: cover;
-	object-position: center right;
+	object-position: center;
+}
+
+@media (min-width: 768px) {
+	.hero-image {
+		object-position: center right;
+	}
 }
 
 .hero-content {

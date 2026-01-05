@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Container, Stepper, Button, Group, Paper } from "@mantine/core";
-import { BookingFormData, BookingType, BookingPeriod } from "@/types/booking";
+import {
+	BookingFormData,
+	BookingType,
+	BookingPeriod,
+	LeaseType,
+	ContactPreference
+} from "@/types/booking";
 import BookingTypeStep from "./steps/BookingTypeStep";
 import CustomerDetailsStep from "./steps/CustomerDetailsStep";
 import BookingSummaryStep from "./steps/BookingSummaryStep";
@@ -11,6 +17,7 @@ export default function BookingWizard() {
 		bookingType: null,
 		bookingPeriod: null,
 		duration: null,
+		contactPreferences: [],
 		customerDetails: {
 			firstName: "",
 			lastName: "",
@@ -30,8 +37,13 @@ export default function BookingWizard() {
 		setFormData({ ...formData, bookingType: type });
 	};
 
-	const updateBookingPeriod = (period: BookingPeriod) => {
-		setFormData({ ...formData, bookingPeriod: period });
+	const updateBookingPeriod = (period: BookingPeriod | LeaseType) => {
+		// For end-of-lease, set a default duration of 1 since it's not user-selectable
+		if (formData.bookingType === "end-of-lease") {
+			setFormData({ ...formData, bookingPeriod: period, duration: 1 });
+		} else {
+			setFormData({ ...formData, bookingPeriod: period });
+		}
 	};
 
 	const updateDuration = (duration: number) => {
@@ -42,6 +54,10 @@ export default function BookingWizard() {
 		setFormData({ ...formData, customerDetails: details });
 	};
 
+	const updateContactPreferences = (preferences: ContactPreference[]) => {
+		setFormData({ ...formData, contactPreferences: preferences });
+	};
+
 	const handleSubmit = () => {
 		console.log("Booking submitted:", formData);
 		// TODO: Implement actual submission
@@ -50,14 +66,19 @@ export default function BookingWizard() {
 	const canProceedFromStep = (step: number): boolean => {
 		switch (step) {
 			case 0:
+				// For end-of-lease, duration is auto-set so only check type and period
+				if (formData.bookingType === "end-of-lease") {
+					return formData.bookingType !== null && formData.bookingPeriod !== null;
+				}
 				return (
 					formData.bookingType !== null &&
 					formData.bookingPeriod !== null &&
 					formData.duration !== null
 				);
 			case 1:
-				const { firstName, lastName, email, phone, address } = formData.customerDetails;
-				return !!(firstName && lastName && email && phone && address);
+				const { firstName, lastName, email, phone, address, city, postalCode } =
+					formData.customerDetails;
+				return !!(firstName && lastName && email && phone && address && city && postalCode);
 			default:
 				return true;
 		}
@@ -86,7 +107,10 @@ export default function BookingWizard() {
 					</Stepper.Step>
 
 					<Stepper.Step label="Review" description="Confirm your booking">
-						<BookingSummaryStep formData={formData} />
+						<BookingSummaryStep
+							formData={formData}
+							onContactPreferencesChange={updateContactPreferences}
+						/>
 					</Stepper.Step>
 				</Stepper>
 

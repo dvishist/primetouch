@@ -7,9 +7,11 @@ export type BookingType =
 	| "airbnb";
 
 export type BookingPeriod = "once-off" | "weekly" | "fortnightly" | "monthly";
+export type LeaseType = "One Bed" | "Two Bed" | "Three Bed" | "Four+ Bed";
+export type ContactPreference = "call" | "sms" | "email";
 
 export interface BookingPricing {
-	period: BookingPeriod;
+	period: BookingPeriod | LeaseType;
 	pricePerHour: number;
 	additionalHourPrice?: number;
 	minHours?: number;
@@ -21,7 +23,7 @@ export interface BookingOption {
 	description: string;
 	features: string[];
 	pricing: BookingPricing[];
-	bookingPeriods: BookingPeriod[];
+	bookingPeriods: (BookingPeriod | LeaseType)[];
 }
 
 export interface DurationOption {
@@ -31,8 +33,9 @@ export interface DurationOption {
 
 export interface BookingFormData {
 	bookingType: BookingType | null;
-	bookingPeriod: BookingPeriod | null;
+	bookingPeriod: BookingPeriod | LeaseType | null;
 	duration: number | null;
+	contactPreferences: ContactPreference[];
 	customerDetails: {
 		firstName: string;
 		lastName: string;

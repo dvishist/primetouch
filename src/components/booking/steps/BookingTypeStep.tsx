@@ -1,15 +1,15 @@
 import { Grid, Card, Text, Badge, List, ThemeIcon, Collapse, Button, Group } from "@mantine/core";
 import { IconCheck, IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import { useState } from "react";
-import { BookingType, BookingPeriod } from "@/types/booking";
+import { BookingType, BookingPeriod, LeaseType } from "@/types/booking";
 import { bookingOptions } from "@/data/bookingOptions";
 
 interface Props {
 	selected: BookingType | null;
-	selectedPeriod: BookingPeriod | null;
+	selectedPeriod: BookingPeriod | LeaseType | null;
 	selectedDuration: number | null;
 	onSelect: (type: BookingType) => void;
-	onPeriodSelect: (period: BookingPeriod) => void;
+	onPeriodSelect: (period: BookingPeriod | LeaseType) => void;
 	onDurationSelect: (hours: number) => void;
 }
 
@@ -88,39 +88,40 @@ export default function BookingTypeStep({
 										</Button>
 									))}
 								</Group>
-								{(() => {
-									const selectedPricing = option.pricing.find(p => p.period === selectedPeriod);
-									const minHours = selectedPricing?.minHours || 2;
-									const maxHours = 8;
-									const durationOptions = Array.from(
-										{ length: maxHours - minHours + 1 },
-										(_, i) => minHours + i
-									);
+								{option.id !== "end-of-lease" &&
+									(() => {
+										const selectedPricing = option.pricing.find(p => p.period === selectedPeriod);
+										const minHours = selectedPricing?.minHours || 2;
+										const maxHours = 8;
+										const durationOptions = Array.from(
+											{ length: maxHours - minHours + 1 },
+											(_, i) => minHours + i
+										);
 
-									return (
-										<>
-											<Text size="sm" fw={500} mb="xs">
-												Select Duration:
-											</Text>
-											<Group gap="xs" mb="md">
-												{durationOptions.map(hours => (
-													<Button
-														key={hours}
-														size="xs"
-														variant={selectedDuration === hours ? "filled" : "outline"}
-														color="brand"
-														onClick={e => {
-															e.stopPropagation();
-															onDurationSelect(hours);
-														}}
-													>
-														{hours} hours
-													</Button>
-												))}
-											</Group>
-										</>
-									);
-								})()}
+										return (
+											<>
+												<Text size="sm" fw={500} mb="xs">
+													Select Duration:
+												</Text>
+												<Group gap="xs" mb="md">
+													{durationOptions.map(hours => (
+														<Button
+															key={hours}
+															size="xs"
+															variant={selectedDuration === hours ? "filled" : "outline"}
+															color="brand"
+															onClick={e => {
+																e.stopPropagation();
+																onDurationSelect(hours);
+															}}
+														>
+															{hours} hours
+														</Button>
+													))}
+												</Group>
+											</>
+										);
+									})()}
 							</div>
 						)}
 
@@ -153,10 +154,11 @@ export default function BookingTypeStep({
 												: price.period.charAt(0).toUpperCase() + price.period.slice(1)}
 											:
 										</strong>{" "}
-										${price.pricePerHour}/hr
+										${price.pricePerHour}
+										{price.minHours ? "/hr" : ""}
 										{price.additionalHourPrice &&
 											` (additional hours: $${price.additionalHourPrice}/hr)`}
-										{price.minHours && ` - Minimum ${price.minHours} hours`}
+										{price.minHours ? ` - minimum ${price.minHours} hours` : ""}
 									</div>
 								))}
 							</div>
