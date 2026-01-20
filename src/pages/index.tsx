@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import banner from "../assets/banner3.jpg";
 import { Container, Title, Text, Button, Card, SimpleGrid, Box } from "@mantine/core";
+import ServicesGrid from "@/components/ServicesGrid";
+import ServiceAreaMap from "@/components/ServiceAreaMap";
 
 export default function Home() {
 	return (
@@ -48,6 +50,8 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
+
+			<ServicesGrid />
 
 			{/* Highlights using Mantine */}
 			<Container size="lg" className="py-12">
@@ -107,6 +111,9 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
+
+			{/* Service Area Map */}
+			<ServiceAreaMap />
 		</>
 	);
 }
