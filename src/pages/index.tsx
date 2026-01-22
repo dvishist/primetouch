@@ -5,6 +5,15 @@ import banner from "../assets/banner3.jpg";
 import { Container, Title, Text, Button, Card, SimpleGrid, Box } from "@mantine/core";
 import ServicesGrid from "@/components/ServicesGrid";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
+import TrustBadges from "@/components/TrustBadges";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import Stats from "@/components/Stats";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
+import ContactForm from "@/components/ContactForm";
+import WhatsIncluded from "@/components/WhatsIncluded";
+import CTABanner from "@/components/CTABanner";
+import ProcessTimeline from "@/components/ProcessTimeline";
 
 export default function Home() {
 	return (
@@ -43,7 +52,7 @@ export default function Home() {
 							<Button component={Link} href="/book" size="lg">
 								Book Online
 							</Button>
-							<Button size="lg" variant="outline">
+							<Button component="a" href="#contact" size="lg" variant="outline">
 								Contact Us
 							</Button>
 						</div>
@@ -52,6 +61,15 @@ export default function Home() {
 			</section>
 
 			<ServicesGrid />
+
+			{/* Trust Badges */}
+			<TrustBadges />
+
+			{/* Why Choose Us */}
+			<WhyChooseUs />
+
+			{/* Process Timeline */}
+			<ProcessTimeline />
 
 			{/* Highlights using Mantine */}
 			<Container size="lg" className="py-12">
@@ -105,15 +123,33 @@ export default function Home() {
 						))}
 					</div>
 					<div className="mt-8 flex justify-center">
-						<Button component={Link} href="/contact" size="md">
+						<Button component="a" href="#contact" size="md">
 							Get a Free Quote
 						</Button>
 					</div>
 				</div>
 			</section>
 
+			{/* What's Included */}
+			<WhatsIncluded />
+
 			{/* Service Area Map */}
 			<ServiceAreaMap />
+
+			{/* Stats */}
+			<Stats />
+
+			{/* Testimonials */}
+			<Testimonials />
+
+			{/* CTA Banner */}
+			<CTABanner variant="secondary" />
+
+			{/* FAQ */}
+			<FAQ />
+
+			{/* Contact Form */}
+			<ContactForm />
 		</>
 	);
 }
