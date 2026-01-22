@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Container, Stepper, Button, Group, Paper } from "@mantine/core";
 import {
 	BookingFormData,
@@ -7,16 +8,19 @@ import {
 	LeaseType,
 	ContactPreference
 } from "@/types/booking";
+import SelectServiceStep from "./steps/SelectServiceStep";
 import BookingTypeStep from "./steps/BookingTypeStep";
 import CustomerDetailsStep from "./steps/CustomerDetailsStep";
 import BookingSummaryStep from "./steps/BookingSummaryStep";
 
 export default function BookingWizard() {
+	const router = useRouter();
 	const [active, setActive] = useState(0);
 	const [formData, setFormData] = useState<BookingFormData>({
 		bookingType: null,
 		bookingPeriod: null,
 		duration: null,
+		cleanLevel: null,
 		contactPreferences: [],
 		customerDetails: {
 			firstName: "",
@@ -30,7 +34,28 @@ export default function BookingWizard() {
 		}
 	});
 
-	const nextStep = () => setActive(current => (current < 2 ? current + 1 : current));
+	// Check for service query parameter on mount
+	useEffect(() => {
+		if (router.isReady) {
+			const serviceParam = router.query.service as string;
+			if (serviceParam) {
+				const validServices: BookingType[] = [
+					"once-off",
+					"regular",
+					"deep-cleaning",
+					"end-of-lease",
+					"commercial",
+					"airbnb"
+				];
+				if (validServices.includes(serviceParam as BookingType)) {
+					setFormData(prev => ({ ...prev, bookingType: serviceParam as BookingType }));
+					setActive(1); // Start at step 2 (Booking Details)
+				}
+			}
+		}
+	}, [router.isReady, router.query.service]);
+
+	const nextStep = () => setActive(current => (current < 3 ? current + 1 : current));
 	const prevStep = () => setActive(current => (current > 0 ? current - 1 : current));
 
 	const updateBookingType = (type: BookingType) => {
@@ -50,6 +75,10 @@ export default function BookingWizard() {
 		setFormData({ ...formData, duration });
 	};
 
+	const updateCleanLevel = (cleanLevel: "normal" | "deep") => {
+		setFormData({ ...formData, cleanLevel });
+	};
+
 	const updateCustomerDetails = (details: BookingFormData["customerDetails"]) => {
 		setFormData({ ...formData, customerDetails: details });
 	};
@@ -66,6 +95,8 @@ export default function BookingWizard() {
 	const canProceedFromStep = (step: number): boolean => {
 		switch (step) {
 			case 0:
+				return formData.bookingType !== null;
+			case 1:
 				// For end-of-lease, duration is auto-set so only check type and period
 				if (formData.bookingType === "end-of-lease") {
 					return formData.bookingType !== null && formData.bookingPeriod !== null;
@@ -75,7 +106,7 @@ export default function BookingWizard() {
 					formData.bookingPeriod !== null &&
 					formData.duration !== null
 				);
-			case 1:
+			case 2:
 				const { firstName, lastName, email, phone, address, city, postalCode } =
 					formData.customerDetails;
 				return !!(firstName && lastName && email && phone && address && city && postalCode);
@@ -89,13 +120,18 @@ export default function BookingWizard() {
 			<Paper shadow="sm" p="xl" radius="md">
 				<Stepper active={active} onStepClick={setActive}>
 					<Stepper.Step label="Service Type" description="Choose your cleaning service">
+						<SelectServiceStep selected={formData.bookingType} onSelect={updateBookingType} />
+					</Stepper.Step>
+
+					<Stepper.Step label="Booking Details" description="Configure your service">
 						<BookingTypeStep
 							selected={formData.bookingType}
 							selectedPeriod={formData.bookingPeriod}
 							selectedDuration={formData.duration}
-							onSelect={updateBookingType}
+							selectedCleanLevel={formData.cleanLevel}
 							onPeriodSelect={updateBookingPeriod}
 							onDurationSelect={updateDuration}
+							onCleanLevelSelect={updateCleanLevel}
 						/>
 					</Stepper.Step>
 
@@ -118,12 +154,12 @@ export default function BookingWizard() {
 					<Button variant="default" onClick={prevStep} disabled={active === 0}>
 						Back
 					</Button>
-					{active < 2 ? (
+					{active < 3 ? (
 						<Button onClick={nextStep} disabled={!canProceedFromStep(active)}>
 							Next Step
 						</Button>
 					) : (
-						<Button onClick={handleSubmit} disabled={!canProceedFromStep(1)}>
+						<Button onClick={handleSubmit} disabled={!canProceedFromStep(2)}>
 							Submit Booking
 						</Button>
 					)}

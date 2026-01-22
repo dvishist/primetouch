@@ -34,7 +34,7 @@ export default function Stats() {
 	return (
 		<section className="py-16 bg-linear-to-r from-blue-600 to-blue-700 text-white">
 			<Container size="lg">
-				<div className="text-center mb-12">
+				<div className="text-center mb-12 flex flex-col items-center">
 					<Title order={2} className="text-white font-bold text-3xl mb-4">
 						Trusted by Melbourne Residents
 					</Title>

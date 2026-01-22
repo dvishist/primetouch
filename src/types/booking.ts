@@ -9,6 +9,18 @@ export type BookingType =
 export type BookingPeriod = "once-off" | "weekly" | "fortnightly" | "monthly";
 export type LeaseType = "One Bed" | "Two Bed" | "Three Bed" | "Four+ Bed";
 export type ContactPreference = "call" | "sms" | "email";
+export type CleanLevel = "normal" | "deep";
+
+export interface CleaningTask {
+	task: string;
+	normalClean: boolean;
+	deepClean: boolean;
+}
+
+export interface CleaningAreaComparison {
+	area: string;
+	tasks: CleaningTask[];
+}
 
 export interface BookingPricing {
 	period: BookingPeriod | LeaseType;
@@ -24,6 +36,8 @@ export interface BookingOption {
 	features: string[];
 	pricing: BookingPricing[];
 	bookingPeriods: (BookingPeriod | LeaseType)[];
+	cleanLevelComparison?: CleaningAreaComparison[];
+	supportsCleanLevel?: boolean;
 }
 
 export interface DurationOption {
@@ -35,6 +49,7 @@ export interface BookingFormData {
 	bookingType: BookingType | null;
 	bookingPeriod: BookingPeriod | LeaseType | null;
 	duration: number | null;
+	cleanLevel: CleanLevel | null;
 	contactPreferences: ContactPreference[];
 	customerDetails: {
 		firstName: string;

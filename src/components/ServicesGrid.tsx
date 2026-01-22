@@ -55,14 +55,14 @@ export default function ServicesGrid() {
 		<section className="py-16 bg-linear-to-b from-white to-gray-50">
 			<Container size="lg" className="w-full">
 				<Title order={2} ta="center" mb="xl" className="text-gray-700 font-bold text-3xl">
-					Book A Service
+					Choose your service
 				</Title>
 
 				<div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 w-full">
-					{bookingOptions.map((option, index) => (
+					{bookingOptions.map(option => (
 						<Link
 							key={option.id}
-							href="/book"
+							href={`/book?service=${option.id}`}
 							className="group flex flex-col items-center text-center no-underline"
 						>
 							<div className="relative w-32 h-32 sm:w-48 sm:h-48 border-2 border-gray-300 flex justify-center items-center rounded-full transition-all duration-300 hover:border-blue-500 hover:shadow-xl hover:scale-105 overflow-hidden bg-white">
@@ -77,7 +77,7 @@ export default function ServicesGrid() {
 							</div>
 
 							<Text
-								size="sm"
+								size="xl"
 								fw={600}
 								mt="xs"
 								className="text-gray-800 group-hover:text-blue-600 transition-colors text-sm sm:text-base"

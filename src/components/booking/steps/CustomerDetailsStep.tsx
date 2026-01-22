@@ -1,4 +1,5 @@
 import { Stack, TextInput, Textarea, Grid } from "@mantine/core";
+import { useState } from "react";
 import { BookingFormData } from "@/types/booking";
 
 interface CustomerDetailsStepProps {
@@ -7,10 +8,57 @@ interface CustomerDetailsStepProps {
 }
 
 export default function CustomerDetailsStep({ details, onUpdate }: CustomerDetailsStepProps) {
+	const [emailError, setEmailError] = useState("");
+	const [phoneError, setPhoneError] = useState("");
+
+	// Email validation
+	const validateEmail = (email: string) => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!email) {
+			setEmailError("");
+			return true;
+		}
+		if (!emailRegex.test(email)) {
+			setEmailError("Please enter a valid email address");
+			return false;
+		}
+		setEmailError("");
+		return true;
+	};
+
+	// Phone validation (basic format check)
+	const validatePhone = (phone: string) => {
+		const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+		if (!phone) {
+			setPhoneError("");
+			return true;
+		}
+		// Remove all non-digit characters for length check
+		const digitsOnly = phone.replace(/\D/g, "");
+		if (digitsOnly.length < 10) {
+			setPhoneError("Phone number must be at least 10 digits");
+			return false;
+		}
+		if (!phoneRegex.test(phone)) {
+			setPhoneError("Please enter a valid phone number");
+			return false;
+		}
+		setPhoneError("");
+		return true;
+	};
+
 	const handleChange =
 		(field: keyof BookingFormData["customerDetails"]) =>
 		(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-			onUpdate({ ...details, [field]: event.target.value });
+			const value = event.target.value;
+			onUpdate({ ...details, [field]: value });
+
+			// Validate on change
+			if (field === "email") {
+				validateEmail(value);
+			} else if (field === "phone") {
+				validatePhone(value);
+			}
 		};
 
 	return (
@@ -45,16 +93,20 @@ export default function CustomerDetailsStep({ details, onUpdate }: CustomerDetai
 						required
 						value={details.email}
 						onChange={handleChange("email")}
+						error={emailError}
+						onBlur={() => validateEmail(details.email)}
 					/>
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, sm: 6 }}>
 					<TextInput
 						label="Phone"
-						placeholder="+1 (555) 000-0000"
+						placeholder="+61 400 000 000"
 						type="tel"
 						required
 						value={details.phone}
 						onChange={handleChange("phone")}
+						error={phoneError}
+						onBlur={() => validatePhone(details.phone)}
 					/>
 				</Grid.Col>
 			</Grid>

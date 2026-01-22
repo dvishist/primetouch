@@ -1,4 +1,61 @@
-import { BookingOption, DurationOption } from "@/types/booking";
+import { BookingOption, DurationOption, CleaningAreaComparison } from "@/types/booking";
+
+export const cleanLevelComparison: CleaningAreaComparison[] = [
+	{
+		area: "BATHROOM",
+		tasks: [
+			{ task: "Scrub/Clean Bath", normalClean: true, deepClean: true },
+			{ task: "Scrub/Clean Shower", normalClean: true, deepClean: true },
+			{ task: "Scrub/Clean Sinks", normalClean: true, deepClean: true },
+			{ task: "Wipe Down Benches", normalClean: true, deepClean: true },
+			{ task: "Clean Mirrors", normalClean: true, deepClean: true },
+			{ task: "Clean/Polish Tapware and Chrome", normalClean: true, deepClean: true },
+			{ task: "Wipe Down Cupboards (exterior)", normalClean: true, deepClean: true },
+			{ task: "Empty Bins", normalClean: true, deepClean: true },
+			{ task: "Clean/Disinfect Toilet", normalClean: true, deepClean: true },
+			{ task: "Scrub Wall Tiles/Grout", normalClean: false, deepClean: true }
+		]
+	},
+	{
+		area: "KITCHEN",
+		tasks: [
+			{ task: "Clean Stovetop", normalClean: true, deepClean: true },
+			{ task: "Clean Rangehood (exterior)", normalClean: true, deepClean: true },
+			{ task: "Clean/Wipe All Bench tops", normalClean: true, deepClean: true },
+			{ task: "Clean Visible Appliances (exterior)", normalClean: true, deepClean: true },
+			{ task: "Clean Splash back", normalClean: true, deepClean: true },
+			{ task: "Clean/Polish Tapware", normalClean: true, deepClean: true },
+			{ task: "Scrub/Clean Sink", normalClean: true, deepClean: true },
+			{ task: "Clean Inside/Outside Microwave", normalClean: true, deepClean: true },
+			{ task: "Clean Cupboards (exterior)", normalClean: true, deepClean: true },
+			{ task: "Polish Stainless Steel Surfaces", normalClean: true, deepClean: true },
+			{ task: "Dust All Surfaces", normalClean: true, deepClean: true },
+			{ task: "Clean Underside of Rangehood", normalClean: false, deepClean: true }
+		]
+	},
+	{
+		area: "BEDROOM",
+		tasks: [
+			{ task: "Dust All Surfaces", normalClean: true, deepClean: true },
+			{ task: "Vacuum/Mop Floors", normalClean: true, deepClean: true },
+			{ task: "Empty Bins", normalClean: true, deepClean: true },
+			{ task: "Wipe Down All Surfaces", normalClean: true, deepClean: true },
+			{ task: "Clean Mirrors", normalClean: true, deepClean: true },
+			{ task: "Wipe Down Skirting Boards", normalClean: false, deepClean: true }
+		]
+	},
+	{
+		area: "LIVING AREAS",
+		tasks: [
+			{ task: "Dust All Surfaces", normalClean: true, deepClean: true },
+			{ task: "Vacuum/Mop Floors", normalClean: true, deepClean: true },
+			{ task: "Empty Bins", normalClean: true, deepClean: true },
+			{ task: "Wipe Down All Surfaces", normalClean: true, deepClean: true },
+			{ task: "Clean Mirrors", normalClean: true, deepClean: true },
+			{ task: "Wipe Down Skirting Boards", normalClean: false, deepClean: true }
+		]
+	}
+];
 
 export const bookingOptions: BookingOption[] = [
 	{
@@ -20,7 +77,9 @@ export const bookingOptions: BookingOption[] = [
 				minHours: 2
 			}
 		],
-		bookingPeriods: ["once-off"]
+		bookingPeriods: ["once-off"],
+		supportsCleanLevel: true,
+		cleanLevelComparison
 	},
 	{
 		id: "regular",
@@ -53,7 +112,9 @@ export const bookingOptions: BookingOption[] = [
 				minHours: 3
 			}
 		],
-		bookingPeriods: ["weekly", "fortnightly", "monthly"]
+		bookingPeriods: ["weekly", "fortnightly", "monthly"],
+		supportsCleanLevel: true,
+		cleanLevelComparison
 	},
 	// {
 	// 	id: "deep-cleaning",

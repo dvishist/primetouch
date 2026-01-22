@@ -8,7 +8,7 @@ export default function Header() {
 	return (
 		<>
 			{/* Top bar with contact info */}
-			<div className="hidden md:block bg-blue-600 text-white py-2">
+			{/* <div className="hidden md:block bg-blue-600 text-white py-2">
 				<div className="mx-auto max-w-7xl px-4 md:px-6 flex items-center justify-between">
 					<div className="flex items-center gap-6">
 						<a
@@ -29,7 +29,7 @@ export default function Header() {
 						</a>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			<header className="sticky top-0 z-30 w-full border-b border-zinc-200 bg-white/90 backdrop-blur">
 				<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">

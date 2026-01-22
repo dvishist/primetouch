@@ -73,7 +73,7 @@ export default function FAQ() {
 	return (
 		<section className="py-16 bg-white">
 			<Container size="md">
-				<div className="text-center mb-12">
+				<div className="text-center mb-12 flex flex-col items-center">
 					<div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
 						<IconQuestionMark size={32} className="text-blue-600" />
 					</div>

@@ -62,7 +62,7 @@ export default function ContactForm() {
 	return (
 		<section id="contact" className="py-16 bg-linear-to-b from-white to-gray-50">
 			<Container size="md">
-				<div className="text-center mb-12">
+				<div className="text-center mb-12 flex flex-col items-center">
 					<Title order={2} className="text-gray-800 font-bold text-3xl mb-4">
 						Get in Touch
 					</Title>

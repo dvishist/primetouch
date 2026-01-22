@@ -72,11 +72,11 @@ export default function Testimonials() {
 	return (
 		<section className="py-16 bg-linear-to-b from-gray-50 to-white">
 			<Container size="lg">
-				<div className="text-center mb-12">
+				<div className="text-center mb-12 flex flex-col items-center">
 					<Title order={2} className="text-gray-800 font-bold text-3xl mb-4">
 						What Our Customers Say
 					</Title>
-					<Text size="lg" c="dimmed" className="max-w-2xl mx-auto">
+					<Text size="lg" c="dimmed" className="max-w-2xl mx-auto text-center">
 						Don't just take our word for it - hear from our satisfied customers who trust us with
 						their homes and businesses.
 					</Text>

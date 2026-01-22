@@ -57,7 +57,7 @@ export default function WhyChooseUs() {
 	return (
 		<section className="py-16 bg-linear-to-b from-blue-50 to-white">
 			<Container size="lg">
-				<div className="text-center mb-12">
+				<div className="text-center mb-12 w-full flex flex-col items-center">
 					<Title order={2} className="text-gray-800 font-bold text-3xl mb-4">
 						Why Choose PrimeTouch?
 					</Title>
