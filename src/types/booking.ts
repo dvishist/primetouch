@@ -47,3 +47,5 @@ export interface BookingFormData {
 		notes: string;
 	};
 }
+
+export type CleaningTeam = "1" | "2";
