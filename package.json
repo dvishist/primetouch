@@ -1,34 +1,32 @@
 {
-  "name": "primetouch",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "@mantine/core": "^8.3.10",
-    "@mantine/hooks": "^8.3.10",
-    "@mantine/notifications": "^8.3.10",
-    "@tabler/icons-react": "^3.36.1",
-    "@tailwindcss/oxide-win32-x64-msvc": "^4.1.18",
-    "lightningcss": "^1.30.2",
-    "lightningcss-win32-x64-msvc": "^1.30.2",
-    "next": "16.1.1",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.1",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+	"name": "primetouch",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "eslint"
+	},
+	"dependencies": {
+		"@mantine/core": "^8.3.10",
+		"@mantine/hooks": "^8.3.10",
+		"@mantine/notifications": "^8.3.10",
+		"@tabler/icons-react": "^3.36.1",
+		"lightningcss": "^1.30.2",
+		"next": "16.1.1",
+		"react": "19.2.3",
+		"react-dom": "19.2.3"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"babel-plugin-react-compiler": "1.0.0",
+		"eslint": "^9",
+		"eslint-config-next": "16.1.1",
+		"tailwindcss": "^4",
+		"typescript": "^5"
+	}
 }
