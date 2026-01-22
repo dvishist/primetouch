@@ -1,4 +1,4 @@
-import { Stack, Title, Text, Card, Group, Divider, Checkbox } from "@mantine/core";
+import { Stack, Title, Text, Card, Group, Divider, Checkbox, Badge } from "@mantine/core";
 import { BookingFormData, ContactPreference } from "@/types/booking";
 import { bookingOptions } from "@/data/bookingOptions";
 
@@ -11,9 +11,72 @@ export default function BookingSummaryStep({
 	formData,
 	onContactPreferencesChange
 }: BookingSummaryStepProps) {
-	const { bookingType, duration, bookingPeriod, customerDetails, contactPreferences } = formData;
+	const {
+		bookingType,
+		duration,
+		bookingPeriod,
+		cleanLevel,
+		customerDetails,
+		contactPreferences,
+		selectedAddons,
+		bathrooms,
+		toilets
+	} = formData;
 
 	const bookingName = bookingOptions.find(option => option.id === bookingType)?.name;
+	const selectedOption = bookingOptions.find(option => option.id === bookingType);
+
+	// Calculate pricing
+	const calculatePrice = () => {
+		if (!selectedOption || !bookingPeriod || !duration) return null;
+
+		// Find the price for the selected period
+		const pricing = selectedOption.pricing.find(p => p.period === bookingPeriod);
+		if (!pricing) return null;
+
+		const minHours = pricing.minHours || 1;
+
+		// Use deep clean pricing if available, otherwise use standard pricing
+		const hourlyRate =
+			cleanLevel === "deep" && pricing.deepCleanPricePerHour
+				? pricing.deepCleanPricePerHour
+				: pricing.pricePerHour;
+		const additionalRate =
+			cleanLevel === "deep" && pricing.deepCleanAdditionalHourPrice
+				? pricing.deepCleanAdditionalHourPrice
+				: pricing.additionalHourPrice || pricing.pricePerHour;
+
+		let basePrice = 0;
+		if (duration <= minHours) {
+			// Within minimum hours
+			basePrice = hourlyRate * minHours;
+		} else {
+			// Base price + additional hours
+			const additionalHours = duration - minHours;
+			basePrice = hourlyRate * minHours + additionalRate * additionalHours;
+		}
+
+		// Calculate add-ons total
+		const addonsTotal = selectedAddons.reduce((total, addonId) => {
+			const addon = selectedOption.addons?.find(a => a.id === addonId);
+			return total + (addon?.price || 0);
+		}, 0);
+
+		// Calculate end-of-lease extras (bathrooms and toilets)
+		let endOfLeaseExtras = 0;
+		if (bookingType === "end-of-lease") {
+			endOfLeaseExtras = (bathrooms || 0) * 30 + (toilets || 0) * 10;
+		}
+
+		return {
+			basePrice: Math.round(basePrice),
+			addonsTotal,
+			endOfLeaseExtras,
+			total: Math.round(basePrice) + addonsTotal + endOfLeaseExtras
+		};
+	};
+
+	const priceBreakdown = calculatePrice();
 
 	return (
 		<Stack gap="lg" mt="md">
@@ -40,8 +103,95 @@ export default function BookingSummaryStep({
 						</Text>
 						<Text tt="capitalize">{bookingPeriod || "Not selected"}</Text>
 					</Group>
+					{selectedOption?.supportsCleanLevel && cleanLevel && (
+						<Group justify="start">
+							<Text fw={500} c="dimmed">
+								Clean Level:
+							</Text>
+							<Text tt="capitalize">{cleanLevel === "standard" ? "Standard" : "Deep Clean"}</Text>
+						</Group>
+					)}
+					{bookingType === "end-of-lease" && (bathrooms || 0) > 0 && (
+						<Group justify="start">
+							<Text fw={500} c="dimmed">
+								Extra Bathrooms:
+							</Text>
+							<Text>{bathrooms}</Text>
+						</Group>
+					)}
+					{bookingType === "end-of-lease" && (toilets || 0) > 0 && (
+						<Group justify="start">
+							<Text fw={500} c="dimmed">
+								Extra Toilets:
+							</Text>
+							<Text>{toilets}</Text>
+						</Group>
+					)}
+					{selectedAddons.length > 0 && (
+						<>
+							<Divider my="xs" />
+							<div>
+								<Text fw={500} mb="xs">
+									Add-Ons:
+								</Text>
+								<Stack gap="xs">
+									{selectedAddons.map(addonId => {
+										const addon = selectedOption?.addons?.find(a => a.id === addonId);
+										return addon ? (
+											<Group key={addonId} justify="space-between">
+												<Text size="sm">{addon.name}</Text>
+												<Badge color="green" variant="light">
+													${addon.price}
+												</Badge>
+											</Group>
+										) : null;
+									})}
+								</Stack>
+							</div>
+						</>
+					)}
 				</Stack>
 			</Card>
+
+			{priceBreakdown && (
+				<Card withBorder padding="lg" radius="md" bg="blue.0">
+					<Title order={4} mb="md">
+						Price Summary
+					</Title>
+					<Stack gap="xs">
+						<Group justify="space-between">
+							<Text fw={500}>Base Service:</Text>
+							<Text>${priceBreakdown.basePrice}</Text>
+						</Group>
+						{cleanLevel === "deep" && (
+							<Text size="xs" c="dimmed" ml="md">
+								(deep clean pricing applied)
+							</Text>
+						)}
+						{priceBreakdown.addonsTotal > 0 && (
+							<Group justify="space-between">
+								<Text fw={500}>Add-Ons:</Text>
+								<Text>${priceBreakdown.addonsTotal}</Text>
+							</Group>
+						)}
+						{priceBreakdown.endOfLeaseExtras > 0 && (
+							<Group justify="space-between">
+								<Text fw={500}>Extra Bathrooms & Toilets:</Text>
+								<Text>${priceBreakdown.endOfLeaseExtras}</Text>
+							</Group>
+						)}
+						<Divider my="xs" />
+						<Group justify="space-between">
+							<Text size="xl" fw={700}>
+								Total:
+							</Text>
+							<Text size="xl" fw={700} c="blue">
+								${priceBreakdown.total}
+							</Text>
+						</Group>
+					</Stack>
+				</Card>
+			)}
 
 			<Card withBorder padding="lg" radius="md">
 				<Title order={4} mb="md">

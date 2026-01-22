@@ -21,7 +21,10 @@ export default function BookingWizard() {
 		bookingPeriod: null,
 		duration: null,
 		cleanLevel: null,
+		selectedAddons: [],
 		contactPreferences: [],
+		bathrooms: 0,
+		toilets: 0,
 		customerDetails: {
 			firstName: "",
 			lastName: "",
@@ -59,7 +62,13 @@ export default function BookingWizard() {
 	const prevStep = () => setActive(current => (current > 0 ? current - 1 : current));
 
 	const updateBookingType = (type: BookingType) => {
-		setFormData({ ...formData, bookingType: type });
+		// Auto-select once-off period for once-off cleaning
+		if (type === "once-off") {
+			setFormData({ ...formData, bookingType: type, bookingPeriod: "once-off" });
+		} else {
+			setFormData({ ...formData, bookingType: type });
+		}
+		nextStep();
 	};
 
 	const updateBookingPeriod = (period: BookingPeriod | LeaseType) => {
@@ -75,8 +84,24 @@ export default function BookingWizard() {
 		setFormData({ ...formData, duration });
 	};
 
-	const updateCleanLevel = (cleanLevel: "normal" | "deep") => {
+	const updateCleanLevel = (cleanLevel: "standard" | "deep") => {
 		setFormData({ ...formData, cleanLevel });
+	};
+
+	const updateAddons = (addons: string[]) => {
+		setFormData({ ...formData, selectedAddons: addons });
+	};
+
+	const updateBathrooms = (count: number) => {
+		setFormData({ ...formData, bathrooms: count });
+	};
+
+	const updateToilets = (count: number) => {
+		setFormData({ ...formData, toilets: count });
+	};
+
+	const updateNotes = (notes: string) => {
+		setFormData({ ...formData, customerDetails: { ...formData.customerDetails, notes } });
 	};
 
 	const updateCustomerDetails = (details: BookingFormData["customerDetails"]) => {
@@ -129,9 +154,17 @@ export default function BookingWizard() {
 							selectedPeriod={formData.bookingPeriod}
 							selectedDuration={formData.duration}
 							selectedCleanLevel={formData.cleanLevel}
+							selectedAddons={formData.selectedAddons}
+							bathrooms={formData.bathrooms || 0}
+							toilets={formData.toilets || 0}
+							notes={formData.customerDetails.notes}
 							onPeriodSelect={updateBookingPeriod}
 							onDurationSelect={updateDuration}
 							onCleanLevelSelect={updateCleanLevel}
+							onAddonsSelect={updateAddons}
+							onBathroomsChange={updateBathrooms}
+							onToiletsChange={updateToilets}
+							onNotesChange={updateNotes}
 						/>
 					</Stepper.Step>
 

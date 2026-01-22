@@ -139,14 +139,6 @@ export default function CustomerDetailsStep({ details, onUpdate }: CustomerDetai
 					/>
 				</Grid.Col>
 			</Grid>
-
-			<Textarea
-				label="Additional Notes"
-				placeholder="Any special instructions or requirements..."
-				rows={4}
-				value={details.notes}
-				onChange={handleChange("notes")}
-			/>
 		</Stack>
 	);
 }

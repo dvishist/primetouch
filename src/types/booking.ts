@@ -6,15 +6,22 @@ export type BookingType =
 	| "once-off"
 	| "airbnb";
 
-export type BookingPeriod = "once-off" | "weekly" | "fortnightly" | "monthly";
-export type LeaseType = "One Bed" | "Two Bed" | "Three Bed" | "Four+ Bed";
+export type BookingPeriod = "once-off" | "regular" | "weekly" | "fortnightly" | "monthly";
+export type LeaseType = "One Bed" | "Two Bed" | "Three Bed" | "Four Bed" | "Five+ Bed";
 export type ContactPreference = "call" | "sms" | "email";
-export type CleanLevel = "normal" | "deep";
+export type CleanLevel = "standard" | "deep";
+
+export interface Addon {
+	id: string;
+	name: string;
+	price: number;
+	category: "cleaning" | "laundry" | "kitchen" | "other";
+}
 
 export interface CleaningTask {
 	task: string;
-	normalClean: boolean;
-	deepClean: boolean;
+	standardClean: boolean | null;
+	deepClean: boolean | null;
 }
 
 export interface CleaningAreaComparison {
@@ -27,17 +34,19 @@ export interface BookingPricing {
 	pricePerHour: number;
 	additionalHourPrice?: number;
 	minHours?: number;
+	deepCleanPricePerHour?: number;
+	deepCleanAdditionalHourPrice?: number;
 }
 
 export interface BookingOption {
 	id: BookingType;
 	name: string;
 	description: string;
-	features: string[];
 	pricing: BookingPricing[];
 	bookingPeriods: (BookingPeriod | LeaseType)[];
 	cleanLevelComparison?: CleaningAreaComparison[];
 	supportsCleanLevel?: boolean;
+	addons?: Addon[];
 }
 
 export interface DurationOption {
@@ -50,7 +59,10 @@ export interface BookingFormData {
 	bookingPeriod: BookingPeriod | LeaseType | null;
 	duration: number | null;
 	cleanLevel: CleanLevel | null;
+	selectedAddons: string[];
 	contactPreferences: ContactPreference[];
+	bathrooms?: number;
+	toilets?: number;
 	customerDetails: {
 		firstName: string;
 		lastName: string;
