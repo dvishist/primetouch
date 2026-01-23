@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Container, Stepper, Button, Group, Paper } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { IconCheck } from "@tabler/icons-react";
 import {
 	BookingFormData,
 	BookingType,
@@ -48,7 +50,8 @@ export default function BookingWizard() {
 					"deep-cleaning",
 					"end-of-lease",
 					"commercial",
-					"airbnb"
+					"airbnb",
+					"ndis"
 				];
 				if (validServices.includes(serviceParam as BookingType)) {
 					setFormData(prev => ({ ...prev, bookingType: serviceParam as BookingType }));
@@ -112,9 +115,49 @@ export default function BookingWizard() {
 		setFormData({ ...formData, contactPreferences: preferences });
 	};
 
-	const handleSubmit = () => {
-		console.log("Booking submitted:", formData);
-		// TODO: Implement actual submission
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	const handleSubmit = async () => {
+		setIsSubmitting(true);
+
+		try {
+			const response = await fetch("/api/booking", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(formData)
+			});
+
+			const data = await response.json();
+
+			if (data.success) {
+				notifications.show({
+					title: "Booking Submitted! 🎉",
+					message:
+						"Thank you! We've received your booking and will contact you within 24 hours to confirm.",
+					color: "green",
+					icon: <IconCheck size={18} />,
+					autoClose: 8000
+				});
+
+				// Redirect to home page after short delay
+				setTimeout(() => {
+					router.push("/");
+				}, 2000);
+			} else {
+				throw new Error(data.message);
+			}
+		} catch (error) {
+			notifications.show({
+				title: "Submission Error",
+				message: "Failed to submit booking. Please try again or contact us directly.",
+				color: "red",
+				autoClose: 6000
+			});
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	const canProceedFromStep = (step: number): boolean => {
@@ -143,7 +186,7 @@ export default function BookingWizard() {
 	return (
 		<Container size="lg" py="xl">
 			<Paper shadow="sm" p="xl" radius="md">
-				<Stepper active={active} onStepClick={setActive}>
+				<Stepper active={active} allowNextStepsSelect={false}>
 					<Stepper.Step label="Service Type" description="Choose your cleaning service">
 						<SelectServiceStep selected={formData.bookingType} onSelect={updateBookingType} />
 					</Stepper.Step>
@@ -192,7 +235,7 @@ export default function BookingWizard() {
 							Next Step
 						</Button>
 					) : (
-						<Button onClick={handleSubmit} disabled={!canProceedFromStep(2)}>
+						<Button onClick={handleSubmit} disabled={!canProceedFromStep(2)} loading={isSubmitting}>
 							Submit Booking
 						</Button>
 					)}

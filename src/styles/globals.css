@@ -23,8 +23,17 @@
 body {
 	background: var(--background);
 	color: var(--foreground);
-	font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-		"Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+	font-family:
+		Inter,
+		system-ui,
+		-apple-system,
+		"Segoe UI",
+		Roboto,
+		"Helvetica Neue",
+		Arial,
+		"Noto Sans",
+		"Apple Color Emoji",
+		"Segoe UI Emoji";
 }
 
 /* Improve tap targets on mobile */
@@ -38,9 +47,168 @@ html {
 	scroll-behavior: smooth;
 }
 
+/* New Hero Section with CSS-based design */
+.hero-section-new {
+	position: relative;
+	min-height: 600px;
+	overflow: hidden;
+	background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
+}
+
+@media (min-width: 640px) {
+	.hero-section-new {
+		min-height: 650px;
+	}
+}
+
+.hero-gradient-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 0;
+	overflow: hidden;
+}
+
+.hero-decoration-1 {
+	position: absolute;
+	left: -150px;
+	top: -100px;
+	width: 700px;
+	height: 700px;
+	opacity: 0.6;
+	animation: float 20s ease-in-out infinite;
+}
+
+.hero-decoration-2 {
+	position: absolute;
+	right: -80px;
+	top: -80px;
+	width: 550px;
+	height: 550px;
+	opacity: 0.5;
+	animation: float 15s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0) rotate(0deg);
+	}
+	50% {
+		transform: translateY(-30px) rotate(5deg);
+	}
+}
+
+.hero-sparkles {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.sparkle {
+	position: absolute;
+	font-size: 2rem;
+	animation: twinkle 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+	top: 15%;
+	right: 20%;
+	animation-delay: 0s;
+}
+
+.sparkle-2 {
+	top: 60%;
+	right: 15%;
+	animation-delay: 1s;
+}
+
+.sparkle-3 {
+	top: 25%;
+	left: 15%;
+	animation-delay: 2s;
+}
+
+.sparkle-4 {
+	top: 70%;
+	left: 25%;
+	animation-delay: 1.5s;
+	font-size: 1.5rem;
+}
+
+.sparkle-5 {
+	top: 40%;
+	right: 30%;
+	animation-delay: 0.5s;
+	font-size: 1.8rem;
+}
+
+@keyframes twinkle {
+	0%,
+	100% {
+		opacity: 0.3;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+}
+
+.hero-buckets {
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
+	z-index: 1;
+	animation: float 18s ease-in-out infinite;
+	animation-delay: 0.5s;
+}
+
+.hero-buckets img {
+	opacity: 0.9;
+	filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 640px) {
+	.sparkle {
+		font-size: 1.5rem;
+	}
+	.hero-decoration-1 {
+		width: 450px;
+		height: 450px;
+		left: -120px;
+		top: -80px;
+	}
+	.hero-decoration-2 {
+		width: 350px;
+		height: 350px;
+		right: -60px;
+		top: -60px;
+	}
+	.hero-buckets {
+		bottom: 3%;
+		right: 3%;
+		width: 150px;
+		height: 150px;
+	}
+	.hero-buckets img {
+		width: 150px !important;
+		height: 150px !important;
+	}
+}
+
+.hero-content-new {
+	position: relative;
+	z-index: 2;
+	max-width: 700px;
+}
+
+/* Old Hero Section (keeping for backwards compatibility) */
 .hero-section {
 	position: relative;
-	min-height: 500px;
+	min-height: 600px;
 	overflow: hidden;
 }
 
@@ -68,9 +236,9 @@ html {
 	bottom: 0;
 	background: linear-gradient(
 		to bottom,
-		rgba(255, 255, 255, 0.95) 0%,
-		rgba(255, 255, 255, 0.9) 50%,
-		rgba(255, 255, 255, 0.3) 100%
+		rgba(255, 255, 255, 0.85) 0%,
+		rgba(255, 255, 255, 0.75) 40%,
+		rgba(255, 255, 255, 0.1) 100%
 	);
 	z-index: 1;
 }
@@ -90,7 +258,7 @@ html {
 
 .hero-image {
 	object-fit: cover;
-	object-position: center;
+	object-position: center bottom;
 }
 
 @media (min-width: 768px) {

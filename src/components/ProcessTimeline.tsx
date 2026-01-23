@@ -13,7 +13,7 @@ export default function ProcessTimeline() {
 			<Container size="md">
 				<div className="text-center mb-12 flex flex-col items-center">
 					<Title order={2} className="text-gray-800 font-bold text-3xl mb-4">
-						Simple 5-Step Process
+						How Does Everything Work?
 					</Title>
 					<Text size="lg" c="dimmed" className="max-w-2xl mx-auto">
 						From booking to sparkling clean - here's how we make it easy
@@ -38,8 +38,8 @@ export default function ProcessTimeline() {
 						}
 					>
 						<Text c="dimmed" size="sm" mt={4}>
-							Contact us via phone, email, or our online form. Tell us about your cleaning needs and
-							property details.
+							Contact us via phone, email, or our booking form. Tell us about your cleaning needs
+							and property details.
 						</Text>
 					</Timeline.Item>
 
@@ -47,13 +47,13 @@ export default function ProcessTimeline() {
 						bullet={<IconClipboardCheck size={24} />}
 						title={
 							<Text fw={600} size="lg">
-								2. Receive Your Quote
+								2. Receive Your Instant Quote
 							</Text>
 						}
 					>
 						<Text c="dimmed" size="sm" mt={4}>
-							We'll provide a transparent, detailed quote with no hidden fees. You'll know exactly
-							what you're paying for.
+							We'll provide an instant transparent, detailed quote with no hidden fees. You'll know
+							exactly what you're paying for.
 						</Text>
 					</Timeline.Item>
 
@@ -66,8 +66,8 @@ export default function ProcessTimeline() {
 						}
 					>
 						<Text c="dimmed" size="sm" mt={4}>
-							Choose a date and time that works for you. We offer flexible scheduling including
-							same-day service when available.
+							Choose a date and time that works for you. We offer flexible scheduling options to fit
+							your needs.
 						</Text>
 					</Timeline.Item>
 
@@ -99,12 +99,6 @@ export default function ProcessTimeline() {
 						</Text>
 					</Timeline.Item>
 				</Timeline>
-
-				<div className="mt-12 text-center bg-blue-50 p-6 rounded-lg border border-blue-200">
-					<Text size="md" fw={500} className="text-gray-800">
-						⏱️ From inquiry to completion, most bookings are completed within 48 hours!
-					</Text>
-				</div>
 			</Container>
 		</section>
 	);

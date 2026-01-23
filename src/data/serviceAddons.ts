@@ -129,3 +129,6 @@ export const airbnbAddons: Addon[] = [
 		category: "other"
 	}
 ];
+
+// Airbnb service addons
+export const ndisAddons: Addon[] = [];

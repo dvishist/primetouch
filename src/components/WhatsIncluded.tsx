@@ -31,7 +31,7 @@ const includedServices: ServiceIncluded[] = [
 		category: "Bathroom",
 		items: [
 			"Scrub and sanitize toilet",
-			"Clean shower, bath and tiles",
+			"Clean shower & bath",
 			"Wipe down sink and mirrors",
 			"Polish fixtures and taps",
 			"Mop and sanitize floors"
@@ -39,13 +39,7 @@ const includedServices: ServiceIncluded[] = [
 	},
 	{
 		category: "Additional Services",
-		items: [
-			"Inside oven cleaning (extra)",
-			"Inside fridge (extra)",
-			"Window cleaning (extra)",
-			"Carpet steam cleaning (extra)",
-			"Laundry services (extra)"
-		]
+		items: ["Inside oven cleaning (extra)", "Inside fridge (extra)", "Window cleaning (extra)"]
 	}
 ];
 

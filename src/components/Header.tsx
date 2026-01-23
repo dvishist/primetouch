@@ -36,7 +36,7 @@ export default function Header() {
 					<Link href="/" className="flex items-center gap-2">
 						<span className="inline-block h-8 w-8 rounded-md bg-primary-600" aria-hidden="true" />
 						<span className="text-base font-bold tracking-tight text-zinc-900">
-							Primetouch Cleaning
+							PrimeTouch Cleaning
 						</span>
 					</Link>
 
@@ -48,24 +48,17 @@ export default function Header() {
 						<Link href="/pricing" className="text-sm font-medium text-zinc-700 hover:text-zinc-900">
 							Pricing
 						</Link>
-						<Link
-							href="/services"
-							className="text-sm font-medium text-zinc-700 hover:text-zinc-900"
-						>
-							Services
-						</Link>
+
 						<Link href="/about" className="text-sm font-medium text-zinc-700 hover:text-zinc-900">
 							About
 						</Link>
-						<Link href="/contact" className="text-sm font-medium text-zinc-700 hover:text-zinc-900">
-							Contact
-						</Link>
-						<Link
-							href="/contact"
+
+						<a
+							href="#contact"
 							className="inline-flex items-center rounded-full bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700"
 						>
-							Get a Quote
-						</Link>
+							Contact Us
+						</a>
 					</nav>
 
 					{/* Mobile menu button */}
@@ -125,13 +118,7 @@ export default function Header() {
 						>
 							Pricing
 						</Link>
-						<Link
-							href="/services"
-							className="block rounded-md px-2 py-2 text-sm font-medium text-zinc-800 hover:bg-zinc-100"
-							onClick={() => setOpen(false)}
-						>
-							Services
-						</Link>
+
 						<Link
 							href="/about"
 							className="block rounded-md px-2 py-2 text-sm font-medium text-zinc-800 hover:bg-zinc-100"
@@ -139,20 +126,14 @@ export default function Header() {
 						>
 							About
 						</Link>
-						<Link
-							href="/contact"
-							className="block rounded-md px-2 py-2 text-sm font-medium text-zinc-800 hover:bg-zinc-100"
-							onClick={() => setOpen(false)}
-						>
-							Contact
-						</Link>
-						<Link
-							href="/contact"
+
+						<a
+							href="#contact"
 							className="mt-2 block rounded-full bg-primary-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-primary-700"
 							onClick={() => setOpen(false)}
 						>
-							Get a Quote
-						</Link>
+							Contact Us
+						</a>
 					</nav>
 				</div>
 			</header>

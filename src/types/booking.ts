@@ -4,7 +4,8 @@ export type BookingType =
 	| "end-of-lease"
 	| "commercial"
 	| "once-off"
-	| "airbnb";
+	| "airbnb"
+	| "ndis";
 
 export type BookingPeriod = "once-off" | "regular" | "weekly" | "fortnightly" | "monthly";
 export type LeaseType = "One Bed" | "Two Bed" | "Three Bed" | "Four Bed" | "Five+ Bed";

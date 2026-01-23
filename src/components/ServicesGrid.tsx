@@ -1,53 +1,19 @@
-import { Card, SimpleGrid, Container, Title, Text, Button, Group, Collapse } from "@mantine/core";
-import { useState } from "react";
+import { Container, Title, Text } from "@mantine/core";
 import Link from "next/link";
 import Image from "next/image";
 import { bookingOptions } from "@/data/bookingOptions";
-import { BookingOption } from "@/types/booking";
-import onceOffImg from "@/assets/banner.jpg";
-import regularImg from "@/assets/banner2.jpg";
-import endOfLeaseImg from "@/assets/banner3.jpg";
+import onceOffImg from "@/assets/services/onceoff.jpg";
+import regularImg from "@/assets/services/regular.png";
+import endOfLeaseImg from "@/assets/services/endoflease.png";
 import airbnbImg from "@/assets/services/airbnb.png";
+import ndisImg from "@/assets/services/ndis.png";
 
 const serviceImages: Record<string, any> = {
 	"once-off": onceOffImg,
 	regular: regularImg,
 	"end-of-lease": endOfLeaseImg,
-	airbnb: airbnbImg
-};
-
-const getPricingDisplay = (option: BookingOption): string => {
-	if (option.id === "end-of-lease") {
-		const minPrice = Math.min(...option.pricing.map(p => p.pricePerHour));
-		return `FROM $${minPrice}/HRO`;
-	}
-
-	const firstPrice = option.pricing[0];
-	if (firstPrice.minHours ?? 0 > 0) {
-		return `FROM $${firstPrice.pricePerHour}/HR FOR ${firstPrice.minHours} HOURS`;
-	}
-	return `FROM $${firstPrice.pricePerHour}`;
-};
-
-const getPricingDetails = (option: BookingOption): string[] => {
-	if (option.id === "end-of-lease") {
-		return option.pricing.map(p => `${p.period}: $${p.pricePerHour}`);
-	}
-
-	const firstPrice = option.pricing[0];
-	if (firstPrice.minHours ?? 0 > 0) {
-		const details = [];
-		for (let hours = firstPrice.minHours ?? 0; hours <= (firstPrice.minHours ?? 0) + 2; hours++) {
-			const cost = firstPrice.pricePerHour * hours;
-			details.push(`${hours} hours: $${cost}`);
-		}
-		if (firstPrice.additionalHourPrice) {
-			details.push(`Additional hours: $${firstPrice.additionalHourPrice}/hr`);
-		}
-		return details;
-	}
-
-	return option.pricing.map(p => `${p.period}: $${p.pricePerHour}`);
+	airbnb: airbnbImg,
+	ndis: ndisImg
 };
 
 export default function ServicesGrid() {
@@ -58,14 +24,14 @@ export default function ServicesGrid() {
 					Choose your service
 				</Title>
 
-				<div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 w-full">
+				<div className="grid grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-8 w-full">
 					{bookingOptions.map(option => (
 						<Link
 							key={option.id}
 							href={`/book?service=${option.id}`}
 							className="group flex flex-col items-center text-center no-underline"
 						>
-							<div className="relative w-32 h-32 sm:w-48 sm:h-48 border-2 border-gray-300 flex justify-center items-center rounded-full transition-all duration-300 hover:border-blue-500 hover:shadow-xl hover:scale-105 overflow-hidden bg-white">
+							<div className="relative w-32 h-32 sm:w-48 sm:h-48 hover:border-2  flex justify-center items-center rounded-full transition-all duration-300 hover:border-blue-500 hover:shadow-xl hover:scale-105 overflow-hidden bg-white">
 								<div className="absolute inset-0 rounded-full overflow-hidden">
 									<Image
 										src={serviceImages[option.id]}

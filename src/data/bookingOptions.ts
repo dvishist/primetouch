@@ -5,12 +5,18 @@ import {
 	endOfLeaseComparison,
 	airbnbComparison
 } from "./cleanLevelComparisons";
-import { onceOffAddons, regularAddons, endOfLeaseAddons, airbnbAddons } from "./serviceAddons";
+import {
+	onceOffAddons,
+	regularAddons,
+	endOfLeaseAddons,
+	airbnbAddons,
+	ndisAddons
+} from "./serviceAddons";
 
 export const bookingOptions: BookingOption[] = [
 	{
 		id: "once-off",
-		name: "Once off Cleaning",
+		name: "Once-off Cleaning",
 		description: "Single session cleaning for special occasions or events",
 		pricing: [
 			{
@@ -62,7 +68,57 @@ export const bookingOptions: BookingOption[] = [
 		cleanLevelComparison: regularComparison,
 		addons: regularAddons
 	},
+	{
+		id: "ndis",
+		name: "NDIS Cleaning",
+		description: "Specialized cleaning services for NDIS participants",
+		pricing: [
+			{
+				period: "once-off",
+				pricePerHour: 45,
+				additionalHourPrice: 40,
+				minHours: 2
+			},
+			{
+				period: "weekly",
+				pricePerHour: 45,
+				additionalHourPrice: 40,
+				minHours: 2
+			},
+			{
+				period: "fortnightly",
+				pricePerHour: 50,
+				additionalHourPrice: 40,
+				minHours: 2
+			}
+		],
+		bookingPeriods: ["once-off", "weekly", "fortnightly"],
+		cleanLevelComparison: regularComparison,
+		addons: ndisAddons
+	},
 
+	{
+		id: "airbnb",
+		name: "Airbnb Cleaning",
+		description: "Quick and thorough cleaning between guest stays",
+		pricing: [
+			{
+				period: "once-off",
+				pricePerHour: 45,
+				additionalHourPrice: 40,
+				minHours: 2
+			},
+			{
+				period: "regular",
+				pricePerHour: 50,
+				additionalHourPrice: 40,
+				minHours: 2
+			}
+		],
+		bookingPeriods: ["once-off", "regular"],
+		cleanLevelComparison: airbnbComparison,
+		addons: airbnbAddons
+	},
 	{
 		id: "end-of-lease",
 		name: "End of Lease Cleaning",
@@ -97,28 +153,5 @@ export const bookingOptions: BookingOption[] = [
 		bookingPeriods: ["One Bed", "Two Bed", "Three Bed", "Four Bed", "Five+ Bed"],
 		cleanLevelComparison: endOfLeaseComparison,
 		addons: endOfLeaseAddons
-	},
-
-	{
-		id: "airbnb",
-		name: "Airbnb Cleaning",
-		description: "Quick and thorough cleaning between guest stays",
-		pricing: [
-			{
-				period: "once-off",
-				pricePerHour: 45,
-				additionalHourPrice: 40,
-				minHours: 2
-			},
-			{
-				period: "regular",
-				pricePerHour: 50,
-				additionalHourPrice: 40,
-				minHours: 2
-			}
-		],
-		bookingPeriods: ["once-off", "regular"],
-		cleanLevelComparison: airbnbComparison,
-		addons: airbnbAddons
 	}
 ];

@@ -300,6 +300,7 @@ export default function BookingTypeStep({
 									</Text>
 								</div>
 								<Switch
+									className="cursor-pointer!"
 									checked={selectedAddons.includes(addon.id)}
 									onChange={() => {
 										const newAddons = selectedAddons.includes(addon.id)

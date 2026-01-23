@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import banner from "../assets/banner3.jpg";
+import buckets from "../assets/buckets.png";
 import { Container, Title, Text, Button, Card, SimpleGrid, Box } from "@mantine/core";
 import ServicesGrid from "@/components/ServicesGrid";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
@@ -19,7 +19,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Primetouch Cleaning Services | Sparkling Clean, Every Time</title>
+				<title>Primetouch Cleaning | Sparkling Clean, Every Time</title>
 				<meta
 					name="description"
 					content="Professional residential and commercial cleaning services. Book reliable cleaners for deep cleans, move-in/move-out, and regular maintenance."
@@ -27,26 +27,68 @@ export default function Home() {
 			</Head>
 
 			{/* Hero */}
-			<section className="hero-section">
-				<div className="hero-background">
-					<Image
-						src={banner}
-						alt="Professional cleaning service"
-						fill
-						priority
-						className="hero-image"
-						sizes="100vw"
-					/>
+			<section className="hero-section-new">
+				<div className="hero-gradient-bg">
+					{/* Decorative SVG Elements */}
+					<svg
+						className="hero-decoration-1"
+						viewBox="0 0 400 400"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<circle cx="200" cy="200" r="150" fill="url(#gradient1)" opacity="0.4" />
+						<circle cx="180" cy="220" r="100" fill="url(#gradient2)" opacity="0.3" />
+						<defs>
+							<linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+								<stop offset="0%" style={{ stopColor: "#3b82f6", stopOpacity: 1 }} />
+								<stop offset="100%" style={{ stopColor: "#60a5fa", stopOpacity: 0.8 }} />
+							</linearGradient>
+							<linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+								<stop offset="0%" style={{ stopColor: "#06b6d4", stopOpacity: 1 }} />
+								<stop offset="100%" style={{ stopColor: "#22d3ee", stopOpacity: 0.6 }} />
+							</linearGradient>
+						</defs>
+					</svg>
+					<svg
+						className="hero-decoration-2"
+						viewBox="0 0 300 300"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path d="M150 50 L250 150 L150 250 L50 150 Z" fill="url(#gradient3)" opacity="0.25" />
+						<defs>
+							<linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+								<stop offset="0%" style={{ stopColor: "#8b5cf6", stopOpacity: 0.5 }} />
+								<stop offset="100%" style={{ stopColor: "#a78bfa", stopOpacity: 0.3 }} />
+							</linearGradient>
+						</defs>
+					</svg>
+					{/* Sparkle Icons */}
+					<div className="hero-sparkles">
+						<span className="sparkle sparkle-1">✨</span>
+						<span className="sparkle sparkle-2">✨</span>
+						<span className="sparkle sparkle-3">✨</span>
+						<span className="sparkle sparkle-4">✨</span>
+					</div>
+					{/* Buckets Image */}
+					<div className="hero-buckets">
+						<Image src={buckets} alt="Cleaning buckets" width={250} height={250} priority />
+					</div>
 				</div>
-				<div className="mx-auto max-w-7xl px-4 py-16 sm:py-20 md:px-6">
-					<div className="hero-content">
-						<h1 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl">
-							Prime Touch Cleaning Services
-						</h1>
 
-						<p className="mt-6 max-w-xl text-base leading-7 text-zinc-700 sm:text-lg">
-							Reliable, high-quality cleaning for homes and offices. Our trained pros make your
-							spaces sparkle—on time, every time.
+				<div className="mx-auto max-w-7xl px-4 py-16 sm:py-20 md:px-6">
+					<div className="hero-content-new">
+						<h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl md:text-6xl">
+							PrimeTouch Cleaning
+						</h1>
+						<div className="w-full flex justify-center">
+							<p className="text-gray-500">"The perfect touch for every space."</p>
+						</div>
+
+						<p className="mt-6 max-w-xl text-lg leading-8 text-zinc-700 sm:text-xl">
+							Experience top-notch cleaning services tailored to your needs.
+							<br />
+							Book now for a sparkling clean, every time.
 						</p>
 						<div className="mt-8 flex flex-col gap-3 sm:flex-row">
 							<Button component={Link} href="/book" size="lg">
@@ -66,69 +108,10 @@ export default function Home() {
 			<TrustBadges />
 
 			{/* Why Choose Us */}
-			<WhyChooseUs />
+			{/* <WhyChooseUs /> */}
 
 			{/* Process Timeline */}
 			<ProcessTimeline />
-
-			{/* Highlights using Mantine */}
-			<Container size="lg" className="py-12">
-				<SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="md">
-					{[
-						{
-							title: "Reliable Pros",
-							desc: "Background-checked, trained cleaners you can trust.",
-							icon: "✅"
-						},
-						{
-							title: "Flexible Plans",
-							desc: "One-time, weekly, bi-weekly, or monthly.",
-							icon: "📅"
-						},
-						{ title: "Transparent Pricing", desc: "Clear rates with no hidden fees.", icon: "💬" }
-					].map(item => (
-						<Card key={item.title} withBorder radius="lg" padding="lg">
-							<Text fz={24}>{item.icon}</Text>
-							<Title order={3} mt="xs">
-								{item.title}
-							</Title>
-							<Text mt="xs" c="dimmed">
-								{item.desc}
-							</Text>
-						</Card>
-					))}
-				</SimpleGrid>
-			</Container>
-
-			{/* How it works */}
-			<section className="bg-zinc-50 py-12">
-				<div className="mx-auto max-w-7xl px-4 md:px-6">
-					<h2 className="text-center text-2xl font-bold">How it works</h2>
-					<div className="mt-8 grid gap-6 sm:grid-cols-3">
-						{[
-							{ step: "1", title: "Book", desc: "Tell us what you need and when." },
-							{ step: "2", title: "We Clean", desc: "Our pros arrive and make it sparkle." },
-							{ step: "3", title: "Relax", desc: "Enjoy a spotless space, stress-free." }
-						].map(s => (
-							<div
-								key={s.step}
-								className="rounded-2xl border border-zinc-200 bg-white p-6 text-center shadow-sm"
-							>
-								<div className="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary-600 text-sm font-bold text-white">
-									{s.step}
-								</div>
-								<h3 className="text-lg font-semibold">{s.title}</h3>
-								<p className="mt-2 text-sm text-zinc-600">{s.desc}</p>
-							</div>
-						))}
-					</div>
-					<div className="mt-8 flex justify-center">
-						<Button component="a" href="#contact" size="md">
-							Get a Free Quote
-						</Button>
-					</div>
-				</div>
-			</section>
 
 			{/* What's Included */}
 			<WhatsIncluded />
@@ -137,10 +120,10 @@ export default function Home() {
 			<ServiceAreaMap />
 
 			{/* Stats */}
-			<Stats />
+			{/* <Stats /> */}
 
 			{/* Testimonials */}
-			<Testimonials />
+			{/* <Testimonials /> */}
 
 			{/* CTA Banner */}
 			<CTABanner variant="secondary" />

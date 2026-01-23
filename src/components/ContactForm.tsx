@@ -28,26 +28,47 @@ export default function ContactForm() {
 		e.preventDefault();
 		setIsSubmitting(true);
 
-		// Simulate form submission (frontend only)
-		await new Promise(resolve => setTimeout(resolve, 1500));
+		try {
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(formData)
+			});
 
-		// Show success notification
-		notifications.show({
-			title: "Enquiry Submitted!",
-			message:
-				"Thank you for your enquiry! We'll get back to you within 24 hours. Check your email for confirmation.",
-			color: "green",
-			icon: <IconSend size={18} />
-		});
+			const data = await response.json();
 
-		// Reset form
-		setFormData({
-			name: "",
-			email: "",
-			phone: "",
-			serviceType: "",
-			message: ""
-		});
+			if (data.success) {
+				// Show success notification
+				notifications.show({
+					title: "Enquiry Submitted!",
+					message:
+						"Thank you for your enquiry! We'll get back to you within 24 hours. Check your email for confirmation.",
+					color: "green",
+					icon: <IconSend size={18} />
+				});
+
+				// Reset form
+				setFormData({
+					name: "",
+					email: "",
+					phone: "",
+					serviceType: "",
+					message: ""
+				});
+			} else {
+				throw new Error(data.message);
+			}
+		} catch (error) {
+			notifications.show({
+				title: "Error",
+				message: "Failed to submit enquiry. Please try again or contact us directly.",
+				color: "red"
+			});
+		} finally {
+			setIsSubmitting(false);
+		}
 
 		setIsSubmitting(false);
 
@@ -162,7 +183,7 @@ export default function ContactForm() {
 							Call Us
 						</Text>
 						<Text size="sm" c="dimmed">
-							0412 345 678
+							TBC
 						</Text>
 					</div>
 
@@ -172,7 +193,7 @@ export default function ContactForm() {
 							Email Us
 						</Text>
 						<Text size="sm" c="dimmed">
-							info@primetouch.com.au
+							TBC
 						</Text>
 					</div>
 
@@ -182,7 +203,7 @@ export default function ContactForm() {
 							Response Time
 						</Text>
 						<Text size="sm" c="dimmed">
-							Within 24 hours
+							Within 12 hours
 						</Text>
 					</div>
 				</div>
