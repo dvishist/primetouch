@@ -183,7 +183,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 <body>
 	<div class="container">
 		<div class="header">
-			<h1>🎉 New Booking Request!</h1>
+			<h1>New Booking Request!</h1>
 			<p>A customer has submitted a booking through your website</p>
 		</div>
 		<div class="content">
@@ -193,7 +193,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			</div>
 
 			<div class="section">
-				<div class="section-title">📋 Booking Details</div>
+				<div class="section-title">Booking Details</div>
 				<div class="info-grid">
 					<div class="info-row">
 						<span class="label">Booking Period:</span>
@@ -239,7 +239,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 				<div style="margin-top: 20px;">
 					<div style="font-weight: 600; color: #1e293b; margin-bottom: 10px;">Additional Services:</div>
 					<ul class="addon-list">
-						${bookingData.selectedAddons.map(addon => `<li class="addon-item">✓ ${addon}</li>`).join("")}
+						${bookingData.selectedAddons.map(addon => `<li class="addon-item">${addon}</li>`).join("")}
 					</ul>
 				</div>
 				`
@@ -248,7 +248,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			</div>
 
 			<div class="section">
-				<div class="section-title">👤 Customer Information</div>
+				<div class="section-title">Customer Information</div>
 				<div class="info-grid">
 					<div class="info-row">
 						<span class="label">Name:</span>
@@ -295,7 +295,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 					customerDetails.notes
 						? `
 				<div class="notes-box">
-					<div style="font-weight: 600; color: #92400e; margin-bottom: 8px;">📝 Special Notes:</div>
+					<div style="font-weight: 600; color: #92400e; margin-bottom: 8px;">Special Notes:</div>
 					<div style="color: #78350f;">${customerDetails.notes}</div>
 				</div>
 				`
@@ -312,10 +312,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 </html>
 		`;
 
-		// Send email to business
+		// Send email to business (multiple recipients)
+		const businessEmails = process.env.BUSINESS_EMAILS || process.env.EMAIL_USER;
 		await transporter.sendMail({
 			from: process.env.EMAIL_USER,
-			to: process.env.EMAIL_USER,
+			to: businessEmails, // Can be comma-separated list: "email1@example.com, email2@example.com"
 			subject: `New Booking: ${formatBookingType(bookingData.bookingType)} - ${fullName}`,
 			html: businessEmail
 		});
@@ -389,7 +390,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			position: relative;
 		}
 		.info-item:before {
-			content: "✓";
+			content: "";
 			position: absolute;
 			left: 0;
 			color: #10b981;
@@ -445,7 +446,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 <body>
 	<div class="container">
 		<div class="header">
-			<h1>🎊 Booking Received!</h1>
+			<h1>Booking Received!</h1>
 			<p>We're excited to help you sparkle</p>
 		</div>
 		<div class="content">
@@ -453,7 +454,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			<p>Thank you for choosing PrimeTouch Cleaning Services! We've received your booking request and are thrilled to serve you.</p>
 
 			<div class="info-box">
-				<div class="info-title">📋 Your Booking Summary</div>
+				<div class="info-title">Your Booking Summary</div>
 				<div class="info-item">Service: <strong>${formatBookingType(bookingData.bookingType)}</strong></div>
 				${bookingData.bookingPeriod ? `<div class="info-item">Period: <strong>${formatBookingType(bookingData.bookingPeriod)}</strong></div>` : ""}
 				${bookingData.duration ? `<div class="info-item">Duration: <strong>${bookingData.duration} hour${bookingData.duration > 1 ? "s" : ""}</strong></div>` : ""}
@@ -470,19 +471,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 					<div class="step-number">2</div>
 					<div class="step-text">We'll contact you within 24 hours to confirm your appointment</div>
 				</div>
-				<div class="step">
-					<div class="step-number">3</div>
-					<div class="step-text">Our professional team will arrive on time and make your space sparkle!</div>
-				</div>
+				
 			</div>
 
-			<p style="color: #475569; margin-top: 25px;">If you have any questions or need to make changes, please don't hesitate to contact us.</p>
+			<p style="color: #475569; margin-top: 25px;">If you have any questions or need to make changes, please reply to this email with your request.</p>
 			
 			<p style="margin-top: 30px; color: #475569;">Looking forward to serving you!<br><strong>The PrimeTouch Team</strong></p>
 		</div>
 		<div class="footer">
-			<div class="footer-brand">✨ PrimeTouch Cleaning ✨</div>
-			<p class="footer-tagline">Making every space sparkle, every time</p>
+			<div class="footer-brand">PrimeTouch Cleaning</div>
+			<p class="footer-tagline">The perfect touch for every space</p>
 			<p class="footer-tagline" style="margin-top: 15px; font-size: 12px;">This is an automated confirmation email.</p>
 		</div>
 	</div>

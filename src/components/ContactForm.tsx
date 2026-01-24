@@ -183,7 +183,7 @@ export default function ContactForm() {
 							Call Us
 						</Text>
 						<Text size="sm" c="dimmed">
-							TBC
+							Phone numer coming soon
 						</Text>
 					</div>
 
@@ -193,7 +193,7 @@ export default function ContactForm() {
 							Email Us
 						</Text>
 						<Text size="sm" c="dimmed">
-							TBC
+							info.primetouchcleaning@gmail.com
 						</Text>
 					</div>
 

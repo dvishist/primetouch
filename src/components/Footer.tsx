@@ -107,14 +107,14 @@ export default function Footer() {
 									className="flex items-center gap-2 text-sm hover:text-blue-400 transition-colors"
 								>
 									<IconPhone size={18} />
-									<span>TBC</span>
+									<span>Phone number coming soon</span>
 								</a>
 								<a
-									href="mailto:info@primetouch.com.au"
+									href="mailto:info.primetouchcleaning@gmail.com"
 									className="flex items-center gap-2 text-sm hover:text-blue-400 transition-colors"
 								>
 									<IconMail size={18} />
-									<span>TBC</span>
+									<span>info.primetouchcleaning@gmail.com</span>
 								</a>
 								<div className="flex items-start gap-2 text-sm">
 									<IconMapPin size={18} className="mt-1 shrink-0" />

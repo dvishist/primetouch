@@ -133,7 +133,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 <body>
 	<div class="container">
 		<div class="header">
-			<h1>📧 New Contact Form Submission</h1>
+			<h1>New Contact Form Submission</h1>
 		</div>
 		<div class="content">
 			<p style="margin-top: 0; color: #475569;">You have received a new enquiry from your website contact form.</p>
@@ -171,10 +171,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 </html>
 		`;
 
+		const businessEmails = process.env.BUSINESS_EMAILS || process.env.EMAIL_USER;
 		// Send email to business
 		await transporter.sendMail({
 			from: process.env.EMAIL_USER,
-			to: process.env.EMAIL_USER, // Your business email
+			to: businessEmails,
 			subject: `New Contact Form Submission from ${name}`,
 			html: htmlEmail
 		});
@@ -256,15 +257,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 <body>
 	<div class="container">
 		<div class="header">
-			<h1>Thank You! ✨</h1>
-			<p>We've received your message</p>
+			<h1>Thank You! </h1>
+			<p>We have received your message</p>
 		</div>
 		<div class="content">
 			<p class="greeting">Hi ${name},</p>
 			<p>Thank you for reaching out to PrimeTouch Cleaning Services! We've received your enquiry and appreciate you taking the time to contact us.</p>
 			
 			<div class="highlight-box">
-				<p style="margin: 0 0 10px 0; font-weight: 600; color: #1e293b;">⏱️ What happens next?</p>
+				<p style="margin: 0 0 10px 0; font-weight: 600; color: #1e293b;">What happens next?</p>
 				<p style="margin: 0; color: #475569;">Our team will review your message and get back to you within <strong>24 hours</strong>. We look forward to helping you with your cleaning needs!</p>
 			</div>
 
@@ -274,7 +275,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		</div>
 		<div class="footer">
 			<div class="footer-brand">PrimeTouch Cleaning</div>
-			<p class="footer-text">Making every space sparkle</p>
+			<p class="footer-text">The perfect touch for every space</p>
 			<p class="footer-text" style="margin-top: 15px; font-size: 12px;">This is an automated confirmation email.</p>
 		</div>
 	</div>

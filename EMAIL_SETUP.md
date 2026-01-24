@@ -27,10 +27,14 @@ cp .env.local.example .env.local
    - Copy the 16-character password (no spaces)
 
 3. **Update `.env.local`**:
+
    ```env
    EMAIL_USER=your-gmail-address@gmail.com
    EMAIL_APP_PASSWORD=your-16-character-password
+   BUSINESS_EMAILS=email1@example.com, email2@example.com, email3@example.com
    ```
+
+   Note: `BUSINESS_EMAILS` can be a comma-separated list of email addresses that will receive booking notifications. If not set, it defaults to `EMAIL_USER`.
 
 ### 3. Restart the Development Server
 
