@@ -19,12 +19,40 @@ export default function BookingSummaryStep({
 		customerDetails,
 		contactPreferences,
 		selectedAddons,
+		preferredDate,
+		preferredTime,
 		bathrooms,
 		toilets
 	} = formData;
 
 	const bookingName = bookingOptions.find(option => option.id === bookingType)?.name;
 	const selectedOption = bookingOptions.find(option => option.id === bookingType);
+
+	// Format date for display
+	const formatDate = (date: Date | null) => {
+		if (!date) return "Not selected";
+		return date.toLocaleDateString("en-US", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric"
+		});
+	};
+
+	// Format time for display
+	const formatTime = (time: string | null) => {
+		if (!time) return "Not selected";
+		switch (time) {
+			case "morning":
+				return "Morning";
+			case "afternoon":
+				return "Afternoon";
+			case "evening":
+				return "Evening";
+			default:
+				return "Not selected";
+		}
+	};
 
 	// Calculate pricing
 	const calculatePrice = () => {
@@ -78,6 +106,41 @@ export default function BookingSummaryStep({
 
 	const priceBreakdown = calculatePrice();
 
+	// Get pricing details for display
+	const getPricingDetails = () => {
+		if (!selectedOption || !bookingPeriod || !duration) return null;
+
+		const pricing = selectedOption.pricing.find(p => p.period === bookingPeriod);
+		if (!pricing) return null;
+
+		const minHours = pricing.minHours || 1;
+		const hourlyRate =
+			cleanLevel === "deep" && pricing.deepCleanPricePerHour
+				? pricing.deepCleanPricePerHour
+				: pricing.pricePerHour;
+		const additionalRate =
+			cleanLevel === "deep" && pricing.deepCleanAdditionalHourPrice
+				? pricing.deepCleanAdditionalHourPrice
+				: pricing.additionalHourPrice || pricing.pricePerHour;
+
+		if (duration <= minHours) {
+			return {
+				calculation: `$${hourlyRate} × ${minHours} hours (minimum)`,
+				rate: hourlyRate,
+				hours: minHours
+			};
+		} else {
+			const additionalHours = duration - minHours;
+			return {
+				calculation: `($${hourlyRate} × ${minHours}) + ($${additionalRate} × ${additionalHours})`,
+				rate: hourlyRate,
+				hours: duration
+			};
+		}
+	};
+
+	const pricingDetails = getPricingDetails();
+
 	return (
 		<Stack gap="lg" mt="md">
 			<Card withBorder padding="lg" radius="md">
@@ -102,6 +165,18 @@ export default function BookingSummaryStep({
 							Booking Period:
 						</Text>
 						<Text tt="capitalize">{bookingPeriod || "Not selected"}</Text>
+					</Group>
+					<Group justify="start">
+						<Text fw={500} c="dimmed">
+							Preferred Date:
+						</Text>
+						<Text>{formatDate(preferredDate)}</Text>
+					</Group>
+					<Group justify="start">
+						<Text fw={500} c="dimmed">
+							Preferred Time:
+						</Text>
+						<Text>{formatTime(preferredTime)}</Text>
 					</Group>
 					{selectedOption?.supportsCleanLevel && cleanLevel && (
 						<Group justify="start">
@@ -163,6 +238,11 @@ export default function BookingSummaryStep({
 							<Text fw={500}>Base Service:</Text>
 							<Text>${priceBreakdown.basePrice}</Text>
 						</Group>
+						{pricingDetails && (
+							<Text size="xs" c="dimmed" ml="md">
+								{pricingDetails.calculation}
+							</Text>
+						)}
 						{cleanLevel === "deep" && (
 							<Text size="xs" c="dimmed" ml="md">
 								(deep clean pricing applied)

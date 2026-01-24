@@ -10,6 +10,8 @@ type BookingFormData = {
 	contactPreferences: string[];
 	bathrooms: number;
 	toilets: number;
+	preferredDate?: string | Date;
+	preferredTime?: "morning" | "afternoon" | "evening";
 	customerDetails: {
 		firstName: string;
 		lastName: string;
@@ -199,6 +201,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 						<span class="label">Booking Period:</span>
 						<span class="value">${formatBookingType(bookingData.bookingPeriod || "Not specified")}</span>
 					</div>
+					${
+						bookingData.preferredDate
+							? `<div class="info-row">
+						<span class="label">Preferred Date:</span>
+						<span class="value">${new Date(bookingData.preferredDate).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</span>
+					</div>`
+							: ""
+					}
+					${
+						bookingData.preferredTime
+							? `<div class="info-row">
+						<span class="label">Preferred Time:</span>
+						<span class="value">${bookingData.preferredTime === "morning" ? "Morning" : bookingData.preferredTime === "afternoon" ? "Afternoon" : "Evening"}</span>
+					</div>`
+							: ""
+					}
 					${
 						bookingData.duration
 							? `<div class="info-row">
@@ -456,6 +474,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 				<div class="info-title">Your Booking Summary</div>
 				<div class="info-item">Service: <strong>${formatBookingType(bookingData.bookingType)}</strong></div>
 				${bookingData.bookingPeriod ? `<div class="info-item">Period: <strong>${formatBookingType(bookingData.bookingPeriod)}</strong></div>` : ""}
+				${bookingData.preferredDate ? `<div class="info-item">Preferred Date: <strong>${new Date(bookingData.preferredDate).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</strong></div>` : ""}
+				${bookingData.preferredTime ? `<div class="info-item">Preferred Time: <strong>${bookingData.preferredTime === "morning" ? "Morning" : bookingData.preferredTime === "afternoon" ? "Afternoon" : "Evening"}</strong></div>` : ""}
 				${bookingData.duration ? `<div class="info-item">Duration: <strong>${bookingData.duration} hour${bookingData.duration > 1 ? "s" : ""}</strong></div>` : ""}
 				<div class="info-item">Location: <strong>${customerDetails.address}, ${customerDetails.city}</strong></div>
 			</div>

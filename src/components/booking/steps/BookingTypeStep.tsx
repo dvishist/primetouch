@@ -1,7 +1,16 @@
 import { Card, Text, Collapse, Button, Group, Table, Textarea, Switch, Grid } from "@mantine/core";
-import { IconCheck, IconChevronDown, IconChevronUp, IconPlus, IconX } from "@tabler/icons-react";
+import { DatePickerInput } from "@mantine/dates";
+import {
+	IconCheck,
+	IconChevronDown,
+	IconChevronUp,
+	IconPlus,
+	IconX,
+	IconCalendar,
+	IconClock
+} from "@tabler/icons-react";
 import { useState } from "react";
-import { BookingType, BookingPeriod, LeaseType, CleanLevel } from "@/types/booking";
+import { BookingType, BookingPeriod, LeaseType, CleanLevel, TimeSlot } from "@/types/booking";
 import { bookingOptions } from "@/data/bookingOptions";
 
 interface Props {
@@ -10,6 +19,8 @@ interface Props {
 	selectedDuration: number | null;
 	selectedCleanLevel: CleanLevel | null;
 	selectedAddons: string[];
+	preferredDate: Date | null;
+	preferredTime: TimeSlot | null;
 	bathrooms: number;
 	toilets: number;
 	notes: string;
@@ -17,6 +28,8 @@ interface Props {
 	onDurationSelect: (hours: number) => void;
 	onCleanLevelSelect: (cleanLevel: CleanLevel) => void;
 	onAddonsSelect: (addons: string[]) => void;
+	onDateSelect: (date: Date | null) => void;
+	onTimeSelect: (time: TimeSlot) => void;
 	onBathroomsChange: (count: number) => void;
 	onToiletsChange: (count: number) => void;
 	onNotesChange: (notes: string) => void;
@@ -28,6 +41,8 @@ export default function BookingTypeStep({
 	selectedDuration,
 	selectedCleanLevel,
 	selectedAddons,
+	preferredDate,
+	preferredTime,
 	bathrooms,
 	toilets,
 	notes,
@@ -35,6 +50,8 @@ export default function BookingTypeStep({
 	onDurationSelect,
 	onCleanLevelSelect,
 	onAddonsSelect,
+	onDateSelect,
+	onTimeSelect,
 	onBathroomsChange,
 	onToiletsChange,
 	onNotesChange
@@ -315,6 +332,63 @@ export default function BookingTypeStep({
 					</Grid.Col>
 				))}
 			</Grid>
+
+			{/* Date and Time Selection */}
+			<div style={{ marginTop: "24px", marginBottom: "24px" }}>
+				<Text size="sm" fw={500} mb="xs">
+					Preferred Date & Time
+				</Text>
+				<Grid gutter="md">
+					<Grid.Col span={{ base: 12, sm: 6 }}>
+						<DatePickerInput
+							leftSection={<IconCalendar size={16} />}
+							placeholder="Select date"
+							value={preferredDate}
+							onChange={value => {
+								// Handle both Date and string types from DatePickerInput
+								if (typeof value === "string") {
+									onDateSelect(value ? new Date(value) : null);
+								} else {
+									onDateSelect(value);
+								}
+							}}
+							minDate={new Date()}
+							clearable
+						/>
+					</Grid.Col>
+					<Grid.Col span={{ base: 12, sm: 6 }}>
+						<Group gap="xs">
+							<Button
+								size="sm"
+								leftSection={<IconClock size={16} />}
+								variant={preferredTime === "morning" ? "filled" : "outline"}
+								color="brand"
+								onClick={() => onTimeSelect("morning")}
+							>
+								Morning
+							</Button>
+							<Button
+								size="sm"
+								leftSection={<IconClock size={16} />}
+								variant={preferredTime === "afternoon" ? "filled" : "outline"}
+								color="brand"
+								onClick={() => onTimeSelect("afternoon")}
+							>
+								Afternoon
+							</Button>
+							<Button
+								size="sm"
+								leftSection={<IconClock size={16} />}
+								variant={preferredTime === "evening" ? "filled" : "outline"}
+								color="brand"
+								onClick={() => onTimeSelect("evening")}
+							>
+								Evening
+							</Button>
+						</Group>
+					</Grid.Col>
+				</Grid>
+			</div>
 
 			<Textarea
 				label="Additional Notes"

@@ -11,6 +11,7 @@ export type BookingPeriod = "once-off" | "regular" | "weekly" | "fortnightly" | 
 export type LeaseType = "One Bed" | "Two Bed" | "Three Bed" | "Four Bed" | "Five+ Bed";
 export type ContactPreference = "call" | "sms" | "email";
 export type CleanLevel = "standard" | "deep";
+export type TimeSlot = "morning" | "afternoon" | "evening";
 
 export interface Addon {
 	id: string;
@@ -62,6 +63,8 @@ export interface BookingFormData {
 	cleanLevel: CleanLevel | null;
 	selectedAddons: string[];
 	contactPreferences: ContactPreference[];
+	preferredDate: Date | null;
+	preferredTime: TimeSlot | null;
 	bathrooms?: number;
 	toilets?: number;
 	customerDetails: {

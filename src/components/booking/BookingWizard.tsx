@@ -25,6 +25,8 @@ export default function BookingWizard() {
 		cleanLevel: null,
 		selectedAddons: [],
 		contactPreferences: [],
+		preferredDate: null,
+		preferredTime: null,
 		bathrooms: 0,
 		toilets: 0,
 		customerDetails: {
@@ -105,6 +107,14 @@ export default function BookingWizard() {
 
 	const updateNotes = (notes: string) => {
 		setFormData({ ...formData, customerDetails: { ...formData.customerDetails, notes } });
+	};
+
+	const updateDate = (date: Date | null) => {
+		setFormData({ ...formData, preferredDate: date });
+	};
+
+	const updateTime = (time: "morning" | "afternoon" | "evening") => {
+		setFormData({ ...formData, preferredTime: time });
 	};
 
 	const updateCustomerDetails = (details: BookingFormData["customerDetails"]) => {
@@ -198,6 +208,8 @@ export default function BookingWizard() {
 							selectedDuration={formData.duration}
 							selectedCleanLevel={formData.cleanLevel}
 							selectedAddons={formData.selectedAddons}
+							preferredDate={formData.preferredDate}
+							preferredTime={formData.preferredTime}
 							bathrooms={formData.bathrooms || 0}
 							toilets={formData.toilets || 0}
 							notes={formData.customerDetails.notes}
@@ -205,6 +217,8 @@ export default function BookingWizard() {
 							onDurationSelect={updateDuration}
 							onCleanLevelSelect={updateCleanLevel}
 							onAddonsSelect={updateAddons}
+							onDateSelect={updateDate}
+							onTimeSelect={updateTime}
 							onBathroomsChange={updateBathrooms}
 							onToiletsChange={updateToilets}
 							onNotesChange={updateNotes}
