@@ -113,6 +113,15 @@ export default function BookingSummaryStep({
 		const pricing = selectedOption.pricing.find(p => p.period === bookingPeriod);
 		if (!pricing) return null;
 
+		// End-of-lease has fixed pricing, not hourly
+		if (bookingType === "end-of-lease") {
+			return {
+				calculation: `Fixed price`,
+				rate: pricing.pricePerHour,
+				hours: 1
+			};
+		}
+
 		const minHours = pricing.minHours || 1;
 		const hourlyRate =
 			cleanLevel === "deep" && pricing.deepCleanPricePerHour
@@ -154,12 +163,14 @@ export default function BookingSummaryStep({
 						</Text>
 						<Text tt="capitalize">{bookingName || "Not selected"}</Text>
 					</Group>
-					<Group justify="start">
-						<Text fw={500} c="dimmed">
-							Duration:
-						</Text>
-						<Text>{duration ? `${duration} hours` : "Not selected"}</Text>
-					</Group>
+					{bookingType !== "end-of-lease" && (
+						<Group justify="start">
+							<Text fw={500} c="dimmed">
+								Duration:
+							</Text>
+							<Text>{duration ? `${duration} hours` : "Not selected"}</Text>
+						</Group>
+					)}
 					<Group justify="start">
 						<Text fw={500} c="dimmed">
 							Booking Period:
@@ -232,6 +243,7 @@ export default function BookingSummaryStep({
 				<Card withBorder padding="lg" radius="md" bg="blue.0">
 					<Title order={4} mb="md">
 						Price Summary
+						<p className="text-sm text-gray-400">(Pay after service)</p>
 					</Title>
 					<Stack gap="xs">
 						<Group justify="space-between">

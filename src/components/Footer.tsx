@@ -103,7 +103,7 @@ export default function Footer() {
 							<h3 className="text-white font-semibold mb-4">Contact Us</h3>
 							<div className="flex flex-col gap-3">
 								<a
-									href="tel:0412345678"
+									href="tel:"
 									className="flex items-center gap-2 text-sm hover:text-blue-400 transition-colors"
 								>
 									<IconPhone size={18} />
