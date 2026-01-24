@@ -163,7 +163,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			</div>
 		</div>
 		<div class="footer">
-			<p style="margin: 0;">PrimeTouch Cleaning Services</p>
+			<p style="margin: 0;">PrimeTouch Cleaning</p>
 			<p style="margin: 5px 0 0 0;">This is an automated notification from your website contact form.</p>
 		</div>
 	</div>
@@ -262,7 +262,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		</div>
 		<div class="content">
 			<p class="greeting">Hi ${name},</p>
-			<p>Thank you for reaching out to PrimeTouch Cleaning Services! We've received your enquiry and appreciate you taking the time to contact us.</p>
+			<p>Thank you for reaching out to PrimeTouch Cleaning! We've received your enquiry and appreciate you taking the time to contact us.</p>
 			
 			<div class="highlight-box">
 				<p style="margin: 0 0 10px 0; font-weight: 600; color: #1e293b;">What happens next?</p>

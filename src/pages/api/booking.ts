@@ -304,7 +304,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			</div>
 		</div>
 		<div class="footer">
-			<p style="margin: 0; font-weight: 600;">PrimeTouch Cleaning Services</p>
+			<p style="margin: 0; font-weight: 600;">PrimeTouch Cleaning</p>
 			<p style="margin: 8px 0 0 0;">Automated booking notification from your website</p>
 		</div>
 	</div>
@@ -408,8 +408,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			align-items: flex-start;
 		}
 		.step-number {
-			background-color: #3b82f6;
-			color: white;
+			color: #3b82f6;
 			width: 28px;
 			height: 28px;
 			border-radius: 50%;
@@ -451,7 +450,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		</div>
 		<div class="content">
 			<p class="greeting">Hi ${customerDetails.firstName},</p>
-			<p>Thank you for choosing PrimeTouch Cleaning Services! We've received your booking request and are thrilled to serve you.</p>
+			<p>Thank you for choosing PrimeTouch Cleaning! We've received your booking request and are thrilled to serve you.</p>
 
 			<div class="info-box">
 				<div class="info-title">Your Booking Summary</div>
@@ -492,7 +491,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		await transporter.sendMail({
 			from: process.env.EMAIL_USER,
 			to: customerDetails.email,
-			subject: "Booking Confirmation - PrimeTouch Cleaning Services",
+			subject: "Booking Confirmation - PrimeTouch Cleaning",
 			html: customerEmail
 		});
 
