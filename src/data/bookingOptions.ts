@@ -3,7 +3,8 @@ import {
 	onceOffComparison,
 	regularComparison,
 	endOfLeaseComparison,
-	airbnbComparison
+	airbnbComparison,
+	ndisComparison
 } from "./cleanLevelComparisons";
 import {
 	onceOffAddons,
@@ -93,7 +94,7 @@ export const bookingOptions: BookingOption[] = [
 			}
 		],
 		bookingPeriods: ["once-off", "weekly", "fortnightly"],
-		cleanLevelComparison: regularComparison,
+		cleanLevelComparison: ndisComparison,
 		addons: ndisAddons
 	},
 

@@ -58,7 +58,7 @@ export const onceOffComparison: CleaningAreaComparison[] = [
 	{
 		area: "BEDROOMS",
 		tasks: [
-			{ task: "Make Beds (if linen present)", standardClean: true, deepClean: true },
+			{ task: "Make Beds", standardClean: true, deepClean: true },
 			{ task: "Dust Surfaces", standardClean: true, deepClean: true },
 			{ task: "Vacuum Floors", standardClean: true, deepClean: true },
 			{ task: "Empty Bins", standardClean: true, deepClean: true }
@@ -218,3 +218,4 @@ export const endOfLeaseComparison: CleaningAreaComparison[] = [
 
 // Airbnb service: Same as end-of-lease (all deep clean services)
 export const airbnbComparison: CleaningAreaComparison[] = endOfLeaseComparison;
+export const ndisComparison: CleaningAreaComparison[] = endOfLeaseComparison;
