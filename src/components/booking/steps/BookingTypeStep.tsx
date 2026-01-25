@@ -172,11 +172,7 @@ export default function BookingTypeStep({
 							<div
 								style={{ fontSize: "13px", lineHeight: "1.5", marginBottom: "16px", color: "#666" }}
 							>
-								<div>
-									{pricing.pricePerHour === 0
-										? "Please contact us for quote"
-										: `Price: $${pricing.pricePerHour}`}
-								</div>
+								<div>Price: ${pricing.pricePerHour}</div>
 							</div>
 						);
 					}

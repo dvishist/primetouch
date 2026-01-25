@@ -80,21 +80,21 @@ export default function Footer() {
 						<div>
 							<h3 className="text-white font-semibold mb-4">Our Services</h3>
 							<div className="flex flex-col gap-2">
-								<Text size="sm" className="hover:text-blue-400 transition-colors cursor-pointer">
+								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									Once-off Cleaning
-								</Text>
-								<Text size="sm" className="hover:text-blue-400 transition-colors cursor-pointer">
+								</Link>
+								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									Regular Cleaning
-								</Text>
-								<Text size="sm" className="hover:text-blue-400 transition-colors cursor-pointer">
+								</Link>
+								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									NDIS Cleaning
-								</Text>
-								<Text size="sm" className="hover:text-blue-400 transition-colors cursor-pointer">
+								</Link>
+								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									End of Lease Clean
-								</Text>
-								<Text size="sm" className="hover:text-blue-400 transition-colors cursor-pointer">
+								</Link>
+								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									Airbnb Cleaning
-								</Text>
+								</Link>
 							</div>
 						</div>
 

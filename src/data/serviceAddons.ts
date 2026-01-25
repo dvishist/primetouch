@@ -3,46 +3,17 @@ import { Addon } from "@/types/booking";
 // Once-off service addons
 export const onceOffAddons: Addon[] = [
 	{
-		id: "inside-fridge",
-		name: "Inside Fridge Clean",
-		price: 25,
-		category: "kitchen"
-	},
-	{
-		id: "inside-oven",
-		name: "Inside Oven Clean",
-		price: 35,
-		category: "kitchen"
-	},
-	{
 		id: "inside-cabinets",
 		name: "Inside Cabinets",
 		price: 40,
 		category: "cleaning"
 	},
-	{
-		id: "windows-interior",
-		name: "Interior Windows",
-		price: 30,
-		category: "cleaning"
-	},
+
 	{
 		id: "windows-exterior",
 		name: "Exterior Windows",
 		price: 50,
 		category: "cleaning"
-	},
-	{
-		id: "laundry-service",
-		name: "Laundry Service",
-		price: 20,
-		category: "laundry"
-	},
-	{
-		id: "ironing-service",
-		name: "Ironing Service",
-		price: 25,
-		category: "laundry"
 	},
 	{
 		id: "bed-linen-change",
@@ -54,12 +25,6 @@ export const onceOffAddons: Addon[] = [
 		id: "balcony-patio",
 		name: "Balcony/Patio Clean",
 		price: 30,
-		category: "other"
-	},
-	{
-		id: "garage-sweep",
-		name: "Garage Sweep",
-		price: 25,
 		category: "other"
 	}
 ];
