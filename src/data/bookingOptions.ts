@@ -22,11 +22,11 @@ export const bookingOptions: BookingOption[] = [
 		pricing: [
 			{
 				period: "once-off",
-				pricePerHour: 45,
-				additionalHourPrice: 40,
+				pricePerHour: 44.99,
+				additionalHourPrice: 39.99,
 				minHours: 3,
-				deepCleanPricePerHour: 60,
-				deepCleanAdditionalHourPrice: 55
+				deepCleanPricePerHour: 59.99,
+				deepCleanAdditionalHourPrice: 54.99
 			}
 		],
 		bookingPeriods: ["once-off"],
@@ -41,27 +41,27 @@ export const bookingOptions: BookingOption[] = [
 		pricing: [
 			{
 				period: "weekly",
-				pricePerHour: 40,
-				additionalHourPrice: 35,
+				pricePerHour: 39.99,
+				additionalHourPrice: 34.99,
 				minHours: 2,
-				deepCleanPricePerHour: 55,
-				deepCleanAdditionalHourPrice: 50
+				deepCleanPricePerHour: 54.99,
+				deepCleanAdditionalHourPrice: 49.99
 			},
 			{
 				period: "fortnightly",
-				pricePerHour: 40,
-				additionalHourPrice: 35,
+				pricePerHour: 39.99,
+				additionalHourPrice: 34.99,
 				minHours: 3,
-				deepCleanPricePerHour: 55,
-				deepCleanAdditionalHourPrice: 50
+				deepCleanPricePerHour: 54.99,
+				deepCleanAdditionalHourPrice: 49.99
 			},
 			{
 				period: "monthly",
-				pricePerHour: 45,
-				additionalHourPrice: 40,
+				pricePerHour: 44.99,
+				additionalHourPrice: 39.99,
 				minHours: 3,
-				deepCleanPricePerHour: 60,
-				deepCleanAdditionalHourPrice: 55
+				deepCleanPricePerHour: 59.99,
+				deepCleanAdditionalHourPrice: 54.99
 			}
 		],
 		bookingPeriods: ["weekly", "fortnightly", "monthly"],
@@ -76,20 +76,20 @@ export const bookingOptions: BookingOption[] = [
 		pricing: [
 			{
 				period: "once-off",
-				pricePerHour: 45,
-				additionalHourPrice: 40,
+				pricePerHour: 49.99,
+				additionalHourPrice: 44.99,
 				minHours: 2
 			},
 			{
 				period: "weekly",
-				pricePerHour: 45,
-				additionalHourPrice: 40,
+				pricePerHour: 49.99,
+				additionalHourPrice: 44.99,
 				minHours: 2
 			},
 			{
 				period: "fortnightly",
-				pricePerHour: 50,
-				additionalHourPrice: 40,
+				pricePerHour: 49.99,
+				additionalHourPrice: 44.99,
 				minHours: 2
 			}
 		],
@@ -105,14 +105,14 @@ export const bookingOptions: BookingOption[] = [
 		pricing: [
 			{
 				period: "once-off",
-				pricePerHour: 45,
-				additionalHourPrice: 40,
+				pricePerHour: 49.99,
+				additionalHourPrice: 44.99,
 				minHours: 2
 			},
 			{
 				period: "regular",
-				pricePerHour: 50,
-				additionalHourPrice: 40,
+				pricePerHour: 49.99,
+				additionalHourPrice: 44.99,
 				minHours: 2
 			}
 		],
@@ -127,27 +127,32 @@ export const bookingOptions: BookingOption[] = [
 		pricing: [
 			{
 				period: "One Bed",
-				pricePerHour: 250,
+				pricePerHour: 239.99,
+				minHours: 0
+			},
+			{
+				period: "Studio",
+				pricePerHour: 259.99,
 				minHours: 0
 			},
 			{
 				period: "Two Bed",
-				pricePerHour: 290,
+				pricePerHour: 339.99,
 				minHours: 0
 			},
 			{
 				period: "Three Bed",
-				pricePerHour: 405,
+				pricePerHour: 439.99,
 				minHours: 0
 			},
 			{
 				period: "Four Bed",
-				pricePerHour: 550,
+				pricePerHour: 599.99,
 				minHours: 0
 			},
 			{
 				period: "Five+ Bed",
-				pricePerHour: 550,
+				pricePerHour: 0,
 				minHours: 0
 			}
 		],

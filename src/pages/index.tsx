@@ -19,7 +19,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Primetouch Cleaning | Sparkling Clean, Every Time</title>
+				<title>Primetouch Cleaning </title>
 				<meta
 					name="description"
 					content="Professional residential and commercial cleaning services. Book reliable cleaners for deep cleans, move-in/move-out, and regular maintenance."

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { IconPhone } from "@tabler/icons-react";
+import Image from "next/image";
+import primetouchIcon from "@/assets/primetouch-icon.png";
 
 export default function Header() {
 	const [open, setOpen] = useState(false);
@@ -33,9 +35,16 @@ export default function Header() {
 
 			<header className="sticky top-0 z-30 w-full border-b border-zinc-200 bg-white/90 backdrop-blur">
 				<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-					<Link href="/" className="flex items-center gap-2">
-						<span className="inline-block h-8 w-8 rounded-md bg-primary-600" aria-hidden="true" />
-						<span className="text-base font-bold tracking-tight text-zinc-900">
+					<Link href="/" className="flex items-center gap-3">
+						<Image
+							src={primetouchIcon}
+							alt="PrimeTouch Cleaning Icon"
+							width={40}
+							height={40}
+							className="rounded-lg"
+							priority
+						/>
+						<span className="text-lg font-bold tracking-tight text-zinc-900">
 							PrimeTouch Cleaning
 						</span>
 					</Link>

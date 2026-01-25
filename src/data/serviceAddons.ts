@@ -118,14 +118,14 @@ export const endOfLeaseAddons: Addon[] = [
 export const airbnbAddons: Addon[] = [
 	{
 		id: "linen-change-bed-making",
-		name: "Linen Change and Bed Making",
-		price: 40,
+		name: "Linen Change and Bed Making (price per bed)",
+		price: 20,
 		category: "cleaning"
 	},
 	{
 		id: "restock-amenities",
 		name: "Restock Amenities",
-		price: 25,
+		price: 20,
 		category: "other"
 	}
 ];

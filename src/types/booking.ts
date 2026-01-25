@@ -8,7 +8,7 @@ export type BookingType =
 	| "ndis";
 
 export type BookingPeriod = "once-off" | "regular" | "weekly" | "fortnightly" | "monthly";
-export type LeaseType = "One Bed" | "Two Bed" | "Three Bed" | "Four Bed" | "Five+ Bed";
+export type LeaseType = "One Bed" | "Studio" | "Two Bed" | "Three Bed" | "Four Bed" | "Five+ Bed";
 export type ContactPreference = "call" | "sms" | "email";
 export type CleanLevel = "standard" | "deep";
 export type TimeSlot = "morning" | "afternoon" | "evening";

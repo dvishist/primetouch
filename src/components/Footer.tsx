@@ -103,21 +103,22 @@ export default function Footer() {
 							<h3 className="text-white font-semibold mb-4">Contact Us</h3>
 							<div className="flex flex-col gap-3">
 								<a
-									href="tel:"
+									// href="tel:"
 									className="flex items-center gap-2 text-sm hover:text-blue-400 transition-colors"
 								>
-									<IconPhone size={18} />
+									<IconPhone size={18} className=" h-4 w-4" />
 									<span>Phone number coming soon</span>
 								</a>
 								<a
 									href="mailto:info.primetouchcleaning@gmail.com"
-									className="flex items-center gap-2 text-sm hover:text-blue-400 transition-colors"
+									target="#"
+									className="flex  w-75 items-center gap-2 text-sm hover:text-blue-400 transition-colors"
 								>
-									<IconMail size={18} />
+									<IconMail size={28} className="h-4 w-4" />
 									<span>info.primetouchcleaning@gmail.com</span>
 								</a>
 								<div className="flex items-start gap-2 text-sm">
-									<IconMapPin size={18} className="mt-1 shrink-0" />
+									<IconMapPin size={20} className="mt-1 shrink-0 h-4 w-4" />
 									<span>
 										Melbourne VIC
 										<br />
