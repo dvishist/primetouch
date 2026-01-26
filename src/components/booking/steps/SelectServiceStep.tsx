@@ -1,6 +1,7 @@
 import { Grid, Card, Text } from "@mantine/core";
 import { BookingType } from "@/types/booking";
 import { bookingOptions } from "@/data/bookingOptions";
+import parse from "html-react-parser";
 
 interface Props {
 	selected: BookingType | null;
@@ -25,12 +26,15 @@ export default function SelectServiceStep({ selected, onSelect }: Props) {
 						}}
 						onClick={() => onSelect(option.id)}
 					>
-						<Text size="lg" fw={700} mb="xs">
+						<Text size="xl" fw={700}>
 							{option.name}
 						</Text>
 						<Text size="sm" c="dimmed">
 							{option.description}
 						</Text>
+						<span className="text-sm font-normal mt-3 text-gray-600">
+							{parse(option.shortNote ?? "")}
+						</span>
 					</Card>
 				</Grid.Col>
 			))}

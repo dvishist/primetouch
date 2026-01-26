@@ -50,6 +50,7 @@ export interface BookingOption {
 	cleanLevelComparison?: CleaningAreaComparison[];
 	supportsCleanLevel?: boolean;
 	addons?: Addon[];
+	shortNote?: string;
 }
 
 export interface DurationOption {

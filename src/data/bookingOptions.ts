@@ -18,7 +18,7 @@ export const bookingOptions: BookingOption[] = [
 	{
 		id: "regular",
 		name: "Regular Cleaning",
-		description: "Regular maintenance cleaning for your home.",
+		description: "Your home perfectly maintained week after week.",
 		pricing: [
 			{
 				period: "weekly",
@@ -42,7 +42,9 @@ export const bookingOptions: BookingOption[] = [
 		bookingPeriods: ["weekly", "fortnightly", "monthly"],
 		supportsCleanLevel: false,
 		cleanLevelComparison: regularComparison,
-		addons: regularAddons
+		addons: regularAddons,
+		shortNote:
+			"Starting from <br/><strong>$40/hr</strong> for 2 hours <br/><strong>+$38/hr</strong> for additional hours."
 	},
 	{
 		id: "once-off",
@@ -61,7 +63,9 @@ export const bookingOptions: BookingOption[] = [
 		bookingPeriods: ["once-off"],
 		supportsCleanLevel: true,
 		cleanLevelComparison: onceOffComparison,
-		addons: onceOffAddons
+		addons: onceOffAddons,
+		shortNote:
+			"Starting from <br/><strong>$45/hr</strong> for 3 hours <br/><strong>+$42/hr</strong> for additional hours."
 	},
 	{
 		id: "ndis",
@@ -89,13 +93,15 @@ export const bookingOptions: BookingOption[] = [
 		],
 		bookingPeriods: ["weekly", "fortnightly", "once-off"],
 		cleanLevelComparison: ndisComparison,
-		addons: ndisAddons
+		addons: ndisAddons,
+		shortNote:
+			"Starting from <br/><strong>$52/hr</strong> for 2 hours <br/><strong>+$50/hr</strong> for additional hours."
 	},
 
 	{
 		id: "airbnb",
 		name: "Airbnb Cleaning",
-		description: "Quick and thorough cleaning between guest stays",
+		description: "Polished to perfection for your next guest stay.",
 		pricing: [
 			{
 				period: "once-off",
@@ -112,7 +118,9 @@ export const bookingOptions: BookingOption[] = [
 		],
 		bookingPeriods: ["once-off", "regular"],
 		cleanLevelComparison: airbnbComparison,
-		addons: airbnbAddons
+		addons: airbnbAddons,
+		shortNote:
+			"Starting from <br/><strong>$50/hr</strong> for 2 hours <br/><strong>+$48/hr</strong> for additional hours."
 	},
 	{
 		id: "end-of-lease",
@@ -152,7 +160,9 @@ export const bookingOptions: BookingOption[] = [
 		],
 		bookingPeriods: ["Studio", "One Bed", "Two Bed", "Three Bed", "Four Bed", "Five+ Bed"],
 		cleanLevelComparison: endOfLeaseComparison,
-		addons: endOfLeaseAddons
+		addons: endOfLeaseAddons,
+		shortNote:
+			"Starting from <br/><strong>$240/hr</strong> for Studio<br/>Balcony and Garage add-ons available."
 	},
 	{
 		id: "move-in",
@@ -160,38 +170,17 @@ export const bookingOptions: BookingOption[] = [
 		description: "Comprehensive cleaning to welcome you to your new home.",
 		pricing: [
 			{
-				period: "Studio",
-				pricePerHour: 240,
-				minHours: 0
-			},
-			{
-				period: "One Bed",
-				pricePerHour: 260,
-				minHours: 0
-			},
-			{
-				period: "Two Bed",
-				pricePerHour: 340,
-				minHours: 0
-			},
-			{
-				period: "Three Bed",
-				pricePerHour: 440,
-				minHours: 0
-			},
-			{
-				period: "Four Bed",
-				pricePerHour: 550,
-				minHours: 0
-			},
-			{
-				period: "Five+ Bed",
-				pricePerHour: 700,
-				minHours: 0
+				period: "once-off",
+				pricePerHour: 55,
+				minHours: 3,
+				additionalHourPrice: 52
 			}
 		],
-		bookingPeriods: ["Studio", "One Bed", "Two Bed", "Three Bed", "Four Bed", "Five+ Bed"],
+		supportsCleanLevel: false,
+		bookingPeriods: ["once-off"],
 		cleanLevelComparison: endOfLeaseComparison,
-		addons: endOfLeaseAddons
+		addons: endOfLeaseAddons,
+		shortNote:
+			"Starting from <br/><strong>$55/hr</strong> for 3 hours <br/><strong>+$52/hr</strong> for additional hours."
 	}
 ];

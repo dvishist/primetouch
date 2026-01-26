@@ -123,7 +123,7 @@ export default function BookingTypeStep({
 					</>
 				)}
 
-				{selectedOption.id !== "once-off" && (
+				{selectedOption.id !== "once-off" && selectedOption.id !== "move-in" && (
 					<>
 						<Text size="sm" fw={500} mb="xs">
 							{selectedOption.id === "end-of-lease"
@@ -327,17 +327,13 @@ export default function BookingTypeStep({
 											: undefined
 									}}
 									onClick={() => {
-										if (selectedOption.id === "once-off" || selectedCleanLevel === "deep") {
-											return;
-										}
-
 										const newAddons = selectedAddons.includes(addon.id)
 											? selectedAddons.filter(id => id !== addon.id)
 											: [...selectedAddons, addon.id];
 										onAddonsSelect(newAddons);
 									}}
 								>
-									<Group justify="space-between" wrap="nowrap" className="cursor-default">
+									<Group justify="space-between" wrap="nowrap" className="cursor-pointer">
 										<div>
 											<Text size="sm" fw={500}>
 												{addon.name}

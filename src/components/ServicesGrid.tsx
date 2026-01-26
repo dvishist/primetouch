@@ -58,7 +58,7 @@ export default function ServicesGrid() {
 					Choose your service
 				</Title>
 
-				<div className="grid grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-8 w-full">
+				<div className="grid grid-cols-3 lg:grid-cols-6 gap-12 sm:gap-28 w-full">
 					{bookingOptions.map((option, index) => (
 						<Link
 							key={option.id}

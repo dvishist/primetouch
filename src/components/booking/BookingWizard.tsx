@@ -60,7 +60,7 @@ export default function BookingWizard() {
 				if (validServices.includes(serviceParam as BookingType)) {
 					setActive(1); // Start at step 2 (Booking Details)
 
-					if (serviceParam === "once-off") {
+					if (serviceParam === "once-off" || serviceParam === "move-in") {
 						setFormData({ ...formData, bookingType: serviceParam, bookingPeriod: "once-off" });
 					} else {
 						setFormData({ ...formData, bookingType: serviceParam as BookingType });
@@ -75,7 +75,7 @@ export default function BookingWizard() {
 
 	const updateBookingType = (type: BookingType) => {
 		// Auto-select once-off period for once-off cleaning
-		if (type === "once-off") {
+		if (type === "once-off" || type === "move-in") {
 			setFormData({ ...formData, bookingType: type, bookingPeriod: "once-off" });
 		} else {
 			setFormData({ ...formData, bookingType: type });
