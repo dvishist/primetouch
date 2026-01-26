@@ -513,7 +513,7 @@ export default function BookingTypeStep({
 
 			<Textarea
 				label="Additional Notes"
-				placeholder="Any special instructions or requirements..."
+				placeholder="Any special requirements, areas to focus on, or additional notes."
 				rows={4}
 				value={notes}
 				onChange={event => onNotesChange(event.target.value)}
@@ -600,9 +600,13 @@ export default function BookingTypeStep({
 													) : (
 														<Table.Td style={{ textAlign: "center" }}>
 															{(() => {
-																const isDeepCleanService =
-																	selectedOption.id === "end-of-lease" ||
-																	selectedOption.id === "airbnb";
+																const isDeepCleanService = [
+																	"end-of-lease",
+																	"move-in",
+																	"airbnb",
+																	"ndis"
+																].includes(selectedOption.id);
+
 																const value = isDeepCleanService
 																	? task.deepClean
 																	: task.standardClean;

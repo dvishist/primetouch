@@ -4,7 +4,8 @@ import {
 	regularComparison,
 	endOfLeaseComparison,
 	airbnbComparison,
-	ndisComparison
+	ndisComparison,
+	moveInComparison
 } from "./cleanLevelComparisons";
 import {
 	onceOffAddons,
@@ -123,6 +124,25 @@ export const bookingOptions: BookingOption[] = [
 			"Starting from <br/><strong>$50/hr</strong> for 2 hours <br/><strong>+$48/hr</strong> for additional hours."
 	},
 	{
+		id: "move-in",
+		name: "Move In Cleaning",
+		description: "Comprehensive cleaning to welcome you to your new home.",
+		pricing: [
+			{
+				period: "once-off",
+				pricePerHour: 55,
+				minHours: 3,
+				additionalHourPrice: 52
+			}
+		],
+		supportsCleanLevel: false,
+		bookingPeriods: ["once-off"],
+		cleanLevelComparison: moveInComparison,
+		addons: endOfLeaseAddons,
+		shortNote:
+			"Starting from <br/><strong>$55/hr</strong> for 3 hours <br/><strong>+$52/hr</strong> for additional hours."
+	},
+	{
 		id: "end-of-lease",
 		name: "End of Lease Cleaning",
 		description: "We clean. You collect your bond.",
@@ -163,24 +183,5 @@ export const bookingOptions: BookingOption[] = [
 		addons: endOfLeaseAddons,
 		shortNote:
 			"Starting from <br/><strong>$240/hr</strong> for Studio<br/>Balcony and Garage add-ons available."
-	},
-	{
-		id: "move-in",
-		name: "Move In Cleaning",
-		description: "Comprehensive cleaning to welcome you to your new home.",
-		pricing: [
-			{
-				period: "once-off",
-				pricePerHour: 55,
-				minHours: 3,
-				additionalHourPrice: 52
-			}
-		],
-		supportsCleanLevel: false,
-		bookingPeriods: ["once-off"],
-		cleanLevelComparison: endOfLeaseComparison,
-		addons: endOfLeaseAddons,
-		shortNote:
-			"Starting from <br/><strong>$55/hr</strong> for 3 hours <br/><strong>+$52/hr</strong> for additional hours."
 	}
 ];

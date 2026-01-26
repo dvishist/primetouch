@@ -68,7 +68,7 @@ export const regularComparison: CleaningAreaComparison[] = [
 		area: "BEDROOMS",
 		tasks: [
 			{ task: "Tidy Up Beds", standardClean: true, deepClean: null },
-			{ task: "Dust/Wipe All Surfaces", standardClean: true, deepClean: null },
+			{ task: "Dust/Wipe All Furniture", standardClean: true, deepClean: null },
 			{ task: "Empty Bins", standardClean: true, deepClean: null }
 		]
 	},
@@ -80,7 +80,7 @@ export const regularComparison: CleaningAreaComparison[] = [
 		area: "LIVING AREAS",
 		tasks: [
 			{ task: "Tidy Up Room", standardClean: true, deepClean: null },
-			{ task: "Dust Surfaces", standardClean: true, deepClean: null },
+			{ task: "Dust/Wipe Surfaces", standardClean: true, deepClean: null },
 			{ task: "Empty Bins", standardClean: true, deepClean: null }
 		]
 	}
@@ -154,7 +154,7 @@ export const onceOffComparison: CleaningAreaComparison[] = [
 		area: "BEDROOMS",
 		tasks: [
 			{ task: "Tidy Up Beds", standardClean: true, deepClean: true },
-			{ task: "Dust/Wipe All Surfaces", standardClean: true, deepClean: true },
+			{ task: "Dust/Wipe All Furniture", standardClean: true, deepClean: true },
 			{ task: "Empty Bins", standardClean: true, deepClean: true }
 		]
 	},
@@ -166,7 +166,7 @@ export const onceOffComparison: CleaningAreaComparison[] = [
 		area: "LIVING AREAS",
 		tasks: [
 			{ task: "Tidy Up Room", standardClean: true, deepClean: true },
-			{ task: "Dust Surfaces", standardClean: true, deepClean: true },
+			{ task: "Dust/Wipe Surfaces", standardClean: true, deepClean: true },
 			{ task: "Empty Bins", standardClean: true, deepClean: true }
 		]
 	}
@@ -174,6 +174,87 @@ export const onceOffComparison: CleaningAreaComparison[] = [
 
 // End-of-lease service: Shows all deep clean services as included
 export const endOfLeaseComparison: CleaningAreaComparison[] = [
+	{
+		area: "GENERAL",
+		tasks: [
+			{ task: "Cobweb Removal", standardClean: null, deepClean: true },
+			{
+				task: "Dust/Wipe Skirting Boards/Window Sills/Doors",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Dust/Clean Doors", standardClean: null, deepClean: true },
+			{
+				task: "Clean Accessible Light Switches/Power Points",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Dust All Reachable Surfaces", standardClean: null, deepClean: true },
+			{ task: "Dust/Clean Mirrors", standardClean: null, deepClean: true },
+			{ task: "Dust/Clean Blinds", standardClean: null, deepClean: true },
+			{ task: "Vacuum/Wipe visible window tracks/sills", standardClean: null, deepClean: true },
+			{
+				task: "Clean All Drawers/Cabinets (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Empty Bins", standardClean: null, deepClean: true }
+		]
+	},
+
+	{
+		area: "BATHROOM",
+		tasks: [
+			{ task: "Scrub/Clean Bath", standardClean: null, deepClean: true },
+			{ task: "Scrub/Clean Shower", standardClean: null, deepClean: true },
+			{ task: "Scrub/Clean Sinks", standardClean: null, deepClean: true },
+			{ task: "Wipe Down Benches", standardClean: null, deepClean: true },
+			{ task: "Clean Mirrors", standardClean: null, deepClean: true },
+			{ task: "Clean/Polish Tapware and Chrome", standardClean: null, deepClean: true },
+			{ task: "Empty Bins", standardClean: null, deepClean: true },
+			{ task: "Clean/Disinfect Toilet", standardClean: null, deepClean: true },
+			{ task: "Scrub Shower Wall Tiles/Grout", standardClean: null, deepClean: true },
+			{ task: "Clean Ceiling Exhaust Fans", standardClean: null, deepClean: true },
+			{
+				task: "Clean All Drawers/Cabinets (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			}
+		]
+	},
+	{
+		area: "KITCHEN",
+		tasks: [
+			{ task: "Clean Stovetop", standardClean: null, deepClean: true },
+			{ task: "Clean Rangehood (Interior + Exterior)", standardClean: null, deepClean: true },
+			{ task: "Clean/Wipe All Bench Tops", standardClean: null, deepClean: true },
+			{
+				task: "Clean Visible Appliances (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Clean Splash back", standardClean: null, deepClean: true },
+			{ task: "Clean/Polish Tapware", standardClean: null, deepClean: true },
+			{ task: "Scrub/Clean Sink", standardClean: null, deepClean: true },
+			{ task: "Polish Stainless Steel Surfaces", standardClean: null, deepClean: true },
+			{ task: "Dust And Wipe All Surfaces", standardClean: null, deepClean: true },
+			{ task: "Remove Food and Wipe Inside Dishwasher", standardClean: null, deepClean: true },
+			{ task: "Clean Inside Oven", standardClean: null, deepClean: true },
+			{
+				task: "Clean All Drawers/Cabinets (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			}
+		]
+	},
+	{
+		area: "FLOORS",
+		tasks: [{ task: "Vacuum/Mop All Accessible Floors", standardClean: null, deepClean: true }]
+	}
+];
+
+// Airbnb service: Same as end-of-lease (all deep clean services)
+export const ndisComparison: CleaningAreaComparison[] = [
 	{
 		area: "GENERAL",
 		tasks: [
@@ -192,11 +273,9 @@ export const endOfLeaseComparison: CleaningAreaComparison[] = [
 				deepClean: true
 			},
 			{ task: "Light Tidy Up", standardClean: null, deepClean: true },
-			{ task: "Vacuum/Mop Floors", standardClean: null, deepClean: true },
 			{ task: "Empty Bins", standardClean: null, deepClean: true },
-			{ task: "Dust/Clean Doors", standardClean: null, deepClean: true },
 			{ task: "Dust Skirting Boards", standardClean: null, deepClean: true },
-			{ task: "Lightly Dust Blinds", standardClean: null, deepClean: true }
+			{ task: "Dust/Wipe Doors", standardClean: null, deepClean: false }
 		]
 	},
 	{
@@ -207,45 +286,144 @@ export const endOfLeaseComparison: CleaningAreaComparison[] = [
 			{ task: "Scrub/Clean Sinks", standardClean: null, deepClean: true },
 			{ task: "Wipe Down Benches", standardClean: null, deepClean: true },
 			{ task: "Clean Mirrors", standardClean: null, deepClean: true },
-			{ task: "Clean/Polish Tapware and Chrome", standardClean: null, deepClean: true },
+			{ task: "Clean/Polish Tapware", standardClean: null, deepClean: true },
 			{ task: "Scrub/Clean Toilet", standardClean: null, deepClean: true },
-			{ task: "Vacuum/Mop Floors", standardClean: null, deepClean: true },
+			{ task: "Wipe Down Cupboards (Exterior)", standardClean: null, deepClean: true },
 			{ task: "Empty Bins", standardClean: null, deepClean: true },
-			{ task: "Wipe Down Tiles", standardClean: null, deepClean: true }
+			{ task: "Scrub Wall Tiles/Grout", standardClean: null, deepClean: false }
 		]
 	},
 	{
 		area: "KITCHEN",
 		tasks: [
-			{ task: "Wipe Down Benches", standardClean: null, deepClean: true },
 			{ task: "Clean Cooktop", standardClean: null, deepClean: true },
-			{ task: "Wipe Outside of Appliances", standardClean: null, deepClean: true },
-			{ task: "Clean Sinks", standardClean: null, deepClean: true },
-			{ task: "Vacuum/Mop Floors", standardClean: null, deepClean: true },
+			{ task: "Clean Rangehood (Exterior)", standardClean: null, deepClean: true },
+			{ task: "Clean/Wipe Down Benchtops", standardClean: null, deepClean: true },
+			{ task: "Clean Visible Appliances (Exterior)", standardClean: null, deepClean: true },
+			{ task: "Scrub/Clean Sinks", standardClean: null, deepClean: true },
+			{ task: "Clean Splashbacks", standardClean: null, deepClean: true },
+			{ task: "Clean/Polish Tapware", standardClean: null, deepClean: true },
+			{ task: "Clean Inside/Outside Microwave", standardClean: null, deepClean: true },
+			{ task: "Clean Cupboards (Exterior)", standardClean: null, deepClean: true },
 			{ task: "Empty Bins", standardClean: null, deepClean: true },
-			{ task: "Wipe Down Cabinet Doors", standardClean: null, deepClean: true },
-			{ task: "Clean Splashback", standardClean: null, deepClean: true }
+			{ task: "Clean Underside of Rangehood", standardClean: null, deepClean: false },
+			{ task: "Fridge Cleaning (Interior)", standardClean: null, deepClean: false },
+			{ task: "Oven Cleaning (Interior)", standardClean: null, deepClean: false }
 		]
 	},
 	{
 		area: "BEDROOMS",
 		tasks: [
-			{ task: "Make Beds (if linen present)", standardClean: null, deepClean: true },
-			{ task: "Dust Surfaces", standardClean: null, deepClean: true },
-			{ task: "Vacuum Floors", standardClean: null, deepClean: true },
+			{ task: "Tidy Up Beds", standardClean: null, deepClean: true },
+			{ task: "Dust/Wipe All Furniture", standardClean: null, deepClean: true },
 			{ task: "Empty Bins", standardClean: null, deepClean: true }
 		]
 	},
 	{
+		area: "Floors",
+		tasks: [{ task: "Vacuum/Mop All Accessible Floors", standardClean: null, deepClean: true }]
+	},
+	{
 		area: "LIVING AREAS",
 		tasks: [
-			{ task: "Dust Surfaces", standardClean: null, deepClean: true },
-			{ task: "Vacuum/Mop Floors", standardClean: null, deepClean: true },
+			{ task: "Tidy Up Room", standardClean: null, deepClean: true },
+			{ task: "Dust/Wipe Surfaces", standardClean: null, deepClean: true },
 			{ task: "Empty Bins", standardClean: null, deepClean: true }
 		]
 	}
 ];
 
-// Airbnb service: Same as end-of-lease (all deep clean services)
-export const airbnbComparison: CleaningAreaComparison[] = endOfLeaseComparison;
-export const ndisComparison: CleaningAreaComparison[] = endOfLeaseComparison;
+export const airbnbComparison: CleaningAreaComparison[] = [
+	{
+		area: "GENERAL",
+		tasks: [
+			{ task: "Cobweb Removal", standardClean: null, deepClean: true },
+			{
+				task: "Dust/Wipe Skirting Boards/Window Sills/Doors",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Dust/Clean Doors", standardClean: null, deepClean: true },
+			{
+				task: "Clean Accessible Light Switches/Power Points",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Dust All Reachable Surfaces", standardClean: null, deepClean: true },
+			{ task: "Dust/Clean Mirrors", standardClean: null, deepClean: true },
+			{ task: "Dust/Clean Blinds", standardClean: null, deepClean: true },
+			{ task: "Vacuum/Wipe Visible Window Tracks/Sills", standardClean: null, deepClean: true },
+			{
+				task: "Clean All Drawers/Cabinets (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Empty Bins", standardClean: null, deepClean: true }
+		]
+	},
+
+	{
+		area: "BATHROOM",
+		tasks: [
+			{ task: "Scrub/Clean Bath", standardClean: null, deepClean: true },
+			{ task: "Scrub/Clean Shower", standardClean: null, deepClean: true },
+			{ task: "Scrub/Clean Sinks", standardClean: null, deepClean: true },
+			{ task: "Wipe Down Benches", standardClean: null, deepClean: true },
+			{ task: "Clean Mirrors", standardClean: null, deepClean: true },
+			{ task: "Clean/Polish Tapware and Chrome", standardClean: null, deepClean: true },
+			{ task: "Empty Bins", standardClean: null, deepClean: true },
+			{ task: "Clean/Disinfect Toilet", standardClean: null, deepClean: true },
+			{ task: "Scrub Shower Wall Tiles/Grout", standardClean: null, deepClean: true },
+			{ task: "Clean Ceiling Exhaust Fans", standardClean: null, deepClean: true },
+			{
+				task: "Clean All Drawers/Cabinets (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			}
+		]
+	},
+	{
+		area: "KITCHEN",
+		tasks: [
+			{ task: "Clean Stovetop", standardClean: null, deepClean: true },
+			{ task: "Clean Rangehood (Interior + Exterior)", standardClean: null, deepClean: true },
+			{ task: "Clean/Wipe All Bench Tops", standardClean: null, deepClean: true },
+			{
+				task: "Clean Visible Appliances (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			},
+			{ task: "Clean Splash back", standardClean: null, deepClean: true },
+			{ task: "Clean/Polish Tapware", standardClean: null, deepClean: true },
+			{ task: "Scrub/Clean Sink", standardClean: null, deepClean: true },
+			{ task: "Polish Stainless Steel Surfaces", standardClean: null, deepClean: true },
+			{ task: "Dust And Wipe All Surfaces", standardClean: null, deepClean: true },
+			{ task: "Remove Food and Wipe Inside Dishwasher", standardClean: null, deepClean: true },
+			{ task: "Clean Inside Oven and Fridge", standardClean: null, deepClean: true },
+			{
+				task: "Clean All Drawers/Cabinets (Interior + Exterior)",
+				standardClean: null,
+				deepClean: true
+			},
+			{
+				task: "Dishes (Silverware and Utensils)",
+				standardClean: null,
+				deepClean: true
+			}
+		]
+	},
+	{
+		area: "LIVING AREAS",
+		tasks: [
+			{ task: "Tidy Up Room", standardClean: null, deepClean: true },
+			{ task: "Dust/Wipe Furniture", standardClean: null, deepClean: true },
+			{ task: "Empty Bins", standardClean: null, deepClean: true }
+		]
+	},
+	{
+		area: "FLOORS",
+		tasks: [{ task: "Vacuum/Mop All Accessible Floors", standardClean: null, deepClean: true }]
+	}
+];
+
+export const moveInComparison: CleaningAreaComparison[] = endOfLeaseComparison;
