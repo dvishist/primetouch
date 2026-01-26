@@ -23,6 +23,41 @@
 	--font-mono: var(--font-geist-mono);
 }
 
+/* Mobile-specific padding for booking page - reduced for less wasted space */
+@media (max-width: 640px) {
+  .booking-mobile-container {
+    padding-left: 2vw !important;
+    padding-right: 2vw !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    box-sizing: border-box;
+  }
+}
+/* Make Mantine Switch cursor pointer globally */
+.mantine-Switch-root,
+.mantine-Switch-input {
+	cursor: pointer !important;
+}
+@import "tailwindcss";
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	/* Primary brand color tokens */
+	--color-primary: #3e5c76;
+	--color-primary-50: #e8eef3;
+	--color-primary-600: #3e5c76;
+	--color-primary-700: #324c66;
+	--color-primary-900: #1f2f40;
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+}
+
 /* Force light theme: remove dark color scheme overrides */
 
 body {

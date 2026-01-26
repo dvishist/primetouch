@@ -9,7 +9,7 @@ export default function BookPage() {
 				<title>Book a Service | PrimeTouch Cleaning</title>
 				<meta name="description" content="Book your cleaning service with PrimeTouch" />
 			</Head>
-			<Container size="xl" py="xl">
+			<Container size="xl" py="xl" className="booking-mobile-container">
 				<Title order={1} ta="center" mb="md">
 					Book Your Cleaning Service
 				</Title>
