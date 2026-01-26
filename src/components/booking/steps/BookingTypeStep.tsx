@@ -1,4 +1,15 @@
-import { Card, Text, Collapse, Button, Group, Table, Textarea, Switch, Grid } from "@mantine/core";
+import {
+	Card,
+	Text,
+	Collapse,
+	Button,
+	Group,
+	Table,
+	Textarea,
+	Switch,
+	Grid,
+	Divider
+} from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import {
 	IconCheck,
@@ -12,11 +23,12 @@ import {
 import { useState } from "react";
 import { BookingType, BookingPeriod, LeaseType, CleanLevel, TimeSlot } from "@/types/booking";
 import { bookingOptions } from "@/data/bookingOptions";
+import { calculatePrice } from "./priceCalculator";
 
 interface Props {
 	selected: BookingType | null;
 	selectedPeriod: BookingPeriod | LeaseType | null;
-	selectedDuration: number | null;
+	selectedDuration: number;
 	selectedCleanLevel: CleanLevel | null;
 	selectedAddons: string[];
 	preferredDate: Date | null;
@@ -61,6 +73,7 @@ export default function BookingTypeStep({
 	const toggleComparison = () => {
 		setExpandedComparison(prev => !prev);
 	};
+	// Price calculation now imported from priceCalculator.ts
 
 	// Find the selected option
 	const selectedOption = bookingOptions.find(option => option.id === selected);
@@ -76,6 +89,11 @@ export default function BookingTypeStep({
 			</Text>
 			<Text size="sm" c="dimmed" mb="md">
 				{selectedOption.description}
+				{selectedOption.id === "once-off" && (
+					<span className="font-bold">
+						Fridge and oven cleaning are included in the Deep Clean option.
+					</span>
+				)}
 			</Text>
 
 			<div>
@@ -130,7 +148,7 @@ export default function BookingTypeStep({
 				{selectedOption.id !== "end-of-lease" &&
 					(() => {
 						const selectedPricing = selectedOption.pricing.find(p => p.period === selectedPeriod);
-						const minHours = selectedPricing?.minHours || 2;
+						const minHours = selectedPricing?.minHours!;
 						const maxHours = 8;
 						const durationOptions = Array.from(
 							{ length: maxHours - minHours + 1 },
@@ -285,53 +303,147 @@ export default function BookingTypeStep({
 				</div>
 			)}
 			{/* Add-Ons - Universal for all services */}
-			<Text size="sm" fw={500} mb="xs" mt="md">
-				Add-Ons:
-			</Text>
-			<Grid gutter="xs" mb="md">
-				{selectedOption.addons?.map(addon => (
-					<Grid.Col key={addon.id} span={{ base: 12, sm: 6, md: 4 }}>
-						<Card
-							padding="sm"
-							withBorder
-							style={{
-								cursor: "pointer",
-								borderColor: selectedAddons.includes(addon.id)
-									? "var(--mantine-color-brand-filled)"
-									: undefined
-							}}
-							onClick={() => {
-								const newAddons = selectedAddons.includes(addon.id)
-									? selectedAddons.filter(id => id !== addon.id)
-									: [...selectedAddons, addon.id];
-								onAddonsSelect(newAddons);
-							}}
-						>
-							<Group justify="space-between" wrap="nowrap">
-								<div>
-									<Text size="sm" fw={500}>
-										{addon.name}
-									</Text>
-									<Text size="xs" c="dimmed">
-										+${addon.price}
-									</Text>
-								</div>
-								<Switch
-									className="cursor-pointer!"
-									checked={selectedAddons.includes(addon.id)}
-									onChange={() => {
+
+			{selectedOption.addons && selectedOption.addons.length > 0 && (
+				<>
+					<Text size="sm" fw={500} mb="xs" mt="md">
+						Add-Ons:
+					</Text>
+					<Grid gutter="xs" mb="md">
+						{selectedOption.addons?.map(addon => (
+							<Grid.Col key={addon.id} span={{ base: 12, sm: 6, md: 4 }}>
+								<Card
+									padding="sm"
+									withBorder
+									style={{
+										cursor: "pointer",
+										borderColor: selectedAddons.includes(addon.id)
+											? "var(--mantine-color-brand-filled)"
+											: undefined
+									}}
+									onClick={() => {
+										if (selectedOption.id === "once-off" || selectedCleanLevel === "deep") {
+											return;
+										}
+
 										const newAddons = selectedAddons.includes(addon.id)
 											? selectedAddons.filter(id => id !== addon.id)
 											: [...selectedAddons, addon.id];
 										onAddonsSelect(newAddons);
 									}}
-									aria-label={addon.name}
-								/>
+								>
+									<Group justify="space-between" wrap="nowrap">
+										<div>
+											<Text size="sm" fw={500}>
+												{addon.name}
+											</Text>
+											<Text size="xs" c="dimmed">
+												+${addon.price}
+											</Text>
+										</div>
+										<Switch
+											className="cursor-pointer!"
+											checked={selectedAddons.includes(addon.id)}
+											onChange={() => {
+												const newAddons = selectedAddons.includes(addon.id)
+													? selectedAddons.filter(id => id !== addon.id)
+													: [...selectedAddons, addon.id];
+												onAddonsSelect(newAddons);
+											}}
+											aria-label={addon.name}
+										/>
+									</Group>
+								</Card>
+							</Grid.Col>
+						))}
+					</Grid>
+				</>
+			)}
+
+			{/* Price Summary after Add-Ons */}
+			{(() => {
+				const price = calculatePrice({
+					selectedOption,
+					selectedPeriod,
+					selectedDuration,
+					selectedCleanLevel,
+					selectedAddons,
+					bathrooms,
+					toilets,
+					bookingType: selectedOption.id
+				});
+				if (!price) return null;
+
+				// Show breakdown: $rate × hours (+ $additionalRate × additionalHours if any)
+				const pricing = selectedOption.pricing.find(p => p.period === selectedPeriod);
+				if (!pricing) return null;
+				const minHours = pricing.minHours || 1;
+				const isDeep = selectedCleanLevel === "deep";
+				const rate =
+					isDeep && pricing.deepCleanPricePerHour
+						? pricing.deepCleanPricePerHour
+						: pricing.pricePerHour;
+				const additionalRate =
+					isDeep && pricing.deepCleanAdditionalHourPrice
+						? pricing.deepCleanAdditionalHourPrice
+						: pricing.additionalHourPrice || pricing.pricePerHour;
+				const additionalHours = selectedDuration - minHours;
+
+				return (
+					<Card withBorder padding="md" radius="md" bg="blue.0" mb="md">
+						<Text fw={700} size="md" mb="xs">
+							Pricing Overview
+							<p className="text-xs font-normal">pay after service.</p>
+						</Text>
+						<Group justify="space-between" mt={"sm"}>
+							<Text>{`Base Service (${minHours} hours)`}</Text>
+							<div style={{ textAlign: "right" }}>
+								<Text fw={"bold"}>
+									<span className="text-gray-600 font-normal">
+										${rate} X {minHours} ={" "}
+									</span>
+									${rate * minHours}
+								</Text>
+							</div>
+						</Group>
+
+						{additionalHours > 0 && (
+							<Group justify="space-between">
+								<Text>{`Additional (${additionalHours} hours)`}</Text>
+								<div style={{ textAlign: "right" }}>
+									<Text fw={"bold"}>
+										<span className="text-gray-600 font-normal">
+											${additionalRate} X {additionalHours} ={" "}
+										</span>
+										${additionalRate * additionalHours}
+									</Text>
+								</div>
 							</Group>
-						</Card>
-					</Grid.Col>
-				))}
-			</Grid>
+						)}
+						{price.addonsTotal > 0 && (
+							<Group justify="space-between">
+								<Text>Add-Ons:</Text>
+								<Text fw={"bold"}>${price.addonsTotal}</Text>
+							</Group>
+						)}
+						{price.endOfLeaseExtras > 0 && (
+							<Group justify="space-between">
+								<Text>Extra Bathrooms & Toilets:</Text>
+								<Text>${price.endOfLeaseExtras}</Text>
+							</Group>
+						)}
+						<Divider my="xs" />
+						<Group justify="space-between">
+							<Text size="lg" fw={700}>
+								Total:
+							</Text>
+							<Text size="lg" fw={700} c="blue">
+								${price.total}
+							</Text>
+						</Group>
+					</Card>
+				);
+			})()}
 
 			{/* Date and Time Selection */}
 			<div style={{ marginTop: "24px", marginBottom: "24px" }}>

@@ -73,7 +73,7 @@ html {
 
 .hero-decoration-1 {
 	position: absolute;
-	left: -150px;
+	right: -150px;
 	top: -100px;
 	width: 700px;
 	height: 700px;

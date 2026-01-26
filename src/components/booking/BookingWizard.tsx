@@ -14,6 +14,7 @@ import SelectServiceStep from "./steps/SelectServiceStep";
 import BookingTypeStep from "./steps/BookingTypeStep";
 import CustomerDetailsStep from "./steps/CustomerDetailsStep";
 import BookingSummaryStep from "./steps/BookingSummaryStep";
+import { bookingOptions } from "@/data/bookingOptions";
 
 export default function BookingWizard() {
 	const router = useRouter();
@@ -56,8 +57,13 @@ export default function BookingWizard() {
 					"ndis"
 				];
 				if (validServices.includes(serviceParam as BookingType)) {
-					setFormData(prev => ({ ...prev, bookingType: serviceParam as BookingType }));
 					setActive(1); // Start at step 2 (Booking Details)
+
+					if (serviceParam === "once-off") {
+						setFormData({ ...formData, bookingType: serviceParam, bookingPeriod: "once-off" });
+					} else {
+						setFormData({ ...formData, bookingType: serviceParam as BookingType });
+					}
 				}
 			}
 		}
@@ -205,7 +211,7 @@ export default function BookingWizard() {
 						<BookingTypeStep
 							selected={formData.bookingType}
 							selectedPeriod={formData.bookingPeriod}
-							selectedDuration={formData.duration}
+							selectedDuration={formData.duration || 0}
 							selectedCleanLevel={formData.cleanLevel}
 							selectedAddons={formData.selectedAddons}
 							preferredDate={formData.preferredDate}

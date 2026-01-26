@@ -16,58 +16,52 @@ import {
 
 export const bookingOptions: BookingOption[] = [
 	{
+		id: "regular",
+		name: "Regular Cleaning",
+		description: "Regular maintenance cleaning for your home.",
+		pricing: [
+			{
+				period: "weekly",
+				pricePerHour: 40,
+				additionalHourPrice: 37,
+				minHours: 2
+			},
+			{
+				period: "fortnightly",
+				pricePerHour: 40,
+				additionalHourPrice: 37,
+				minHours: 3
+			},
+			{
+				period: "monthly",
+				pricePerHour: 45,
+				additionalHourPrice: 42,
+				minHours: 3
+			}
+		],
+		bookingPeriods: ["weekly", "fortnightly", "monthly"],
+		supportsCleanLevel: false,
+		cleanLevelComparison: regularComparison,
+		addons: regularAddons
+	},
+	{
 		id: "once-off",
 		name: "Once-off Cleaning",
-		description: "Single session cleaning for special occasions or events",
+		description: "A one time clean for homes that deserve more. ",
 		pricing: [
 			{
 				period: "once-off",
 				pricePerHour: 45,
-				additionalHourPrice: 40,
+				additionalHourPrice: 42,
 				minHours: 3,
 				deepCleanPricePerHour: 60,
-				deepCleanAdditionalHourPrice: 55
+				deepCleanAdditionalHourPrice: 57
 			}
 		],
 		bookingPeriods: ["once-off"],
 		supportsCleanLevel: true,
 		cleanLevelComparison: onceOffComparison,
 		addons: onceOffAddons
-	},
-	{
-		id: "regular",
-		name: "Regular Cleaning",
-		description: "Regular maintenance cleaning for your home or office",
-		pricing: [
-			{
-				period: "weekly",
-				pricePerHour: 40,
-				additionalHourPrice: 35,
-				minHours: 2,
-				deepCleanPricePerHour: 55,
-				deepCleanAdditionalHourPrice: 50
-			},
-			{
-				period: "fortnightly",
-				pricePerHour: 40,
-				additionalHourPrice: 35,
-				minHours: 3,
-				deepCleanPricePerHour: 55,
-				deepCleanAdditionalHourPrice: 50
-			},
-			{
-				period: "monthly",
-				pricePerHour: 45,
-				additionalHourPrice: 40,
-				minHours: 3,
-				deepCleanPricePerHour: 60,
-				deepCleanAdditionalHourPrice: 55
-			}
-		],
-		bookingPeriods: ["weekly", "fortnightly", "monthly"],
-		supportsCleanLevel: true,
-		cleanLevelComparison: regularComparison,
-		addons: regularAddons
 	},
 	{
 		id: "ndis",
@@ -84,13 +78,13 @@ export const bookingOptions: BookingOption[] = [
 				period: "weekly",
 				pricePerHour: 50,
 				additionalHourPrice: 45,
-				minHours: 2
+				minHours: 3
 			},
 			{
 				period: "fortnightly",
 				pricePerHour: 50,
 				additionalHourPrice: 45,
-				minHours: 2
+				minHours: 4
 			}
 		],
 		bookingPeriods: ["once-off", "weekly", "fortnightly"],
