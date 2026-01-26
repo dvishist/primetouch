@@ -111,13 +111,13 @@ export default function ContactForm() {
 									</Text>
 								</div>
 								<Text size="sm" c="dimmed" className="mb-4">
-									Phone: coming soon
+									Phone: +61 406179939
 								</Text>
 								<Button
 									variant="outline"
 									fullWidth
 									component="a"
-									href="tel:0393081849"
+									href="tel:0406179939"
 									className="border-blue-600 text-blue-600 hover:bg-blue-50 mt-2"
 								>
 									Call Now

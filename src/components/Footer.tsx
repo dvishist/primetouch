@@ -107,7 +107,7 @@ export default function Footer() {
 									className="flex items-center gap-2 text-sm hover:text-blue-400 transition-colors"
 								>
 									<IconPhone size={18} className=" h-4 w-4" />
-									<span>Phone number coming soon</span>
+									<span>+61 406179939</span>
 								</a>
 								<a
 									href="mailto:info.primetouchcleaning@gmail.com"

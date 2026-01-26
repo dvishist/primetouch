@@ -79,9 +79,10 @@ export const regularComparison: CleaningAreaComparison[] = [
 	{
 		area: "LIVING AREAS",
 		tasks: [
-			{ task: "Tidy Up Room", standardClean: true, deepClean: null },
-			{ task: "Dust/Wipe Surfaces", standardClean: true, deepClean: null },
-			{ task: "Empty Bins", standardClean: true, deepClean: null }
+			{ task: "Dust/Wipe Coffee Tables/End Tables", standardClean: true, deepClean: null },
+			{ task: "Vacuum Rugs and Carpets", standardClean: true, deepClean: null },
+			{ task: "Wipe Remote Controls and Light Switches", standardClean: true, deepClean: null },
+			{ task: "Tidy Up Room", standardClean: true, deepClean: null }
 		]
 	}
 ];
@@ -165,9 +166,10 @@ export const onceOffComparison: CleaningAreaComparison[] = [
 	{
 		area: "LIVING AREAS",
 		tasks: [
-			{ task: "Tidy Up Room", standardClean: true, deepClean: true },
-			{ task: "Dust/Wipe Surfaces", standardClean: true, deepClean: true },
-			{ task: "Empty Bins", standardClean: true, deepClean: true }
+			{ task: "Dust/Wipe Coffee Tables/End Tables", standardClean: true, deepClean: true },
+			{ task: "Vacuum Rugs and Carpets", standardClean: true, deepClean: true },
+			{ task: "Wipe Remote Controls and Light Switches", standardClean: true, deepClean: true },
+			{ task: "Tidy Up Room", standardClean: true, deepClean: true }
 		]
 	}
 ];
@@ -190,6 +192,7 @@ export const endOfLeaseComparison: CleaningAreaComparison[] = [
 				deepClean: true
 			},
 			{ task: "Dust All Reachable Surfaces", standardClean: null, deepClean: true },
+			{ task: "Clean/Wipe all the Windows", standardClean: null, deepClean: true },
 			{ task: "Dust/Clean Mirrors", standardClean: null, deepClean: true },
 			{ task: "Dust/Clean Blinds", standardClean: null, deepClean: true },
 			{ task: "Vacuum/Wipe visible window tracks/sills", standardClean: null, deepClean: true },
@@ -326,9 +329,10 @@ export const ndisComparison: CleaningAreaComparison[] = [
 	{
 		area: "LIVING AREAS",
 		tasks: [
-			{ task: "Tidy Up Room", standardClean: null, deepClean: true },
-			{ task: "Dust/Wipe Surfaces", standardClean: null, deepClean: true },
-			{ task: "Empty Bins", standardClean: null, deepClean: true }
+			{ task: "Dust/Wipe Coffee Tables/End Tables", standardClean: null, deepClean: true },
+			{ task: "Vacuum Rugs and Carpets", standardClean: null, deepClean: true },
+			{ task: "Wipe Remote Controls and Light Switches", standardClean: null, deepClean: true },
+			{ task: "Tidy Up Room", standardClean: null, deepClean: true }
 		]
 	}
 ];
@@ -415,9 +419,10 @@ export const airbnbComparison: CleaningAreaComparison[] = [
 	{
 		area: "LIVING AREAS",
 		tasks: [
-			{ task: "Tidy Up Room", standardClean: null, deepClean: true },
-			{ task: "Dust/Wipe Furniture", standardClean: null, deepClean: true },
-			{ task: "Empty Bins", standardClean: null, deepClean: true }
+			{ task: "Dust/Wipe Coffee Tables/End Tables", standardClean: null, deepClean: true },
+			{ task: "Vacuum Rugs and Carpets", standardClean: null, deepClean: true },
+			{ task: "Wipe Remote Controls and Light Switches", standardClean: null, deepClean: true },
+			{ task: "Tidy Up Room", standardClean: null, deepClean: true }
 		]
 	},
 	{

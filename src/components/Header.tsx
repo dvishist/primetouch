@@ -63,8 +63,14 @@ export default function Header() {
 						</Link>
 
 						<a
-							href="#contact"
+							href="/#contact"
 							className="inline-flex items-center rounded-full bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700"
+							onClick={e => {
+								if (window.location.pathname !== "/") {
+									e.preventDefault();
+									window.location.href = "/#contact";
+								}
+							}}
 						>
 							Contact Us
 						</a>
@@ -136,13 +142,20 @@ export default function Header() {
 							About
 						</Link>
 
-						<a
+						<Link
 							href="#contact"
 							className="mt-2 block rounded-full bg-primary-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-primary-700"
-							onClick={() => setOpen(false)}
+							onClick={e => {
+								if (window.location.pathname !== "/") {
+									e.preventDefault();
+									window.location.href = "/#contact";
+								} else {
+									setOpen(false);
+								}
+							}}
 						>
 							Contact Us
-						</a>
+						</Link>
 					</nav>
 				</div>
 			</header>
