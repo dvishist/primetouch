@@ -6,6 +6,7 @@ import onceOffImg from "@/assets/services/onceoff.jpg";
 import regularImg from "@/assets/services/regular.png";
 import endOfLeaseImg from "@/assets/services/endoflease.png";
 import airbnbImg from "@/assets/services/airbnb.png";
+import moveInImg from "@/assets/services/move-in.png";
 import ndisImg from "@/assets/services/ndis.png";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,7 +15,8 @@ const serviceImages: Record<string, any> = {
 	regular: regularImg,
 	"end-of-lease": endOfLeaseImg,
 	airbnb: airbnbImg,
-	ndis: ndisImg
+	ndis: ndisImg,
+	"move-in": moveInImg
 };
 
 export default function ServicesGrid() {

@@ -54,7 +54,8 @@ export default function BookingWizard() {
 					"end-of-lease",
 					"commercial",
 					"airbnb",
-					"ndis"
+					"ndis",
+					"move-in"
 				];
 				if (validServices.includes(serviceParam as BookingType)) {
 					setActive(1); // Start at step 2 (Booking Details)

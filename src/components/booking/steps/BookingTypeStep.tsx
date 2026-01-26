@@ -126,7 +126,9 @@ export default function BookingTypeStep({
 				{selectedOption.id !== "once-off" && (
 					<>
 						<Text size="sm" fw={500} mb="xs">
-							Select Booking Period:
+							{selectedOption.id === "end-of-lease"
+								? "Select Number of Bedrooms"
+								: "Select Booking Period:"}
 						</Text>
 						<Group gap="xs" mb="md">
 							{selectedOption.bookingPeriods.map(period => (
@@ -190,7 +192,10 @@ export default function BookingTypeStep({
 							<div
 								style={{ fontSize: "13px", lineHeight: "1.5", marginBottom: "16px", color: "#666" }}
 							>
-								<div>Price: ${pricing.pricePerHour}</div>
+								<p>
+									Price: ${pricing.pricePerHour}, This price includes 1 standard bathroom and
+									toilet.
+								</p>
 							</div>
 						);
 					}
@@ -217,9 +222,9 @@ export default function BookingTypeStep({
 								}}
 							>
 								<div>
-									{isDeepClean ? "Deep Clean" : "Standard"}: ${rate}/hr
-									{additionalRate && ` (additional: $${additionalRate}/hr)`}
-									{pricing.minHours && ` - minimum ${pricing.minHours} hours`}
+									{isDeepClean ? "Deep Clean" : "Standard"} ${rate}
+									{pricing.minHours && ` for the first ${pricing.minHours} hours`}
+									{additionalRate && ` ($${additionalRate}/hr afterwards)`}
 								</div>
 							</div>
 						);
@@ -232,10 +237,10 @@ export default function BookingTypeStep({
 								style={{ fontSize: "13px", lineHeight: "1.5", marginBottom: "16px", color: "#666" }}
 							>
 								<div>
-									Price: ${pricing.pricePerHour}/hr
+									Price: ${pricing.pricePerHour}
+									{pricing.minHours && ` for the first ${pricing.minHours} hours`}
 									{pricing.additionalHourPrice &&
-										` (additional: $${pricing.additionalHourPrice}/hr)`}
-									{pricing.minHours && ` - minimum ${pricing.minHours} hours`}
+										` ($${pricing.additionalHourPrice}/hr afterwards)`}
 								</div>
 							</div>
 						);
@@ -332,7 +337,7 @@ export default function BookingTypeStep({
 										onAddonsSelect(newAddons);
 									}}
 								>
-									<Group justify="space-between" wrap="nowrap">
+									<Group justify="space-between" wrap="nowrap" className="cursor-default">
 										<div>
 											<Text size="sm" fw={500}>
 												{addon.name}
@@ -341,8 +346,8 @@ export default function BookingTypeStep({
 												+${addon.price}
 											</Text>
 										</div>
+
 										<Switch
-											className="cursor-pointer!"
 											checked={selectedAddons.includes(addon.id)}
 											onChange={() => {
 												const newAddons = selectedAddons.includes(addon.id)
@@ -351,6 +356,7 @@ export default function BookingTypeStep({
 												onAddonsSelect(newAddons);
 											}}
 											aria-label={addon.name}
+											style={{ cursor: "pointer" }}
 										/>
 									</Group>
 								</Card>
@@ -420,10 +426,17 @@ export default function BookingTypeStep({
 								</div>
 							</Group>
 						)}
-						{price.addonsTotal > 0 && (
+						{selectedAddons.length > 0 && (
 							<Group justify="space-between">
-								<Text>Add-Ons:</Text>
-								<Text fw={"bold"}>${price.addonsTotal}</Text>
+								<Text>Add-Ons: </Text>
+								<Text fw={"bold"}>
+									{selectedCleanLevel === "deep" && (
+										<span className="text-gray-600 text-sm font-normal">
+											included in deep clean
+										</span>
+									)}{" "}
+									${price.addonsTotal}
+								</Text>
 							</Group>
 						)}
 						{price.endOfLeaseExtras > 0 && (

@@ -40,9 +40,12 @@ export function calculatePrice({
 		const additionalHours = selectedDuration - minHours;
 		basePrice = hourlyRate * minHours + additionalRate * additionalHours;
 	}
+	// If once-off and deep clean, addons are free
+	const isOnceOffDeep = selectedOption.id === "once-off" && selectedCleanLevel === "deep";
 	const addonsTotal = selectedAddons.reduce((total: number, addonId: string) => {
 		const addon = selectedOption.addons?.find((a: any) => a.id === addonId);
-		return total + (addon?.price || 0);
+		// If once-off deep, price is 0
+		return total + (isOnceOffDeep ? 0 : addon?.price || 0);
 	}, 0);
 	let endOfLeaseExtras = 0;
 	if (bookingType === "end-of-lease") {
@@ -52,6 +55,6 @@ export function calculatePrice({
 		basePrice: Math.round(basePrice),
 		addonsTotal,
 		endOfLeaseExtras,
-		total: Math.round(basePrice) + addonsTotal + endOfLeaseExtras
+		total: Math.round(basePrice) + (isOnceOffDeep ? 0 : addonsTotal) + endOfLeaseExtras
 	};
 }

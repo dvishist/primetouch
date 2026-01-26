@@ -69,25 +69,25 @@ export const bookingOptions: BookingOption[] = [
 		description: "Specialized cleaning services for NDIS participants",
 		pricing: [
 			{
-				period: "once-off",
-				pricePerHour: 50,
-				additionalHourPrice: 45,
+				period: "weekly",
+				pricePerHour: 52,
+				additionalHourPrice: 50,
 				minHours: 2
 			},
 			{
-				period: "weekly",
-				pricePerHour: 50,
-				additionalHourPrice: 45,
-				minHours: 3
+				period: "fortnightly",
+				pricePerHour: 52,
+				additionalHourPrice: 50,
+				minHours: 2
 			},
 			{
-				period: "fortnightly",
-				pricePerHour: 50,
-				additionalHourPrice: 45,
-				minHours: 4
+				period: "once-off",
+				pricePerHour: 52,
+				additionalHourPrice: 50,
+				minHours: 2
 			}
 		],
-		bookingPeriods: ["once-off", "weekly", "fortnightly"],
+		bookingPeriods: ["weekly", "fortnightly", "once-off"],
 		cleanLevelComparison: ndisComparison,
 		addons: ndisAddons
 	},
@@ -100,13 +100,13 @@ export const bookingOptions: BookingOption[] = [
 			{
 				period: "once-off",
 				pricePerHour: 50,
-				additionalHourPrice: 45,
+				additionalHourPrice: 48,
 				minHours: 2
 			},
 			{
 				period: "regular",
 				pricePerHour: 50,
-				additionalHourPrice: 45,
+				additionalHourPrice: 48,
 				minHours: 2
 			}
 		],
@@ -117,15 +117,15 @@ export const bookingOptions: BookingOption[] = [
 	{
 		id: "end-of-lease",
 		name: "End of Lease Cleaning",
-		description: "Complete cleaning for moving transitions",
+		description: "We clean. You collect your bond.",
 		pricing: [
 			{
-				period: "One Bed",
+				period: "Studio",
 				pricePerHour: 240,
 				minHours: 0
 			},
 			{
-				period: "Studio",
+				period: "One Bed",
 				pricePerHour: 260,
 				minHours: 0
 			},
@@ -141,16 +141,56 @@ export const bookingOptions: BookingOption[] = [
 			},
 			{
 				period: "Four Bed",
-				pricePerHour: 600,
+				pricePerHour: 550,
 				minHours: 0
 			},
 			{
 				period: "Five+ Bed",
-				pricePerHour: 0,
+				pricePerHour: 700,
 				minHours: 0
 			}
 		],
-		bookingPeriods: ["One Bed", "Two Bed", "Three Bed", "Four Bed", "Five+ Bed"],
+		bookingPeriods: ["Studio", "One Bed", "Two Bed", "Three Bed", "Four Bed", "Five+ Bed"],
+		cleanLevelComparison: endOfLeaseComparison,
+		addons: endOfLeaseAddons
+	},
+	{
+		id: "move-in",
+		name: "Move In Cleaning",
+		description: "Comprehensive cleaning to welcome you to your new home.",
+		pricing: [
+			{
+				period: "Studio",
+				pricePerHour: 240,
+				minHours: 0
+			},
+			{
+				period: "One Bed",
+				pricePerHour: 260,
+				minHours: 0
+			},
+			{
+				period: "Two Bed",
+				pricePerHour: 340,
+				minHours: 0
+			},
+			{
+				period: "Three Bed",
+				pricePerHour: 440,
+				minHours: 0
+			},
+			{
+				period: "Four Bed",
+				pricePerHour: 550,
+				minHours: 0
+			},
+			{
+				period: "Five+ Bed",
+				pricePerHour: 700,
+				minHours: 0
+			}
+		],
+		bookingPeriods: ["Studio", "One Bed", "Two Bed", "Three Bed", "Four Bed", "Five+ Bed"],
 		cleanLevelComparison: endOfLeaseComparison,
 		addons: endOfLeaseAddons
 	}

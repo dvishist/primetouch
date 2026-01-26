@@ -1,3 +1,8 @@
+/* Make Mantine Switch cursor pointer globally */
+.mantine-Switch-root,
+.mantine-Switch-input {
+	cursor: pointer !important;
+}
 @import "tailwindcss";
 
 :root {
