@@ -25,13 +25,13 @@
 
 /* Mobile-specific padding for booking page - reduced for less wasted space */
 @media (max-width: 640px) {
-  .booking-mobile-container {
-    padding-left: 2vw !important;
-    padding-right: 2vw !important;
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
-    box-sizing: border-box;
-  }
+	.booking-mobile-container {
+		padding-left: 2vw !important;
+		padding-right: 2vw !important;
+		padding-top: 8px !important;
+		padding-bottom: 8px !important;
+		box-sizing: border-box;
+	}
 }
 /* Make Mantine Switch cursor pointer globally */
 .mantine-Switch-root,
