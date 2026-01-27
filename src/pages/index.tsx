@@ -2,27 +2,28 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import buckets from "../assets/buckets.png";
-import { useEffect, useState } from "react";
 import ImageSlider from "@/components/ImageSlider";
-import { getGoogleDriveImageUrls } from "@/utils/googleDrive";
-import { GOOGLE_DRIVE_FOLDER_ID } from "@/utils/driveConfig";
 import { Button } from "@mantine/core";
 import ServicesGrid from "@/components/ServicesGrid";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
 import TrustBadges from "@/components/TrustBadges";
-
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import CTABanner from "@/components/CTABanner";
 import ProcessTimeline from "@/components/ProcessTimeline";
 
-export default function Home() {
-	const [sliderImages, setSliderImages] = useState<string[]>([]);
-	useEffect(() => {
-		getGoogleDriveImageUrls(GOOGLE_DRIVE_FOLDER_ID)
-			.then(setSliderImages)
-			.catch(() => setSliderImages([]));
-	}, []);
+import img1 from "../assets/gallery/46C841CE-D4B8-44C6-9457-97B4A6289E66.png";
+import img3 from "../assets/gallery/IMG_0519.jpg";
+import img6 from "../assets/gallery/IMG_0769.jpg";
+import img7 from "../assets/gallery/IMG_0777.jpg";
+import img8 from "../assets/gallery/IMG_0919.jpg";
+import img9 from "../assets/gallery/IMG_0984.jpg";
+import img10 from "../assets/gallery/IMG_0987.jpg";
+import img11 from "../assets/gallery/IMG_0988.jpg";
+
+const sliderImages = [img1, img3, img6, img7, img8, img9, img10, img11];
+
+export default function HomePage() {
 	return (
 		<>
 			<Head>
@@ -109,17 +110,15 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* Image Slider from Google Drive */}
-			{sliderImages.length > 0 && (
-				<div style={{ margin: "40px auto", maxWidth: 600 }}>
-					<ImageSlider images={sliderImages} />
-				</div>
-			)}
-
 			<ServicesGrid />
 
 			{/* Trust Badges */}
 			<TrustBadges />
+
+			{/* Image Slider from local assets */}
+			<div style={{ margin: "40px auto", maxWidth: 1200 }}>
+				<ImageSlider images={sliderImages.map(img => img.src)} />
+			</div>
 
 			{/* Process Timeline */}
 			<ProcessTimeline />

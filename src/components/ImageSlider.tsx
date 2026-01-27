@@ -1,51 +1,57 @@
-import React, { useState } from "react";
+import { Carousel } from "@mantine/carousel";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 interface ImageSliderProps {
 	images: string[];
+	imagesInView?: number; // how many images to show at once
+	intervalMs?: number; // auto-scroll interval
 }
 
-const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
-	const [current, setCurrent] = useState(0);
+const ImageSlider: React.FC<ImageSliderProps> = ({
+	images,
+	imagesInView = 3,
+	intervalMs = 2000
+}) => {
+	const autoplay = useRef(Autoplay({ delay: intervalMs, stopOnInteraction: true }));
 	if (!images || images.length === 0) return null;
-
-	const prev = () => setCurrent(c => (c === 0 ? images.length - 1 : c - 1));
-	const next = () => setCurrent(c => (c === images.length - 1 ? 0 : c + 1));
-
+	console.log(images);
 	return (
-		<div style={{ position: "relative", width: "100%", maxWidth: 600, margin: "auto" }}>
-			<img
-				src={images[current]}
-				alt={`Slide ${current + 1}`}
-				style={{ width: "100%", borderRadius: 8, boxShadow: "0 2px 8px #0002" }}
-			/>
-			<button
-				onClick={prev}
-				style={{ position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)" }}
-			>
-				&lt;
-			</button>
-			<button
-				onClick={next}
-				style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)" }}
-			>
-				&gt;
-			</button>
-			<div style={{ textAlign: "center", marginTop: 8 }}>
-				{images.map((_, i) => (
-					<span
-						key={i}
+		<Carousel
+			className="w-full"
+			withIndicators
+			slideSize={`${100 / imagesInView}%`}
+			slideGap="md"
+			plugins={[autoplay.current]}
+			emblaOptions={{ loop: true }}
+			onMouseEnter={autoplay.current.stop}
+			onMouseLeave={autoplay.current.reset}
+			styles={{ root: { maxWidth: 1200, margin: "auto" } }}
+		>
+			{images.map((img, i) => (
+				<Carousel.Slide key={i}>
+					<div
 						style={{
-							display: "inline-block",
-							width: 8,
-							height: 8,
-							borderRadius: "50%",
-							background: i === current ? "#333" : "#ccc",
-							margin: "0 4px"
+							position: "relative",
+							height: "600px",
+							width: "300px",
+							borderRadius: 8
 						}}
-					/>
-				))}
-			</div>
-		</div>
+					>
+						<img
+							src={img}
+							alt={`Slide ${i + 1}`}
+							style={{
+								width: "100%",
+								height: "100%",
+								objectFit: "cover",
+								display: "block"
+							}}
+						/>
+					</div>
+				</Carousel.Slide>
+			))}
+		</Carousel>
 	);
 };
 

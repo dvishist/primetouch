@@ -9,6 +9,7 @@
 		"lint": "eslint"
 	},
 	"dependencies": {
+		"@mantine/carousel": "^8.3.10",
 		"@mantine/core": "^8.3.10",
 		"@mantine/dates": "^8.3.10",
 		"@mantine/hooks": "^8.3.10",
@@ -16,6 +17,7 @@
 		"@tabler/icons-react": "^3.36.1",
 		"@types/nodemailer": "^7.0.5",
 		"dayjs": "^1.11.19",
+		"embla-carousel-autoplay": "^8.6.0",
 		"html-react-parser": "^5.2.12",
 		"lightningcss": "^1.30.2",
 		"next": "16.1.1",
