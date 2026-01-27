@@ -335,7 +335,7 @@ export default function BookingTypeStep({
 								</Button>
 							</Group>
 							<Text size="xs" c="dimmed" mt={4}>
-								$30 each
+								$15 each
 							</Text>
 						</div>
 					</Group>
