@@ -2,20 +2,27 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import buckets from "../assets/buckets.png";
-import { Container, Title, Text, Button, Card, SimpleGrid, Box } from "@mantine/core";
+import { useEffect, useState } from "react";
+import ImageSlider from "@/components/ImageSlider";
+import { getGoogleDriveImageUrls } from "@/utils/googleDrive";
+import { GOOGLE_DRIVE_FOLDER_ID } from "@/utils/driveConfig";
+import { Button } from "@mantine/core";
 import ServicesGrid from "@/components/ServicesGrid";
 import ServiceAreaMap from "@/components/ServiceAreaMap";
 import TrustBadges from "@/components/TrustBadges";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import Stats from "@/components/Stats";
-import Testimonials from "@/components/Testimonials";
+
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
-import WhatsIncluded from "@/components/WhatsIncluded";
 import CTABanner from "@/components/CTABanner";
 import ProcessTimeline from "@/components/ProcessTimeline";
 
 export default function Home() {
+	const [sliderImages, setSliderImages] = useState<string[]>([]);
+	useEffect(() => {
+		getGoogleDriveImageUrls(GOOGLE_DRIVE_FOLDER_ID)
+			.then(setSliderImages)
+			.catch(() => setSliderImages([]));
+	}, []);
 	return (
 		<>
 			<Head>
@@ -102,19 +109,23 @@ export default function Home() {
 				</div>
 			</section>
 
+			{/* Image Slider from Google Drive */}
+			{sliderImages.length > 0 && (
+				<div style={{ margin: "40px auto", maxWidth: 600 }}>
+					<ImageSlider images={sliderImages} />
+				</div>
+			)}
+
 			<ServicesGrid />
 
 			{/* Trust Badges */}
 			<TrustBadges />
 
-			{/* Why Choose Us */}
-			{/* <WhyChooseUs /> */}
-
 			{/* Process Timeline */}
 			<ProcessTimeline />
 
 			{/* What's Included */}
-			<WhatsIncluded />
+			{/* <WhatsIncluded /> */}
 
 			{/* Service Area Map */}
 			<ServiceAreaMap />

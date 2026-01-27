@@ -37,7 +37,7 @@ const badges: TrustBadge[] = [
 	},
 	{
 		icon: <IconAward size={32} className="text-yellow-600" />,
-		text: "Experienced",
+		text: "Highly Experienced",
 		subtext: "2+ years"
 	},
 
