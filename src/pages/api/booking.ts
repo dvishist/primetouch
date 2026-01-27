@@ -1,5 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+
 import nodemailer from "nodemailer";
+import { bookingOptions } from "@/data/bookingOptions";
+import { calculatePrice } from "@/components/booking/steps/priceCalculator";
 
 type BookingFormData = {
 	bookingType: string;
@@ -38,6 +41,50 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	try {
 		const bookingData: BookingFormData = req.body;
 
+		// Find selected option
+		const selectedOption = bookingOptions.find(opt => opt.id === bookingData.bookingType);
+		// Find selected period
+		const selectedPeriod = bookingData.bookingPeriod;
+		// Calculate pricing and hour breakdown
+		let pricingSummary = null;
+		let hourBreakdown = null;
+		if (selectedOption && selectedPeriod) {
+			pricingSummary = calculatePrice({
+				selectedOption,
+				selectedPeriod,
+				selectedDuration: bookingData.duration,
+				selectedCleanLevel: bookingData.cleanLevel,
+				selectedAddons: bookingData.selectedAddons,
+				bathrooms: bookingData.bathrooms,
+				toilets: bookingData.toilets,
+				beds: bookingData.beds,
+				bookingType: bookingData.bookingType
+			});
+			// Hour breakdown for base and additional hours
+			const pricing = selectedOption.pricing.find(p => p.period === selectedPeriod);
+			if (pricing && bookingData.duration) {
+				const minHours = pricing.minHours || 1;
+				const cleanLevel = bookingData.cleanLevel;
+				const hourlyRate =
+					cleanLevel === "deep" && pricing.deepCleanPricePerHour
+						? pricing.deepCleanPricePerHour
+						: pricing.pricePerHour;
+				const additionalRate =
+					cleanLevel === "deep" && pricing.deepCleanAdditionalHourPrice
+						? pricing.deepCleanAdditionalHourPrice
+						: pricing.additionalHourPrice || pricing.pricePerHour;
+				const additionalHours = Math.max(0, bookingData.duration - minHours);
+				hourBreakdown = {
+					minHours,
+					hourlyRate,
+					additionalHours,
+					additionalRate,
+					base: hourlyRate * minHours,
+					additional: additionalRate * additionalHours
+				};
+			}
+		}
+
 		// Validate required fields
 		if (!bookingData.customerDetails.firstName || !bookingData.customerDetails.email) {
 			return res.status(400).json({ success: false, message: "Missing required fields" });
@@ -64,6 +111,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		};
 
 		// HTML email template for business
+		const businessPricingHtml = pricingSummary
+			? `
+		<div class="section">
+			<div class="section-title">Pricing Summary</div>
+			<div class="info-grid">
+				${hourBreakdown ? `<div class="info-row"><span class="label">Base Price:</span><span class="value">$${hourBreakdown.hourlyRate} × ${hourBreakdown.minHours} hr${hourBreakdown.minHours > 1 ? "s" : ""} = $${hourBreakdown.base}</span></div>` : ""}
+				${hourBreakdown && hourBreakdown.additionalHours > 0 ? `<div class="info-row"><span class="label">Additional:</span><span class="value">$${hourBreakdown.additionalRate} × ${hourBreakdown.additionalHours} hr${hourBreakdown.additionalHours > 1 ? "s" : ""} = $${hourBreakdown.additional}</span></div>` : ""}
+				<div class="info-row"><span class="label">Base Price Total:</span><span class="value">$${pricingSummary.basePrice}</span></div>
+				${pricingSummary.addonsTotal ? `<div class="info-row"><span class="label">Add-ons:</span><span class="value">$${pricingSummary.addonsTotal}</span></div>` : ""}
+				${pricingSummary.endOfLeaseExtras ? `<div class="info-row"><span class="label">End of Lease Extras:</span><span class="value">$${pricingSummary.endOfLeaseExtras}</span></div>` : ""}
+				${pricingSummary.airbnbExtras ? `<div class="info-row"><span class="label">Airbnb Extras:</span><span class="value">$${pricingSummary.airbnbExtras}</span></div>` : ""}
+				<div class="info-row"><span class="label">Total:</span><span class="value"><strong>$${pricingSummary.total}</strong></span></div>
+			</div>
+		</div>
+		`
+			: "";
+
 		const businessEmail = `
 <!DOCTYPE html>
 <html>
@@ -194,6 +258,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 				<div style="font-size: 16px; color: #1e40af; font-weight: 600; margin-bottom: 8px;">Service Type</div>
 				<div class="badge">${formatBookingType(bookingData.bookingType)}</div>
 			</div>
+			${businessPricingHtml}
 
 			<div class="section">
 				<div class="section-title">Booking Details</div>
@@ -349,6 +414,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		});
 
 		// Customer confirmation email
+		const customerPricingHtml = pricingSummary
+			? `
+		<div class="info-box" style="background-color:#fef9c3;border-left:4px solid #f59e0b;">
+			<div class="info-title" style="color:#b45309;">Pricing Summary</div>
+			${hourBreakdown ? `<div class="info-item">Base Price: <strong>$${hourBreakdown.hourlyRate} × ${hourBreakdown.minHours} hr${hourBreakdown.minHours > 1 ? "s" : ""} = $${hourBreakdown.base}</strong></div>` : ""}
+			${hourBreakdown && hourBreakdown.additionalHours > 0 ? `<div class="info-item">Additional: <strong>$${hourBreakdown.additionalRate} × ${hourBreakdown.additionalHours} hr${hourBreakdown.additionalHours > 1 ? "s" : ""} = $${hourBreakdown.additional}</strong></div>` : ""}
+			<div class="info-item">Base Price Total: <strong>$${pricingSummary.basePrice}</strong></div>
+			${pricingSummary.addonsTotal ? `<div class="info-item">Add-ons: <strong>$${pricingSummary.addonsTotal}</strong></div>` : ""}
+			${pricingSummary.endOfLeaseExtras ? `<div class="info-item">End of Lease Extras: <strong>$${pricingSummary.endOfLeaseExtras}</strong></div>` : ""}
+			${pricingSummary.airbnbExtras ? `<div class="info-item">Airbnb Extras: <strong>$${pricingSummary.airbnbExtras}</strong></div>` : ""}
+			<div class="info-item">Total: <strong>$${pricingSummary.total}</strong></div>
+		</div>
+		`
+			: "";
+
 		const customerEmail = `
 <!DOCTYPE html>
 <html>
@@ -502,6 +582,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 				
 			</div>
 
+			${customerPricingHtml}
 			<p style="color: #475569; margin-top: 25px;">If you have any questions or need to make changes, please reply to this email with your request.</p>
 			
 			<p style="margin-top: 30px; color: #475569;">Looking forward to serving you!<br><strong>The PrimeTouch Team</strong></p>
