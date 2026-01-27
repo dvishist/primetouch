@@ -317,7 +317,7 @@ export default function BookingTypeStep({
 					<Group gap="xl" mb="md">
 						<div style={{ flex: 1 }}>
 							<Text size="sm" fw={500} mb="xs">
-								Beds
+								Bed Making and Linen Change:
 							</Text>
 							<Group gap="xs">
 								<Button
@@ -478,7 +478,7 @@ export default function BookingTypeStep({
 						)}
 						{price.airbnbExtras > 0 && (
 							<Group justify="space-between">
-								<Text>Extra Beds:</Text>
+								<Text>Bed Making and Linen Change:</Text>
 								<Text fw={"bold"}>${price.airbnbExtras}</Text>
 							</Group>
 						)}

@@ -224,7 +224,7 @@ export default function BookingSummaryStep({
 					{bookingType === "airbnb" && (beds || 0) > 0 && (
 						<Group justify="start">
 							<Text fw={500} c="dimmed">
-								Extra Beds:
+								Bed Making and Linen Change:
 							</Text>
 							<Text>{beds}</Text>
 						</Group>
@@ -290,7 +290,7 @@ export default function BookingSummaryStep({
 						)}
 						{priceBreakdown.airbnbExtras > 0 && (
 							<Group justify="space-between">
-								<Text fw={500}>Extra Beds:</Text>
+								<Text fw={500}>Bed Making and Linen Change:</Text>
 								<Text>${priceBreakdown.airbnbExtras}</Text>
 							</Group>
 						)}

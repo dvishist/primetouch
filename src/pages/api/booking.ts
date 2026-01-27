@@ -253,7 +253,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 					${
 						bookingData.beds
 							? `<div class="info-row">
-						<span class="label">Beds:</span>
+						<span class="label">Bed Making and Linen Change:</span>
 						<span class="value">${bookingData.beds}</span>
 					</div>`
 							: ""
