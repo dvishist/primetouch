@@ -23,14 +23,14 @@ export const bookingOptions: BookingOption[] = [
 		pricing: [
 			{
 				period: "weekly",
-				pricePerHour: 40,
-				additionalHourPrice: 37,
+				pricePerHour: 43,
+				additionalHourPrice: 40,
 				minHours: 2
 			},
 			{
 				period: "fortnightly",
-				pricePerHour: 40,
-				additionalHourPrice: 37,
+				pricePerHour: 43,
+				additionalHourPrice: 40,
 				minHours: 3
 			},
 			{
@@ -105,19 +105,19 @@ export const bookingOptions: BookingOption[] = [
 		description: "Polished to perfection for your next guest stay.",
 		pricing: [
 			{
-				period: "once-off",
+				period: "regular",
 				pricePerHour: 50,
 				additionalHourPrice: 48,
 				minHours: 2
 			},
 			{
-				period: "regular",
+				period: "once-off",
 				pricePerHour: 50,
 				additionalHourPrice: 48,
 				minHours: 2
 			}
 		],
-		bookingPeriods: ["once-off", "regular"],
+		bookingPeriods: ["regular", "once-off"],
 		cleanLevelComparison: airbnbComparison,
 		addons: airbnbAddons,
 		shortNote:
