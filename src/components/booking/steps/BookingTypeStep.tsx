@@ -35,6 +35,7 @@ interface Props {
 	preferredTime: TimeSlot | null;
 	bathrooms: number;
 	toilets: number;
+	beds: number;
 	notes: string;
 	onPeriodSelect: (period: BookingPeriod | LeaseType) => void;
 	onDurationSelect: (hours: number) => void;
@@ -44,6 +45,7 @@ interface Props {
 	onTimeSelect: (time: TimeSlot) => void;
 	onBathroomsChange: (count: number) => void;
 	onToiletsChange: (count: number) => void;
+	onBedsChange: (count: number) => void;
 	onNotesChange: (notes: string) => void;
 }
 
@@ -57,6 +59,7 @@ export default function BookingTypeStep({
 	preferredTime,
 	bathrooms,
 	toilets,
+	beds,
 	notes,
 	onPeriodSelect,
 	onDurationSelect,
@@ -66,6 +69,7 @@ export default function BookingTypeStep({
 	onTimeSelect,
 	onBathroomsChange,
 	onToiletsChange,
+	onBedsChange,
 	onNotesChange
 }: Props) {
 	const [expandedComparison, setExpandedComparison] = useState(false);
@@ -307,6 +311,36 @@ export default function BookingTypeStep({
 					</Group>
 				</div>
 			)}
+			{/* Airbnb specific: beds counters */}
+			{selectedOption.id === "airbnb" && selectedPeriod && (
+				<div style={{ marginBottom: "16px" }}>
+					<Group gap="xl" mb="md">
+						<div style={{ flex: 1 }}>
+							<Text size="sm" fw={500} mb="xs">
+								Beds
+							</Text>
+							<Group gap="xs">
+								<Button
+									size="xs"
+									variant="outline"
+									onClick={() => onBedsChange(Math.max(0, beds - 1))}
+								>
+									-
+								</Button>
+								<Text size="sm" style={{ minWidth: "30px", textAlign: "center" }}>
+									{beds}
+								</Text>
+								<Button size="xs" variant="outline" onClick={() => onBedsChange(beds + 1)}>
+									+
+								</Button>
+							</Group>
+							<Text size="xs" c="dimmed" mt={4}>
+								$30 each
+							</Text>
+						</div>
+					</Group>
+				</div>
+			)}
 			{/* Add-Ons - Universal for all services */}
 
 			{selectedOption.addons && selectedOption.addons.length > 0 && (
@@ -372,6 +406,7 @@ export default function BookingTypeStep({
 					selectedAddons,
 					bathrooms,
 					toilets,
+					beds,
 					bookingType: selectedOption.id
 				});
 				if (!price) return null;
@@ -438,7 +473,13 @@ export default function BookingTypeStep({
 						{price.endOfLeaseExtras > 0 && (
 							<Group justify="space-between">
 								<Text>Extra Bathrooms & Toilets:</Text>
-								<Text>${price.endOfLeaseExtras}</Text>
+								<Text fw={"bold"}>${price.endOfLeaseExtras}</Text>
+							</Group>
+						)}
+						{price.airbnbExtras > 0 && (
+							<Group justify="space-between">
+								<Text>Extra Beds:</Text>
+								<Text fw={"bold"}>${price.airbnbExtras}</Text>
 							</Group>
 						)}
 						<Divider my="xs" />

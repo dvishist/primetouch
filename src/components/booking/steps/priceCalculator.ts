@@ -7,6 +7,7 @@ export interface PriceCalculatorArgs {
 	selectedAddons: any;
 	bathrooms: number;
 	toilets: number;
+	beds: number;
 	bookingType: string;
 }
 
@@ -18,6 +19,7 @@ export function calculatePrice({
 	selectedAddons,
 	bathrooms,
 	toilets,
+	beds,
 	bookingType
 }: PriceCalculatorArgs) {
 	if (!selectedOption || !selectedPeriod || !selectedDuration) return null;
@@ -51,10 +53,15 @@ export function calculatePrice({
 	if (bookingType === "end-of-lease") {
 		endOfLeaseExtras = (bathrooms || 0) * 30 + (toilets || 0) * 10;
 	}
+	let airbnbExtras = 0;
+	if (bookingType === "airbnb") {
+		airbnbExtras = (beds || 0) * 15;
+	}
 	return {
 		basePrice: Math.round(basePrice),
 		addonsTotal,
 		endOfLeaseExtras,
+		airbnbExtras,
 		total: Math.round(basePrice) + (isOnceOffDeep ? 0 : addonsTotal) + endOfLeaseExtras
 	};
 }

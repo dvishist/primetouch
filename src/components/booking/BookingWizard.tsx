@@ -14,7 +14,6 @@ import SelectServiceStep from "./steps/SelectServiceStep";
 import BookingTypeStep from "./steps/BookingTypeStep";
 import CustomerDetailsStep from "./steps/CustomerDetailsStep";
 import BookingSummaryStep from "./steps/BookingSummaryStep";
-import { bookingOptions } from "@/data/bookingOptions";
 
 export default function BookingWizard() {
 	const router = useRouter();
@@ -30,6 +29,7 @@ export default function BookingWizard() {
 		preferredTime: null,
 		bathrooms: 0,
 		toilets: 0,
+		beds: 0,
 		customerDetails: {
 			firstName: "",
 			lastName: "",
@@ -110,6 +110,10 @@ export default function BookingWizard() {
 
 	const updateToilets = (count: number) => {
 		setFormData({ ...formData, toilets: count });
+	};
+
+	const updateBeds = (count: number) => {
+		setFormData({ ...formData, beds: count });
 	};
 
 	const updateNotes = (notes: string) => {
@@ -219,6 +223,7 @@ export default function BookingWizard() {
 							preferredTime={formData.preferredTime}
 							bathrooms={formData.bathrooms || 0}
 							toilets={formData.toilets || 0}
+							beds={formData.beds || 0}
 							notes={formData.customerDetails.notes}
 							onPeriodSelect={updateBookingPeriod}
 							onDurationSelect={updateDuration}
@@ -228,6 +233,7 @@ export default function BookingWizard() {
 							onTimeSelect={updateTime}
 							onBathroomsChange={updateBathrooms}
 							onToiletsChange={updateToilets}
+							onBedsChange={updateBeds}
 							onNotesChange={updateNotes}
 						/>
 					</Stepper.Step>

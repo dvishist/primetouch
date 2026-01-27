@@ -10,6 +10,7 @@ type BookingFormData = {
 	contactPreferences: string[];
 	bathrooms: number;
 	toilets: number;
+	beds: number;
 	preferredDate?: string | Date;
 	preferredTime?: "morning" | "afternoon" | "evening";
 	customerDetails: {
@@ -246,6 +247,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 							? `<div class="info-row">
 						<span class="label">Toilets:</span>
 						<span class="value">${bookingData.toilets}</span>
+					</div>`
+							: ""
+					}
+					${
+						bookingData.beds
+							? `<div class="info-row">
+						<span class="label">Beds:</span>
+						<span class="value">${bookingData.beds}</span>
 					</div>`
 							: ""
 					}

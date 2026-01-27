@@ -69,6 +69,7 @@ export interface BookingFormData {
 	preferredTime: TimeSlot | null;
 	bathrooms?: number;
 	toilets?: number;
+	beds?: number;
 	customerDetails: {
 		firstName: string;
 		lastName: string;

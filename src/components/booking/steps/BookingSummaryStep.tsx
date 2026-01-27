@@ -22,7 +22,8 @@ export default function BookingSummaryStep({
 		preferredDate,
 		preferredTime,
 		bathrooms,
-		toilets
+		toilets,
+		beds
 	} = formData;
 
 	const bookingName = bookingOptions.find(option => option.id === bookingType)?.name;
@@ -96,11 +97,18 @@ export default function BookingSummaryStep({
 			endOfLeaseExtras = (bathrooms || 0) * 30 + (toilets || 0) * 10;
 		}
 
+		// Calculate airbnb extras (beds)
+		let airbnbExtras = 0;
+		if (bookingType === "airbnb") {
+			airbnbExtras = (beds || 0) * 15;
+		}
+
 		return {
 			basePrice: Math.round(basePrice),
 			addonsTotal,
 			endOfLeaseExtras,
-			total: Math.round(basePrice) + addonsTotal + endOfLeaseExtras
+			airbnbExtras,
+			total: Math.round(basePrice) + addonsTotal + endOfLeaseExtras + airbnbExtras
 		};
 	};
 
@@ -213,6 +221,14 @@ export default function BookingSummaryStep({
 							<Text>{toilets}</Text>
 						</Group>
 					)}
+					{bookingType === "airbnb" && (beds || 0) > 0 && (
+						<Group justify="start">
+							<Text fw={500} c="dimmed">
+								Extra Beds:
+							</Text>
+							<Text>{beds}</Text>
+						</Group>
+					)}
 					{selectedAddons.length > 0 && (
 						<>
 							<Divider my="xs" />
@@ -270,6 +286,12 @@ export default function BookingSummaryStep({
 							<Group justify="space-between">
 								<Text fw={500}>Extra Bathrooms & Toilets:</Text>
 								<Text>${priceBreakdown.endOfLeaseExtras}</Text>
+							</Group>
+						)}
+						{priceBreakdown.airbnbExtras > 0 && (
+							<Group justify="space-between">
+								<Text fw={500}>Extra Beds:</Text>
+								<Text>${priceBreakdown.airbnbExtras}</Text>
 							</Group>
 						)}
 						<Divider my="xs" />
