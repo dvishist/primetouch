@@ -31,13 +31,13 @@ export default function CTABanner({ variant = "primary" }: CTABannerProps) {
 							</Button>
 							<Button
 								component="a"
-								href="tel:0412345678"
+								href="tel:0406179939"
 								size="lg"
 								leftSection={<IconPhone size={20} />}
 								variant="outline"
 								color="white"
 							>
-								Call 0412 345 678
+								Call 0406 179 939
 							</Button>
 						</Group>
 					</div>
