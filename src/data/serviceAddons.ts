@@ -37,7 +37,7 @@ export const endOfLeaseAddons: Addon[] = [
 	{
 		id: "balcony",
 		name: "Balcony",
-		price: 45,
+		price: 40,
 		category: "cleaning"
 	},
 	{
