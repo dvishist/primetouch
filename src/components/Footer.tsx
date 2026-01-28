@@ -90,13 +90,13 @@ export default function Footer() {
 									NDIS Cleaning
 								</Link>
 								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
-									End of Lease Clean
-								</Link>
-								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									Airbnb Cleaning
 								</Link>
 								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									Move In Cleaning
+								</Link>
+								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
+									End of Lease Cleaning
 								</Link>
 							</div>
 						</div>
