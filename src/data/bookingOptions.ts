@@ -75,20 +75,20 @@ export const bookingOptions: BookingOption[] = [
 		pricing: [
 			{
 				period: "weekly",
-				pricePerHour: 52,
-				additionalHourPrice: 50,
+				pricePerHour: 50,
+				additionalHourPrice: 45,
 				minHours: 2
 			},
 			{
 				period: "fortnightly",
-				pricePerHour: 52,
-				additionalHourPrice: 50,
+				pricePerHour: 50,
+				additionalHourPrice: 45,
 				minHours: 2
 			},
 			{
 				period: "once-off",
-				pricePerHour: 52,
-				additionalHourPrice: 50,
+				pricePerHour: 50,
+				additionalHourPrice: 45,
 				minHours: 2
 			}
 		],
@@ -96,7 +96,7 @@ export const bookingOptions: BookingOption[] = [
 		cleanLevelComparison: ndisComparison,
 		addons: ndisAddons,
 		shortNote:
-			"Starting from <br/><strong>$52/hr</strong> for 2 hours <br/><strong>+$50/hr</strong> for additional hours."
+			"Starting from <br/><strong>$50/hr</strong> for 2 hours <br/><strong>+$45/hr</strong> for additional hours."
 	},
 
 	{
@@ -112,9 +112,9 @@ export const bookingOptions: BookingOption[] = [
 			},
 			{
 				period: "once-off",
-				pricePerHour: 50,
-				additionalHourPrice: 48,
-				minHours: 2
+				pricePerHour: 55,
+				additionalHourPrice: 52,
+				minHours: 3
 			}
 		],
 		bookingPeriods: ["regular", "once-off"],
