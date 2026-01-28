@@ -45,7 +45,7 @@ export const bookingOptions: BookingOption[] = [
 		cleanLevelComparison: regularComparison,
 		addons: regularAddons,
 		shortNote:
-			"Starting from <br/><strong>$40/hr</strong> for 2 hours <br/><strong>+$38/hr</strong> for additional hours."
+			"Starting from <br/><strong>$43/hr</strong> for 2 hours <br/><strong>+$38/hr</strong> for additional hours."
 	},
 	{
 		id: "once-off",
