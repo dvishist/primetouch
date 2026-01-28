@@ -71,8 +71,7 @@ export const bookingOptions: BookingOption[] = [
 	{
 		id: "ndis",
 		name: "NDIS Cleaning",
-		description:
-			"Specialized cleaning services for NDIS participants. Only for self-managed or plan-managed participants.",
+		description: "Specialized cleaning services for NDIS participants.",
 		pricing: [
 			{
 				period: "weekly",
@@ -133,7 +132,7 @@ export const bookingOptions: BookingOption[] = [
 				period: "once-off",
 				pricePerHour: 55,
 				minHours: 3,
-				additionalHourPrice: 52
+				additionalHourPrice: 50
 			}
 		],
 		supportsCleanLevel: false,
@@ -141,7 +140,7 @@ export const bookingOptions: BookingOption[] = [
 		cleanLevelComparison: moveInComparison,
 		addons: endOfLeaseAddons,
 		shortNote:
-			"Starting from <br/><strong>$55/hr</strong> for 3 hours <br/><strong>+$52/hr</strong> for additional hours."
+			"Starting from <br/><strong>$55/hr</strong> for 3 hours <br/><strong>+$50/hr</strong> for additional hours."
 	},
 	{
 		id: "end-of-lease",

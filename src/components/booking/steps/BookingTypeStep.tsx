@@ -95,8 +95,15 @@ export default function BookingTypeStep({
 				{selectedOption.description}
 				{selectedOption.id === "once-off" && (
 					<span className="font-bold">
+						{" "}
 						Fridge and oven cleaning are included in the Deep Clean option.
 					</span>
+				)}
+				{selectedOption.id === "ndis" && (
+					<span className="font-bold"> Only for self-managed or plan-managed participants.</span>
+				)}
+				{selectedOption.id === "airbnb" && (
+					<span className="font-bold"> Linen change and bed making are included in the price.</span>
 				)}
 			</Text>
 
@@ -164,7 +171,7 @@ export default function BookingTypeStep({
 						return (
 							<>
 								<Text size="sm" fw={500} mb="xs">
-									Select Duration: (min {durationOptions[0]} hrs)
+									Select Duration: {selectedPricing ? `(min ${durationOptions[0]} hrs)` : ""}
 								</Text>
 								<Group gap="xs" mb="md">
 									{durationOptions.map(hours => (
@@ -311,36 +318,7 @@ export default function BookingTypeStep({
 					</Group>
 				</div>
 			)}
-			{/* Airbnb specific: beds counters */}
-			{selectedOption.id === "airbnb" && selectedPeriod && (
-				<div style={{ marginBottom: "16px" }}>
-					<Group gap="xl" mb="md">
-						<div style={{ flex: 1 }}>
-							<Text size="sm" fw={500} mb="xs">
-								Bed Making and Linen Change:
-							</Text>
-							<Group gap="xs">
-								<Button
-									size="xs"
-									variant="outline"
-									onClick={() => onBedsChange(Math.max(0, beds - 1))}
-								>
-									-
-								</Button>
-								<Text size="sm" style={{ minWidth: "30px", textAlign: "center" }}>
-									{beds}
-								</Text>
-								<Button size="xs" variant="outline" onClick={() => onBedsChange(beds + 1)}>
-									+
-								</Button>
-							</Group>
-							<Text size="xs" c="dimmed" mt={4}>
-								$15 each
-							</Text>
-						</div>
-					</Group>
-				</div>
-			)}
+
 			{/* Add-Ons - Universal for all services */}
 
 			{selectedOption.addons && selectedOption.addons.length > 0 && (
@@ -476,12 +454,7 @@ export default function BookingTypeStep({
 								<Text fw={"bold"}>${price.endOfLeaseExtras}</Text>
 							</Group>
 						)}
-						{price.airbnbExtras > 0 && (
-							<Group justify="space-between">
-								<Text>Bed Making and Linen Change:</Text>
-								<Text fw={"bold"}>${price.airbnbExtras}</Text>
-							</Group>
-						)}
+
 						<Divider my="xs" />
 						<Group justify="space-between">
 							<Text size="lg" fw={700}>

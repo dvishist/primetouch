@@ -221,14 +221,7 @@ export default function BookingSummaryStep({
 							<Text>{toilets}</Text>
 						</Group>
 					)}
-					{bookingType === "airbnb" && (beds || 0) > 0 && (
-						<Group justify="start">
-							<Text fw={500} c="dimmed">
-								Bed Making and Linen Change:
-							</Text>
-							<Text>{beds}</Text>
-						</Group>
-					)}
+
 					{selectedAddons.length > 0 && (
 						<>
 							<Divider my="xs" />
@@ -288,12 +281,7 @@ export default function BookingSummaryStep({
 								<Text>${priceBreakdown.endOfLeaseExtras}</Text>
 							</Group>
 						)}
-						{priceBreakdown.airbnbExtras > 0 && (
-							<Group justify="space-between">
-								<Text fw={500}>Bed Making and Linen Change:</Text>
-								<Text>${priceBreakdown.airbnbExtras}</Text>
-							</Group>
-						)}
+
 						<Divider my="xs" />
 						<Group justify="space-between">
 							<Text size="xl" fw={700}>

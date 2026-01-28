@@ -16,12 +16,12 @@ export default function About() {
 					We are a family-owned cleaning business founded by a brother and sister who share a
 					passion for creating clean, healthy spaces. As hands-on owners, we are personally involved
 					in every aspect of our work, ensuring that each job meets the high standards we set for
-					ourselves and our team. Our journey began with a simple goal: to provide honest, reliable
-					service with meticulous attention to detail, and to build lasting relationships with our
-					clients. We believe that a clean environment is the foundation for well-being and peace of
-					mind, and we take pride in delivering results that make a real difference. At the heart of
-					our business is a commitment to integrity, quality, and customer satisfaction, because
-					nothing matters more to us than seeing our clients happy, every single time.
+					ourselves. Our journey began with a simple goal: to provide honest, reliable service with
+					meticulous attention to detail, and to build lasting relationships with our clients. We
+					believe that a clean environment is the foundation for well-being and peace of mind, and
+					we take pride in delivering results that make a real difference. At the heart of our
+					business is a commitment to integrity, quality, and customer satisfaction, because nothing
+					matters more to us than seeing our clients happy, every single time.
 				</p>
 				<h2 className="text-2xl font-semibold mt-8 mb-2">Our Mission</h2>
 				<p className="mb-4">
