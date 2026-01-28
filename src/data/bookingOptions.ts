@@ -71,7 +71,8 @@ export const bookingOptions: BookingOption[] = [
 	{
 		id: "ndis",
 		name: "NDIS Cleaning",
-		description: "Specialized cleaning services for NDIS participants",
+		description:
+			"Specialized cleaning services for NDIS participants. Only for self-managed or plan-managed participants.",
 		pricing: [
 			{
 				period: "weekly",
