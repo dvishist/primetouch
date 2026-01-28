@@ -115,6 +115,23 @@ export default function HomePage() {
 			{/* Trust Badges */}
 			<TrustBadges />
 
+			{/* Small CTA for Pricing and About */}
+			<section className="my-8 flex flex-col items-center gap-4">
+				<h2 className="text-2xl font-semibold text-center">Learn More</h2>
+				<p className="text-center text-zinc-700 max-w-xl">
+					Discover our story, values, and transparent pricing. See why so many trust PrimeTouch for
+					their cleaning needs!
+				</p>
+				<div className="flex gap-4 mt-2">
+					<Button component={Link} href="/pricing" size="md">
+						View Pricing
+					</Button>
+					<Button component={Link} href="/about" variant="outline" size="md">
+						About Us
+					</Button>
+				</div>
+			</section>
+
 			{/* Image Slider from local assets */}
 			<div style={{ margin: "40px auto", maxWidth: 1200 }}>
 				<ImageSlider images={sliderImages.map(img => img.src)} />
