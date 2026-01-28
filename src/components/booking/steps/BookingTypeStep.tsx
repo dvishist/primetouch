@@ -164,7 +164,7 @@ export default function BookingTypeStep({
 						return (
 							<>
 								<Text size="sm" fw={500} mb="xs">
-									Select Duration:
+									Select Duration: (min {durationOptions[0]} hrs)
 								</Text>
 								<Group gap="xs" mb="md">
 									{durationOptions.map(hours => (
