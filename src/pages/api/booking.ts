@@ -258,7 +258,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 				<div style="font-size: 16px; color: #1e40af; font-weight: 600; margin-bottom: 8px;">Service Type</div>
 				<div class="badge">${formatBookingType(bookingData.bookingType)}</div>
 			</div>
-			${businessPricingHtml}
 
 			<div class="section">
 				<div class="section-title">Booking Details</div>
@@ -331,6 +330,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 						: ""
 				}
 			</div>
+
+			${businessPricingHtml}
+
 
 			<div class="section">
 				<div class="section-title">Customer Information</div>
