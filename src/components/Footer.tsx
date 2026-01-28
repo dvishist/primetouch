@@ -28,7 +28,7 @@ export default function Footer() {
 							</Text>
 							<div className="flex gap-3 mt-2">
 								<a
-									href="https://facebook.com"
+									href="#"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="w-9 h-9 rounded-full bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors"
@@ -46,7 +46,7 @@ export default function Footer() {
 									<IconBrandInstagram size={18} />
 								</a>
 								<a
-									href="https://tiktok.com"
+									href="https://tiktok.com/@primetouch.cleaning"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="w-9 h-9 rounded-full bg-gray-800 hover:bg-pink-900 flex items-center justify-center transition-colors"
@@ -94,6 +94,9 @@ export default function Footer() {
 								</Link>
 								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
 									Airbnb Cleaning
+								</Link>
+								<Link href="/pricing" className="text-sm hover:text-blue-400 transition-colors">
+									Move In Cleaning
 								</Link>
 							</div>
 						</div>
