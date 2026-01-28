@@ -24,8 +24,6 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
 			slideGap="md"
 			plugins={[autoplay.current]}
 			emblaOptions={{ loop: true }}
-			onMouseEnter={autoplay.current.stop}
-			onMouseLeave={autoplay.current.reset}
 			styles={{ root: { maxWidth: 1200, margin: "auto" } }}
 		>
 			{images.map((img, i) => (
