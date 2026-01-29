@@ -45,12 +45,13 @@ export const bookingOptions: BookingOption[] = [
 		cleanLevelComparison: regularComparison,
 		addons: regularAddons,
 		shortNote:
-			"Starting from <br/><strong>$43/hr</strong> for 2 hours <br/><strong>+$38/hr</strong> for additional hours."
+			"Starting from <br/><strong>$43/hr</strong> for 2 hours <br/><strong>+$40/hr</strong> for additional hours."
 	},
 	{
 		id: "once-off",
 		name: "Once-off Cleaning",
-		description: "A one time clean for homes that deserve more. ",
+		description:
+			"A one time clean for homes that deserve more. <strong>Fridge and oven cleaning are included in the Deep Clean option.</strong>",
 		pricing: [
 			{
 				period: "once-off",
@@ -71,7 +72,8 @@ export const bookingOptions: BookingOption[] = [
 	{
 		id: "ndis",
 		name: "NDIS Cleaning",
-		description: "Specialized cleaning services for NDIS participants.",
+		description:
+			"Specialized cleaning services for NDIS participants. <strong>Only for self-managed or plan-managed participants.</strong>",
 		pricing: [
 			{
 				period: "weekly",
@@ -102,12 +104,13 @@ export const bookingOptions: BookingOption[] = [
 	{
 		id: "airbnb",
 		name: "Airbnb Cleaning",
-		description: "Polished to perfection for your next guest stay.",
+		description:
+			"Polished to perfection for your next guest stay.<strong> Linen change and bed making are included in the price.</strong>",
 		pricing: [
 			{
 				period: "regular",
 				pricePerHour: 50,
-				additionalHourPrice: 48,
+				additionalHourPrice: 45,
 				minHours: 2
 			},
 			{
@@ -121,7 +124,7 @@ export const bookingOptions: BookingOption[] = [
 		cleanLevelComparison: airbnbComparison,
 		addons: airbnbAddons,
 		shortNote:
-			"Starting from <br/><strong>$50/hr</strong> for 2 hours <br/><strong>+$48/hr</strong> for additional hours."
+			"Starting from <br/><strong>$50/hr</strong> for 2 hours <br/><strong>+$45/hr</strong> for additional hours."
 	},
 	{
 		id: "move-in",

@@ -24,6 +24,7 @@ import { useState } from "react";
 import { BookingType, BookingPeriod, LeaseType, CleanLevel, TimeSlot } from "@/types/booking";
 import { bookingOptions } from "@/data/bookingOptions";
 import { calculatePrice } from "./priceCalculator";
+import parse from "html-react-parser";
 
 interface Props {
 	selected: BookingType | null;
@@ -92,19 +93,7 @@ export default function BookingTypeStep({
 				{selectedOption.name}
 			</Text>
 			<Text size="sm" c="dimmed" mb="md">
-				{selectedOption.description}
-				{selectedOption.id === "once-off" && (
-					<span className="font-bold">
-						{" "}
-						Fridge and oven cleaning are included in the Deep Clean option.
-					</span>
-				)}
-				{selectedOption.id === "ndis" && (
-					<span className="font-bold"> Only for self-managed or plan-managed participants.</span>
-				)}
-				{selectedOption.id === "airbnb" && (
-					<span className="font-bold"> Linen change and bed making are included in the price.</span>
-				)}
+				{parse(selectedOption.description)}
 			</Text>
 
 			<div>

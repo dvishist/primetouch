@@ -30,7 +30,7 @@ export default function SelectServiceStep({ selected, onSelect }: Props) {
 							{option.name}
 						</Text>
 						<Text size="sm" c="dimmed">
-							{option.description}
+							{parse(option.description)}
 						</Text>
 						<span className="text-sm font-normal mt-3 text-gray-600">
 							{parse(option.shortNote ?? "")}
