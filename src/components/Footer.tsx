@@ -73,6 +73,9 @@ export default function Footer() {
 								<Link href="/about" className="text-sm hover:text-blue-400 transition-colors">
 									About Us
 								</Link>
+								<Link href="/privacy" className="text-sm  hover:text-blue-400 transition-colors">
+									Privacy Policy
+								</Link>
 							</div>
 						</div>
 
@@ -148,20 +151,17 @@ export default function Footer() {
 						<Text size="sm" className="text-gray-400">
 							© {currentYear} PrimeTouch Cleaning Services. All rights reserved.
 						</Text>
-						{/* <div className="flex gap-6">
-							<Link
-								href="/privacy"
-								className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
+
+						<Text size="sm" className="text-gray-400">
+							Developed by{" "}
+							<a
+								className="hover:text-blue-400 transition-colors"
+								href="mailto:vishist.dev@gmail.com"
+								target="#"
 							>
-								Privacy Policy
-							</Link>
-							<Link
-								href="/terms"
-								className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
-							>
-								Terms of Service
-							</Link>
-						</div> */}
+								vishist.dev
+							</a>
+						</Text>
 					</div>
 				</Container>
 			</div>
