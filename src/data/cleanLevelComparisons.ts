@@ -21,9 +21,9 @@ export const regularComparison: CleaningAreaComparison[] = [
 			},
 			{ task: "Light Tidy Up", standardClean: true, deepClean: null },
 			{ task: "Empty Bins", standardClean: true, deepClean: null },
-			{ task: "Dust Skirting Boards", standardClean: true, deepClean: null },
-			{ task: "Dust/Clean Doors", standardClean: false, deepClean: null },
-			{ task: "Dust Blinds", standardClean: false, deepClean: null }
+			{ task: "Dust Skirting Boards", standardClean: true, deepClean: null }
+			// { task: "Dust/Clean Doors", standardClean: false, deepClean: null },
+			// { task: "Dust Blinds", standardClean: false, deepClean: null }
 		]
 	},
 	{
@@ -37,8 +37,8 @@ export const regularComparison: CleaningAreaComparison[] = [
 			{ task: "Clean/Polish Tapware and Chrome", standardClean: true, deepClean: null },
 			{ task: "Scrub/Clean Toilet", standardClean: true, deepClean: null },
 			{ task: "Wipe Down Cupboards (Exterior)", standardClean: true, deepClean: null },
-			{ task: "Empty Bins", standardClean: true, deepClean: null },
-			{ task: "Scrub Wall Tiles/Grout", standardClean: false, deepClean: null }
+			{ task: "Empty Bins", standardClean: true, deepClean: null }
+			// { task: "Scrub Wall Tiles/Grout", standardClean: true, deepClean: null }
 		]
 	},
 	{
