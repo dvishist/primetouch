@@ -13,6 +13,11 @@ import CTABanner from "@/components/CTABanner";
 import ProcessTimeline from "@/components/ProcessTimeline";
 
 import img1 from "../assets/gallery/46C841CE-D4B8-44C6-9457-97B4A6289E66.png";
+import bathroom from "../assets/gallery/bathroom.jpg";
+import bathtub from "../assets/gallery/bathtub.png";
+import sink from "../assets/gallery/sink.jpg";
+import bed from "../assets/gallery/bed.jpg";
+import shower from "../assets/gallery/shower.jpg";
 import img3 from "../assets/gallery/IMG_0519.jpg";
 import img6 from "../assets/gallery/IMG_0769.jpg";
 import img7 from "../assets/gallery/IMG_0777.jpg";
@@ -21,7 +26,21 @@ import img9 from "../assets/gallery/IMG_0984.jpg";
 import img10 from "../assets/gallery/IMG_0987.jpg";
 import img11 from "../assets/gallery/IMG_0988.jpg";
 
-const sliderImages = [img1, img3, img6, img7, img8, img9, img10, img11];
+const sliderImages = [
+	img1,
+	bathroom,
+	bathtub,
+	sink,
+	bed,
+	shower,
+	img3,
+	img6,
+	img7,
+	img8,
+	img9,
+	img10,
+	img11
+];
 
 export default function HomePage() {
 	return (
